@@ -139,36 +139,37 @@ This build guide is constructed from a compilation of sources from all over the 
 	- `sudo chown {myUser}:{myUser} /opt/nginx`
 	- `cd /opt/nginx`
 	- `sudo apt-get source nginx`
-	- `cd nginx-{curVer}/debian/modules/`
+	- `cd nginx-{nginxCurVer}/debian/modules/`
 	- `sudo apt-get install unzip`
-	- `sudo wget {linkToNpsZip}` (Copy link to newest zip <a href="https://github.com/pagespeed/ngx_pagespeed/releases" target="_blank">here</a>.)
-	- `sudo unzip {nameOfNpsZipFile}`
-	- `sudo rm {nameOfNpsZipFile}`
-	- `cd ngx_pagespeed-{NpsCurVer}-beta/`
-	- `sudo wget https://dl.google.com/dl/page-speed/psol/{NpsCurVer}.tar.gz
-	- `sudo tar -xzvf {NpsCurVer}.tar.gz`
-	- `sudo rm {NpsCurVer}.tar.gz`
-	- TODO: Download newest OpenSSL and compile with nginx.
-	- `sudo nano /opt/nginx/nginx-{NpsCurVer}/debian/rules`
+	- `sudo wget {npsZipLink}` (Copy link to newest zip <a href="https://github.com/pagespeed/ngx_pagespeed/releases" target="_blank">here</a>.)
+	- `sudo unzip {npsZipFile}`
+	- `sudo rm {npsZipFile}`
+	- `cd ngx_pagespeed-{npsCurVer}-beta/`
+	- `sudo wget https://dl.google.com/dl/page-speed/psol/{npsCurVer}.tar.gz`
+	- `sudo tar -xzvf {npsCurVer}.tar.gz`
+	- `sudo rm {npsCurVer}.tar.gz`
+	- **TODO**: Download newest OpenSSL and compile with nginx.
+	- `sudo nano /opt/nginx/nginx-{npsCurVer}/debian/rules`
 		- Under "light" version flags:
 			- Delete `--without-ngx_http_limit_req_module`
 			- Add `--with-http_spdy_module \`
 			- Add `--add-module=$(MODULESDIR)/nginx-cache-purge \`
 			- Add `--add-module=$(MODULESDIR)/ngx_pagespeed-{NpsCurVer}-beta`
-	- `cd /opt/nginx/nginx-{curVer}/`
+	- `cd /opt/nginx/nginx-{nginxCurVer}/`
 	- `sudo dpkg-buildpackage -b`
 	- `cd /opt/nginx/`
-	- `sudo dpkg -i nginx_{curVer}+trusty0_all.deb nginx-common_{curVer}+trusty0_all.deb nginx-doc_{curVer}+trusty0_all.deb nginx-light_{curVer}+trusty0_amd64.deb`
+	- `sudo dpkg -i nginx_{nginxCurVer}+trusty0_all.deb nginx-common_{nginxCurVer}+trusty0_all.deb nginx-doc_{nginxCurVer}+trusty0_all.deb nginx-light_{nginxCurVer}+trusty0_amd64.deb`
 		- If there are dependency errors due to python:
         	- `sudo apt-get -f install`
 	- `sudo find /opt/nginx -maxdepth 1 -type f -delete`
-    	- TODO: Delete source code here as well, once I verify that the build configuration of nginx is correct.
+    	- **TODO**: Delete source code here as well, once I verify that the build configuration of nginx is correct.
 	- `echo "nginx-light hold" | sudo dpkg --set-selections`
-	- Verify nginx is installed by visiting <myDropletIp> in a browser.
-	- Note that step 14 (except for the next bullet) should be completed again manually anytime nginx, {OpenSSL, } or ngx_pagespeed is updated. nginx will need to be uninstalled before installing the newly compiled version.
-	- sudo nano /etc/nginx/nginx.conf
-    	- TODO: Insert link to nginx.conf here.
+	- Verify nginx is installed by visiting {myVpsIP} in a browser.
+	- `sudo nano /etc/nginx/nginx.conf`
+    	- **TODO**: Insert link to nginx.conf here.
 	- _via <a href="https://github.com/h5bp/server-configs-nginx/blob/master/nginx.conf" target="_blank">h5bp</a>, <a href="https://blog.rudeotter.com/nginx-modules-pagespeed-ubuntu/" target="_blank">Rude Otter</a>_
 14. Work in progress...
 99. TBD
 	- Delete ufw rule for port 80 once full-site TLS is configured.
+100. Ongoing Maintenance
+	- When nginx, ngx_pagespeed, or OpenSSL have a new release, repeat step 13.
