@@ -1,5 +1,5 @@
 # wp-vps-build-guide
-A verbose build guide for a modern, high-performance Wordpress production VPS.
+A verbose build guide for a modern, high-performance WordPress production VPS.
 
 ## Intro
 I have been tinkering with building WordPress sites for the better part of five years. After getting fed up with typical cheap shared hosting options, I decided to explore the world of VPSs. After using DigitalOcean for a couple years, I have pieced together this workflow that I use to spin up new servers. I know that scripting and other modern tools such as what the team at <a href="https://roots.io/" target="_blank">Roots</a> is working on are out there, but I prefer understanding the underlying technologies of the server. For the same reason, and because I am cheap, I avoid the newer breed of managed WordPress hosts.
