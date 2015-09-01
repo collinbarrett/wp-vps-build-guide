@@ -24,18 +24,18 @@ please provide feedback. I'd love to continue to tweak and optimize this stack. 
 - TLS w/SPDY: yes (A+ SSL labs)
 - IPv4 & IPv6
 
-## General Notes:
+## General Notes
 - Items in curly brackets {} should be treated as variables and replaced with your own info.
 - Scattered throughout I have annotated recommended spots where I like to stop and take a DigitalOcean (DO) Snapshot so I don’t have to roll all the way back if I bork something up.
 
-## Assumptions:
+## Assumptions
 - You have basic *nix terminal skills.
 - You have a ssh key already created, with the public key on DO and the private .pem stored locally at {myPK}.
 
-## Sources:
+## Sources
 This build guide is constructed from a compilation of sources from all over the web. I have tried to credit sources where I could (using "via"), but I am sure that I left somebody's blog out.
 
-## Build Guide:
+## Build Guide
 1. Create a new VPS running the newest Ubuntu x64.
     - Enable backups.
     - Enable ipv6.
