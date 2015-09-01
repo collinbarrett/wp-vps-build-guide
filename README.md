@@ -41,8 +41,8 @@ please provide feedback. I'd love to continue to tweak and optimize this stack. 
     - In Terminal, `sudo nano ~/.ssh/config`
 
 		```
-		Host {myVPSName}
-		  HostName {myVPSIP}
+		Host {myVpsName}
+		  HostName {myVpsIP}
 		  Port 22
 		  User root
 		  IdentityFile {myPK}
@@ -50,11 +50,11 @@ please provide feedback. I'd love to continue to tweak and optimize this stack. 
 
     - ctrl + x to save and exit.
 3. ssh into the new VPS.
-	- `ssh <myVPSName>`
+	- `ssh {myVpsName}`
 		- Type "yes" to continue connecting.
 4. Create a new user and add it to the sudo group.
-	- `adduser <myUser>`
+	- `adduser {myUser}`
 		- Provide a password.
 		- Press "return" through the rest of the default options.
-	- `gpasswd -a <myUser> sudo`
+	- `gpasswd -a {myUser} sudo`
 	- via [DigitalOcean](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04)
