@@ -171,5 +171,6 @@ This build guide is constructed from a compilation of sources from all over the 
 14. Work in progress...
 99. TBD
 	- Delete ufw rule for port 80 once full-site TLS is configured.
-100. Ongoing Maintenance
-	- When nginx, ngx_pagespeed, or OpenSSL have a new release, repeat step 13.
+
+## Ongoing Maintenance
+- Whenever nginx, ngx_pagespeed, or OpenSSL have a new release, repeat step 13.
