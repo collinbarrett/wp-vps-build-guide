@@ -62,5 +62,5 @@ This build guide is constructed from a compilation of sources from all over the 
 		- Provide a password.
 		- Press "return" repeatedly to accept the rest of the default options.
 	- `gpasswd -a {myUser} sudo`
-	- via <a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04" target=_blank">DigitalOcean</a>
+	- _via <a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04" target=blank">DigitalOcean</a>_
 5. Work in progress...
