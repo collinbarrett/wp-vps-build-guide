@@ -121,6 +121,17 @@ This build guide is constructed from a compilation of sources from all over the 
 		- Add `vm.vfs_cache_pressure = 50`
 	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank">DigitalOcean</a>_
 	- _via <a href="https://help.ubuntu.com/community/SwapFaq" target="_blank">Ubuntu</a>_
-11. Work in progress...
+11. Snapshot 2
+12. Configure automatic updates, upgrades, & cleanup.
+	- `sudo apt-get install unattended-upgrades`
+	- `sudo dpkg-reconfigure -plow unattended-upgrades`
+	- Select "Yes" to auto-install upgrades.
+	- `sudo nano /etc/apt/apt.conf.d/20auto-upgrades`
+		- Add `APT::Periodic::Download-Upgradeable-Packages "1";`
+		- Add `APT::Periodic::AutocleanInterval "1";`
+	- `sudo nano /etc/apt/apt.conf.d/50unattended-upgrades`
+		- Uncomment `"${distro_id}:${distro_codename}-updates";`
+		- Uncomment and update `Unattended-Upgrade::Automatic-Reboot "true";`
+13. Work in progress...
 99. TBD
 	- Delete ufw rule for port 80 once full TLS is configured.
