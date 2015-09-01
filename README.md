@@ -25,12 +25,12 @@ If you are an expert WordPress DevOps type of person, please provide feedback. I
 - CDN: CloudFlare
 
 ## General Notes:
-- Items in corner brackets (<>) should be treated as variables and replaced with your own info.
+- Items in curly brackets {} should be treated as variables and replaced with your own info.
 - Scattered throughout I have annotated recommended spots where I like to stop and take a DigitalOcean (DO) Snapshot so I don’t have to roll all the way back if I bork something up.
 
 ## Assumptions:
 - You have basic *nix terminal skills.
-- You have a ssh key already created, with the public key on DO and the private .pem stored locally at <myPK>
+- You have a ssh key already created, with the public key on DO and the private .pem stored locally at {myPK}.
 
 1. Create a new VPS running the newest Ubuntu x64.
     - Enable backups.
@@ -40,11 +40,11 @@ If you are an expert WordPress DevOps type of person, please provide feedback. I
     - In Terminal, `sudo nano ~/.ssh/config`
 
 		```
-		Host <myVPSName>
-		HostName <myVPSIP>
+		Host {myVPSName}
+		HostName {myVPSIP}
 		Port 22
 		User root
-		IdentityFile <myPK>
+		IdentityFile {myPK}
 		```
 
     - ctrl + x to save and exit.
