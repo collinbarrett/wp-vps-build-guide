@@ -6,10 +6,10 @@ A verbose build guide for a modern, high-performance WordPress production VPS.
 ## Intro
 I have been tinkering with building WordPress sites for the better part of five years. After getting fed up with typical cheap shared hosting options, I decided to explore the world of VPSs. After using DigitalOcean for a couple years, I have pieced together this workflow that I use to spin up new servers. I know that scripting and other modern tools such as what the team at <a href="https://roots.io/" target="_blank">Roots</a> is working on are out there, but I prefer understanding the underlying technologies of the server. For the same reason, and because I am cheap, I avoid the newer breed of managed WordPress hosts.
 
-### If you are an amateur WordPresser...
+#### If you are an amateur WordPresser...
 like myself, feel free to use this guide to turbocharge your client's sites! If you come across any issues when following the guide, feel free to submit an issue or pull request.
 
-### If you are an expert at WordPress DevOps...
+#### If you are an expert at WordPress DevOps...
 please provide feedback. I'd love to continue to tweak and optimize this stack. I believe this to be a "pretty good" solution, but I know that it is not perfect and the technologies powering it are constantly changing. Issues and pull requests welcome.
 
 ## The Stack
@@ -73,15 +73,16 @@ This build guide is constructed from a compilation of sources from all over the 
         - Modify `Port {myRandomSshPort}` (<a href="http://www.wolframalpha.com/input/?i=RandomInteger%281025%2C65536%29" target="_blank">Generate Port</a>)
 		- Modify `PermitRootLogin no`
  	- `service ssh restart`
-	- Don’t close the Terminal window, yet. In another Terminal window, update `~/.ssh/config`.
+	- Don’t close the Terminal window, yet. In another Terminal window,
+    	- `sudo nano ~/.ssh/config`
 
-		```
-		Host {myVpsName}
-		  HostName {myVpsIP}
-		  Port {myRandomSshPort}
-		  User {myUser}
-		  IdentityFile {myPK}
-        ```
+			```
+			Host {myVpsName}
+			  HostName {myVpsIP}
+			  Port {myRandomSshPort}
+			  User {myUser}
+			  IdentityFile {myPK}
+			```
         
 	- Test ssh into the VPS as {myUser} before closing the root Terminal window.
 		- `ssh {myVPSName}`
