@@ -199,4 +199,4 @@ This build guide is constructed from a compilation of sources from all over the 
 	- Delete ufw rule for port 80 once full-site TLS is configured.
 
 ## Ongoing Maintenance
-- Whenever nginx, ngx_pagespeed, or OpenSSL have a new release, repeat step 13. nginx will first need to be uninstalled before installing the newly compiled version.
+- Whenever nginx, ngx_pagespeed, or OpenSSL have a new release, repeat step 13. nginx will first need to be uninstalled (`sudo apt-get remove nginx` ) before installing the newly compiled version.
