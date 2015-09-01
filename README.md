@@ -2,11 +2,13 @@
 A verbose build guide for a modern, high-performance Wordpress production VPS.
 
 ## Intro
-I have been tinkering with building WordPress sites for the better part of five years. After getting fed up with typical cheap shared hosting options, I decided to explore the world of VPSs. After using DigitalOcean for a couple years, I have pieced together this workflow that I use to spin up new servers. I know that scripting and other modern tools such as what the team at [Roots](roots.io "Roots") is working on are out there, but I prefer understanding the underlying technologies of the server. For the same reason, and because I am cheap, I avoid the newer breed of managed WordPress hosts.
+I have been tinkering with building WordPress sites for the better part of five years. After getting fed up with typical cheap shared hosting options, I decided to explore the world of VPSs. After using DigitalOcean for a couple years, I have pieced together this workflow that I use to spin up new servers. I know that scripting and other modern tools such as what the team at [Roots](https://roots.io/) is working on are out there, but I prefer understanding the underlying technologies of the server. For the same reason, and because I am cheap, I avoid the newer breed of managed WordPress hosts.
 
-_If you are an amateur WordPresser_ like myself, feel free to use this guide to turbocharge your client's sites!
+### If you are an amateur WordPresser...
+like myself, feel free to use this guide to turbocharge your client's sites! If you come across any issues when following the guide, feel free to submit an issue or pull request.
 
-_If you are an expert WordPress DevOps type of person_, please provide feedback. I'd love to continue to tweak and optimize this stack. I believe this to be a "pretty good" solution, but I know that it is not perfect.
+### If you are an expert at WordPress DevOps...
+please provide feedback. I'd love to continue to tweak and optimize this stack. I believe this to be a "pretty good" solution, but I know that it is not perfect and the technologies powering it are constantly changing. Issues and pull requests welcome.
 
 ## The Stack
 - Dev. Machine: OS X
@@ -21,8 +23,6 @@ _If you are an expert WordPress DevOps type of person_, please provide feedback.
 - Object Cache: Redis
 - TLS w/SPDY: yes (A+ SSL labs)
 - IPv4 & IPv6
-- Anycast DNS: CloudFlare
-- CDN: CloudFlare
 
 ## General Notes:
 - Items in curly brackets {} should be treated as variables and replaced with your own info.
@@ -32,6 +32,7 @@ _If you are an expert WordPress DevOps type of person_, please provide feedback.
 - You have basic *nix terminal skills.
 - You have a ssh key already created, with the public key on DO and the private .pem stored locally at {myPK}.
 
+## Build Guide:
 1. Create a new VPS running the newest Ubuntu x64.
     - Enable backups.
     - Enable ipv6.
@@ -41,10 +42,19 @@ _If you are an expert WordPress DevOps type of person_, please provide feedback.
 
 		```
 		Host {myVPSName}
-		HostName {myVPSIP}
-		Port 22
-		User root
-		IdentityFile {myPK}
+		  HostName {myVPSIP}
+		  Port 22
+		  User root
+		  IdentityFile {myPK}
 		```
 
     - ctrl + x to save and exit.
+3. ssh into the new VPS.
+	- `ssh <myVPSName>`
+		- Type "yes" to continue connecting.
+4. Create a new user and add it to the sudo group.
+	- `adduser <myUser>`
+		- Provide a password.
+		- Press "return" through the rest of the default options.
+	- `gpasswd -a <myUser> sudo`
+	- via [DigitalOcean](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04)
