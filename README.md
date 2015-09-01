@@ -119,8 +119,7 @@ This build guide is constructed from a compilation of sources from all over the 
 	- `sudo nano /etc/sysctl.conf`
 		- Add `vm.swappiness=10`
 		- Add `vm.vfs_cache_pressure = 50`
-	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank">DigitalOcean</a>_
-	- _via <a href="https://help.ubuntu.com/community/SwapFaq" target="_blank">Ubuntu</a>_
+	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank">DigitalOcean</a>, <a href="https://help.ubuntu.com/community/SwapFaq" target="_blank">Ubuntu</a>_
 11. Snapshot 2
 12. Configure automatic updates, upgrades, & cleanup.
 	- `sudo apt-get install unattended-upgrades`
@@ -169,8 +168,7 @@ This build guide is constructed from a compilation of sources from all over the 
 	- Note that step 14 (except for the next bullet) should be completed again manually anytime nginx, {OpenSSL, } or ngx_pagespeed is updated. nginx will need to be uninstalled before installing the newly compiled version.
 	- sudo nano /etc/nginx/nginx.conf
     	- TODO: Insert link to nginx.conf here.
-	- _via <a href="https://github.com/h5bp/server-configs-nginx/blob/master/nginx.conf" target="_blank">h5bp</a>_
-	- _via <a href="https://blog.rudeotter.com/nginx-modules-pagespeed-ubuntu/" target="_blank">Rude Otter</a>_
+	- _via <a href="https://github.com/h5bp/server-configs-nginx/blob/master/nginx.conf" target="_blank">h5bp</a>, <a href="https://blog.rudeotter.com/nginx-modules-pagespeed-ubuntu/" target="_blank">Rude Otter</a>_
 14. Work in progress...
 99. TBD
 	- Delete ufw rule for port 80 once full-site TLS is configured.
