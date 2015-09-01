@@ -172,7 +172,7 @@ This build guide is constructed from a compilation of sources from all over the 
 14. Snapshot 3
 15. Install MariaDB.
 	- Follow the 5 commands <a href="https://downloads.mariadb.org/mariadb/repositories/" target="_blank">here</a> based on your setup.
-		- Using the DO node that your VPS is hosted on as the mirror (third command).
+		- Use the DO node that your VPS is hosted on as the mirror (third command).
 		- Provide a password.
 	- `mysql_secure_installation`
 		- Type "n" for do not change root password.
