@@ -103,6 +103,13 @@ This build guide is constructed from a compilation of sources from all over the 
 	- `sudo ufw enable`
 		- Type "y" to proceed with operation.
 	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank">DigitalOcean</a>_
-9. Work in progress...
+9. Update the timezone and configure ntp sync.
+	- `sudo dpkg-reconfigure tzdata`
+		- Select the local timezone.
+	- `sudo apt-get update`
+	- `sudo apt-get install ntp`
+		- Press "return" to install.
+	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank>DigitalOcean</a>_
+10. Work in progress...
 99. TBD
 	- Delete ufw rule for port 80 once full TLS is configured.
