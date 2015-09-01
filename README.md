@@ -51,14 +51,14 @@ This build guide is constructed from a compilation of sources from all over the 
 		  IdentityFile {myPK}
 		```
 
-    - ctrl + x to save and exit.
+    - Press "ctrl + x" to save and exit.
 3. ssh into the new VPS.
 	- `ssh {myVpsName}`
 		- Type "yes" to continue connecting.
 4. Create a new user and add it to the sudo group.
 	- `adduser {myUser}`
 		- Provide a password.
-		- Press "return" through the rest of the default options.
+		- Press "return" repeatedly to accept the rest of the default options.
 	- `gpasswd -a {myUser} sudo`
 	- via <a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04" target=_blank">DigitalOcean</a>
 5. Work in progress...
