@@ -168,7 +168,7 @@ This build guide is constructed from a compilation of sources from all over the 
 	- `sudo nano /etc/nginx/nginx.conf`
     	- **TODO**: Insert link to nginx.conf here.
 	- _via <a href="https://github.com/h5bp/server-configs-nginx/blob/master/nginx.conf" target="_blank">h5bp</a>, <a href="https://blog.rudeotter.com/nginx-modules-pagespeed-ubuntu/" target="_blank">Rude Otter</a>_
-14. **TODO** Work in progress...
+14. **TODO**: Work in progress...
 99. TBD
 	- Delete ufw rule for port 80 once full-site TLS is configured.
 
