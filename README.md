@@ -87,4 +87,22 @@ This build guide is constructed from a compilation of sources from all over the 
 		- `ssh {myVPSName}`
 	- Type "exit" in root Terminal window.
 	- _via <a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04" target="_blank">DigitalOcean</a>_
-6. Work in progress...
+6. Snapshot 1
+	- `sudo poweroff now`
+	- Create a Snapshot in the DO control panel.
+7. Update all the things and cleanup after yourself.
+	- `sudo apt-get update`
+	- `sudo apt-get upgrade`
+	- `sudo apt-get dist-upgrade`
+	- `sudo apt-get autoremove`
+	- `sudo apt-get autoclean`
+8. Create a basic firewall with ufw.
+	- `sudo ufw allow {myRandomSshPort}/tcp`
+	- `sudo ufw allow 80/tcp`
+	- `sudo ufw allow 443/tcp`
+	- `sudo ufw enable`
+		- Type "y" to proceed with operation.
+	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank">DigitalOcean</a>_
+9. Work in progress...
+99. TBD
+	- Delete ufw rule for port 80 once full TLS is configured.
