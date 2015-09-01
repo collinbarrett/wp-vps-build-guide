@@ -7,7 +7,7 @@ A verbose build guide for a modern, high-performance WordPress production VPS.
 I have been tinkering with building WordPress sites for more than five years. After getting fed up with typical cheap shared hosting options, I decided to explore the world of VPSs. After using DigitalOcean for a couple years, I have pieced together this workflow that I use to spin up new servers. I know that scripting and other modern tools such as what the team at <a href="https://roots.io/" target="_blank">Roots</a> is working on are out there, but I prefer understanding the underlying technologies of the server. For the same reason, and because I am cheap, I avoid the newer breed of managed WordPress hosts as well.
 
 #### Scope
-This stack is designed for any WordPress site (including multisite or multiple sites) with small to medium loads. It will scale well, but it is not designed for a ultra-heavy use case that requires load balancing across multiple servers, etc.
+This stack is designed for any WordPress site (including multisite or multiple sites) with small to medium loads. It will scale well, but it is not designed for an ultra-heavy use case that requires load balancing across multiple servers, etc.
 
 #### If you are an amateur WordPresser...
 feel free to use this guide to turbocharge your client's sites! If you come across any issues when following the guide, feel free to submit an issue or pull request.
