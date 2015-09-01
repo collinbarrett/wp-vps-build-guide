@@ -110,6 +110,17 @@ This build guide is constructed from a compilation of sources from all over the 
 	- `sudo apt-get install ntp`
 		- Press "return" to install.
 	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank">DigitalOcean</a>_
-10. Work in progress...
+10. Enable a swap file of 2x RAM size. (Resize if droplet is ever scaled.)
+	- `sudo fallocate -l {swapSizeInGb}G /swapfile`
+	- `sudo chmod 600 /swapfile`
+	- `sudo mkswap /swapfile`
+	- `sudo swapon /swapfile`
+	- `sudo sh -c 'echo "/swapfile none swap sw 0 0" >> /etc/fstab'`
+	- `sudo nano /etc/sysctl.conf`
+		-Add `vm.swappiness=10`
+		-Add `vm.vfs_cache_pressure = 50`
+	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank">DigitalOcean</a>_
+	- _via <a href="https://help.ubuntu.com/community/SwapFaq" target="_blank">Ubuntu</a>_
+11. Work in progress...
 99. TBD
 	- Delete ufw rule for port 80 once full TLS is configured.
