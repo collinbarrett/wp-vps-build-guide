@@ -117,8 +117,8 @@ This build guide is constructed from a compilation of sources from all over the 
 	- `sudo swapon /swapfile`
 	- `sudo sh -c 'echo "/swapfile none swap sw 0 0" >> /etc/fstab'`
 	- `sudo nano /etc/sysctl.conf`
-		-Add `vm.swappiness=10`
-		-Add `vm.vfs_cache_pressure = 50`
+		- Add `vm.swappiness=10`
+		- Add `vm.vfs_cache_pressure = 50`
 	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank">DigitalOcean</a>_
 	- _via <a href="https://help.ubuntu.com/community/SwapFaq" target="_blank">Ubuntu</a>_
 11. Work in progress...
