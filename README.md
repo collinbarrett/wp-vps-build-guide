@@ -2,11 +2,11 @@
 A verbose build guide for a modern, high-performance Wordpress production VPS.
 
 ## Intro
-I have been tinkering with building WordPress sites for the better part of five years. After getting fed up with typical cheap shared hosting options, I decided to explore the world of VPSs. After using DigitalOcean for a couple years, I have piced together this workflow that I use to spin up new servers. I know that scripting and other modern tools such as what the team at roots.io is working on are out there, but I prefer to understanding the underlying technologies of the server.
+I have been tinkering with building WordPress sites for the better part of five years. After getting fed up with typical cheap shared hosting options, I decided to explore the world of VPSs. After using DigitalOcean for a couple years, I have pieced together this workflow that I use to spin up new servers. I know that scripting and other modern tools such as what the team at [Roots](roots.io "Roots") is working on are out there, but I prefer understanding the underlying technologies of the server. For the same reason, and because I am cheap, I avoid the newer breed of managed WordPress hosts.
 
-If you are an amateur WordPresser like myself, feel free to use this guide to turbocharge your client's sites!
+_If you are an amateur WordPresser_ like myself, feel free to use this guide to turbocharge your client's sites!
 
-If you are an expert WordPress DevOps type of person, please provide feedback. I'd love to continue to tweak and optimize this stack. I believe this to be a "pretty good" solution, but I know that it is not perfect.
+_If you are an expert WordPress DevOps type of person_, please provide feedback. I'd love to continue to tweak and optimize this stack. I believe this to be a "pretty good" solution, but I know that it is not perfect.
 
 ## The Stack
 - Dev. Machine: OS X
