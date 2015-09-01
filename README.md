@@ -62,5 +62,29 @@ This build guide is constructed from a compilation of sources from all over the 
 		- Provide a password.
 		- Press "return" repeatedly to accept the rest of the default options.
 	- `gpasswd -a {myUser} sudo`
-	- _via <a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04" target=blank">DigitalOcean</a>_
-5. Work in progress...
+	- _via <a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04" target="_blank">DigitalOcean</a>_
+5. Copy the root ssh key to the new account.
+	- `mkdir /home/{myUser}/.ssh`
+	- `cp ~/.ssh/authorized_keys /home/<myUser>/.ssh/`
+	- `chown -R {myUser}:{myUser} /home/<myUser>/.ssh`
+	- `chmod 700 /home/{myUser}/.ssh`
+	- `chmod 600 /home/{myUser}/.ssh/authorized_keys`
+	- `nano /etc/ssh/sshd_config`
+        - Modify `Port {myRandomSshPort}` (<a href="http://www.wolframalpha.com/input/?i=RandomInteger%281025%2C65536%29" target="_blank">Generate Port</a>)
+		- Modify `PermitRootLogin no`
+ 	- `service ssh restart`
+	- Don’t close the Terminal window, yet. In another Terminal window, update local `~/.ssh/config`.
+
+		```
+		Host {myVpsName}
+		  HostName {myVpsIP}
+		  Port {myRandomSshPort}
+		  User {myUser}
+		  IdentityFile {myPK}
+        ```
+        
+	- Test ssh into the VPS as {myUser} before closing the root Terminal window.
+		- `ssh {myVPSName}`
+	-"exit" in root Terminal window.
+	- _via <a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04" target="_blank">DigitalOcean</a>_
+6. Work in progress...
