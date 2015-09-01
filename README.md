@@ -131,7 +131,7 @@ This build guide is constructed from a compilation of sources from all over the 
 		- Add `APT::Periodic::AutocleanInterval "1";`
 	- `sudo nano /etc/apt/apt.conf.d/50unattended-upgrades`
 		- Uncomment `"${distro_id}:${distro_codename}-updates";`
-		- Uncomment and update `Unattended-Upgrade::Automatic-Reboot "true";`
+		- Uncomment and modify `Unattended-Upgrade::Automatic-Reboot "true";`
 13. Download, compile, and install nginx w/ngx_pagespeed.
 	- `sudo add-apt-repository -s -y ppa:nginx/development`
 	- `sudo apt-get update`
@@ -168,9 +168,33 @@ This build guide is constructed from a compilation of sources from all over the 
 	- `sudo nano /etc/nginx/nginx.conf`
     	- **TODO**: Insert link to nginx.conf here.
 	- _via <a href="https://github.com/h5bp/server-configs-nginx/blob/master/nginx.conf" target="_blank">h5bp</a>, <a href="https://blog.rudeotter.com/nginx-modules-pagespeed-ubuntu/" target="_blank">Rude Otter</a>_
-14. **TODO**: Work in progress...
+14. Snapshot 3
+15. Install MariaDB.
+	- Follow the 5 commands <a href="https://downloads.mariadb.org/mariadb/repositories/" target="_blank">here</a> based on your setup.
+		- Using the DO node that your VPS is hosted on as the mirror (third command).
+		- Provide a password.
+	- `mysql_secure_installation`
+	- Type "n" for do not change root password.
+	- Press "return" repeatedly to accept the rest of the default options.
+16. Install PHP.
+	- `sudo apt-get install php5-fpm php5-mysql`
+	- `sudo nano /etc/php5/fpm/php.ini`
+		- Uncomment and modify `cgi.fix_pathinfo=0`
+17. Install HHVM.
+	- Follow the commands for your linux distro <a href="https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM" target="_blank">here</a>.
+	- `sudo /usr/share/hhvm/install_fastcgi.sh`
+	- `sudo update-rc.d hhvm defaults`
+	- `sudo /usr/bin/update-alternatives --install /usr/bin/php php /usr/bin/hhvm 60`
+	- `sudo service hhvm restart`
+18. Install redis.
+	- `sudo apt-get install redis-server`
+	- `sudo apt-get install php5-redis`
+	- `sudo nano /etc/redis/redis.conf`
+		- Add `maxmemory 256mb`
+		- Add `maxmemory-policy allkeys-lru`
+19. **TODO**: Work in progress...
 99. TBD
 	- Delete ufw rule for port 80 once full-site TLS is configured.
 
 ## Ongoing Maintenance
-- Whenever nginx, ngx_pagespeed, or OpenSSL have a new release, repeat step 13.
+- Whenever nginx, ngx_pagespeed, or OpenSSL have a new release, repeat step 13. nginx will first need to be uninstalled before installing the newly compiled version.
