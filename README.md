@@ -32,6 +32,9 @@ please provide feedback. I'd love to continue to tweak and optimize this stack. 
 - You have basic *nix terminal skills.
 - You have a ssh key already created, with the public key on DO and the private .pem stored locally at {myPK}.
 
+## Sources:
+This build guide is constructed from a compilation of sources from all over the web. I have tried to credit sources where I could (using "via"), but I am sure that I left somebody's blog out.
+
 ## Build Guide:
 1. Create a new VPS running the newest Ubuntu x64.
     - Enable backups.
@@ -58,3 +61,4 @@ please provide feedback. I'd love to continue to tweak and optimize this stack. 
 		- Press "return" through the rest of the default options.
 	- `gpasswd -a {myUser} sudo`
 	- via <a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04" target=_blank">DigitalOcean</a>
+5. Work in progress...
