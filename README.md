@@ -39,12 +39,12 @@ If you are an expert WordPress DevOps type of person, please provide feedback. I
 2. Locally, configure a ssh config file to make ssh easy.
     - In Terminal, `sudo nano ~/.ssh/config`
 
-```
-Host <myVPSName>
-HostName <myVPSIP>
-Port 22
-User root
-IdentityFile <myPK>
-```
+		```
+		Host <myVPSName>
+		HostName <myVPSIP>
+		Port 22
+		User root
+		IdentityFile <myPK>
+		```
 
     - ctrl + x to save and exit.
