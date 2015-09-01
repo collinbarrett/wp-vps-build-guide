@@ -1,7 +1,7 @@
 # wp-vps-build-guide
 A verbose build guide for a modern, high-performance WordPress production VPS.
 
-**This guide is a work in progress and is incomplete. Feel free to look it over if you stumble on it, but it is unusable at this point.**
+**This guide is a work in progress and is incomplete. Feel free to look it over if you stumble on it, but it is unusable at this point. Incomplete areas are marked with "TODO"**
 
 ## Intro
 I have been tinkering with building WordPress sites for the better part of five years. After getting fed up with typical cheap shared hosting options, I decided to explore the world of VPSs. After using DigitalOcean for a couple years, I have pieced together this workflow that I use to spin up new servers. I know that scripting and other modern tools such as what the team at <a href="https://roots.io/" target="_blank">Roots</a> is working on are out there, but I prefer understanding the underlying technologies of the server. For the same reason, and because I am cheap, I avoid the newer breed of managed WordPress hosts.
@@ -119,7 +119,7 @@ This build guide is constructed from a compilation of sources from all over the 
 	- `sudo sh -c 'echo "/swapfile none swap sw 0 0" >> /etc/fstab'`
 	- `sudo nano /etc/sysctl.conf`
 		- Add `vm.swappiness=10`
-		- Add `vm.vfs_cache_pressure = 50`
+		- Add `vm.vfs_cache_pressure=50`
 	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank">DigitalOcean</a>, <a href="https://help.ubuntu.com/community/SwapFaq" target="_blank">Ubuntu</a>_
 11. Snapshot 2
 12. Configure automatic updates, upgrades, & cleanup.
@@ -162,14 +162,13 @@ This build guide is constructed from a compilation of sources from all over the 
 	- `sudo dpkg -i nginx_{nginxCurVer}+trusty0_all.deb nginx-common_{nginxCurVer}+trusty0_all.deb nginx-doc_{nginxCurVer}+trusty0_all.deb nginx-light_{nginxCurVer}+trusty0_amd64.deb`
 		- If there are dependency errors due to python:
         	- `sudo apt-get -f install`
-	- `sudo find /opt/nginx -maxdepth 1 -type f -delete`
-    	- **TODO**: Delete source code here as well, once I verify that the build configuration of nginx is correct.
+	- `sudo rm -rf /opt/nginx/`
 	- `echo "nginx-light hold" | sudo dpkg --set-selections`
 	- Verify nginx is installed by visiting {myVpsIP} in a browser.
 	- `sudo nano /etc/nginx/nginx.conf`
     	- **TODO**: Insert link to nginx.conf here.
 	- _via <a href="https://github.com/h5bp/server-configs-nginx/blob/master/nginx.conf" target="_blank">h5bp</a>, <a href="https://blog.rudeotter.com/nginx-modules-pagespeed-ubuntu/" target="_blank">Rude Otter</a>_
-14. Work in progress...
+14. **TODO** Work in progress...
 99. TBD
 	- Delete ufw rule for port 80 once full-site TLS is configured.
 
