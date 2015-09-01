@@ -96,7 +96,7 @@ This build guide is constructed from a compilation of sources from all over the 
 	- `sudo apt-get dist-upgrade`
 	- `sudo apt-get autoremove`
 	- `sudo apt-get autoclean`
-8. Create a basic firewall with ufw.
+8. Configure a basic firewall with ufw.
 	- `sudo ufw allow {myRandomSshPort}/tcp`
 	- `sudo ufw allow 80/tcp`
 	- `sudo ufw allow 443/tcp`
