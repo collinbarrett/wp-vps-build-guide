@@ -7,7 +7,7 @@ A verbose build guide for a modern, high-performance WordPress production VPS.
 I have been tinkering with building WordPress sites for the better part of five years. After getting fed up with typical cheap shared hosting options, I decided to explore the world of VPSs. After using DigitalOcean for a couple years, I have pieced together this workflow that I use to spin up new servers. I know that scripting and other modern tools such as what the team at <a href="https://roots.io/" target="_blank">Roots</a> is working on are out there, but I prefer understanding the underlying technologies of the server. For the same reason, and because I am cheap, I avoid the newer breed of managed WordPress hosts.
 
 #### If you are an amateur WordPresser...
-like myself, feel free to use this guide to turbocharge your client's sites! If you come across any issues when following the guide, feel free to submit an issue or pull request.
+feel free to use this guide to turbocharge your client's sites! If you come across any issues when following the guide, feel free to submit an issue or pull request.
 
 #### If you are an expert at WordPress DevOps...
 please provide feedback. I'd love to continue to tweak and optimize this stack. I believe this to be a "pretty good" solution, but I know that it is not perfect and the technologies powering it are constantly changing. Issues and pull requests welcome.
@@ -32,7 +32,7 @@ please provide feedback. I'd love to continue to tweak and optimize this stack. 
 
 ## Assumptions
 - You have basic *nix terminal skills.
-- You have a ssh key already created, with the public key on DO and the private .pem stored locally at {myPK}.
+- You have a ssh key already created with the public key on DO and the private .pem stored locally at {myPK}.
 
 ## Sources
 This build guide is constructed from a compilation of sources from all over the web. I have tried to credit sources where I could (using "via"), but I am sure that I left somebody's blog out.
@@ -149,10 +149,11 @@ This build guide is constructed from a compilation of sources from all over the 
 	- `sudo wget https://dl.google.com/dl/page-speed/psol/{npsCurVer}.tar.gz`
 	- `sudo tar -xzvf {npsCurVer}.tar.gz`
 	- `sudo rm {npsCurVer}.tar.gz`
-	- **TODO**: Download newest OpenSSL and compile with nginx.
+	- **TODO**: Download newest OpenSSL and compile with nginx. Otherwise, nginx will compile with the system version of OpenSSL.
 	- `sudo nano /opt/nginx/nginx-{npsCurVer}/debian/rules`
 		- Under "light" version flags:
-			- Delete `--without-ngx_http_limit_req_module`
+			- Delete `--without-ngx_http_limit_req_module \`
+            - Add ` \` to the end of the last flag.
 			- Add `--with-http_spdy_module \`
 			- Add `--add-module=$(MODULESDIR)/nginx-cache-purge \`
 			- Add `--add-module=$(MODULESDIR)/ngx_pagespeed-{NpsCurVer}-beta`
