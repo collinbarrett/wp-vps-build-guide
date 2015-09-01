@@ -125,7 +125,7 @@ This build guide is constructed from a compilation of sources from all over the 
 12. Configure automatic updates, upgrades, & cleanup.
 	- `sudo apt-get install unattended-upgrades`
 	- `sudo dpkg-reconfigure -plow unattended-upgrades`
-	- Select "Yes" to auto-install upgrades.
+		- Select "Yes" to auto-install upgrades.
 	- `sudo nano /etc/apt/apt.conf.d/20auto-upgrades`
 		- Add `APT::Periodic::Download-Upgradeable-Packages "1";`
 		- Add `APT::Periodic::AutocleanInterval "1";`
