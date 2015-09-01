@@ -109,7 +109,7 @@ This build guide is constructed from a compilation of sources from all over the 
 	- `sudo apt-get update`
 	- `sudo apt-get install ntp`
 		- Press "return" to install.
-	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank>DigitalOcean</a>_
+	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank">DigitalOcean</a>_
 10. Work in progress...
 99. TBD
 	- Delete ufw rule for port 80 once full TLS is configured.
