@@ -1,10 +1,13 @@
 # wp-vps-build-guide
 A verbose build guide for a modern, high-performance WordPress production VPS.
 
-**This guide is a work in progress and is incomplete. Feel free to look it over if you stumble on it, but it is unusable at this point. Incomplete areas are marked with "TODO"**
+**This guide is a work in progress. Feel free to look it over, but it is currently unusable. Incomplete areas are marked with "TODO"**
 
 ## Intro
 I have been tinkering with building WordPress sites for the better part of five years. After getting fed up with typical cheap shared hosting options, I decided to explore the world of VPSs. After using DigitalOcean for a couple years, I have pieced together this workflow that I use to spin up new servers. I know that scripting and other modern tools such as what the team at <a href="https://roots.io/" target="_blank">Roots</a> is working on are out there, but I prefer understanding the underlying technologies of the server. For the same reason, and because I am cheap, I avoid the newer breed of managed WordPress hosts.
+
+#### Scope
+This stack is designed for any WordPress site with small to medium loads. It will scale well, but it is not designed for a ultra-heavy use case that requires load balancing across multiple servers, etc.
 
 #### If you are an amateur WordPresser...
 feel free to use this guide to turbocharge your client's sites! If you come across any issues when following the guide, feel free to submit an issue or pull request.
@@ -28,7 +31,7 @@ please provide feedback. I'd love to continue to tweak and optimize this stack. 
 
 ## General Notes
 - Items in curly brackets {} should be treated as variables and replaced with your own info.
-- Scattered throughout I have annotated recommended spots where I like to stop and take a DigitalOcean (DO) Snapshot so I don’t have to roll all the way back if I bork something up.
+- I have annotated recommended spots where I like to stop and take a DigitalOcean (DO) Snapshot so I don’t have to roll all the way back if I bork something up.
 
 ## Assumptions
 - You have basic *nix terminal skills.
