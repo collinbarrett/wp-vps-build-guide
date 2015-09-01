@@ -144,10 +144,9 @@ This build guide is constructed from a compilation of sources from all over the 
 	- `cd /opt/nginx`
 	- `sudo apt-get source nginx`
 	- `cd nginx-{nginxCurVer}/debian/modules/`
-	- `sudo apt-get install unzip`
-	- `sudo wget {npsZipLink}` (Copy link to newest zip <a href="https://github.com/pagespeed/ngx_pagespeed/releases" target="_blank">here</a>.)
-	- `sudo unzip {npsZipFile}`
-	- `sudo rm {npsZipFile}`
+	- `sudo wget {npsTarLink}` (Copy link to newest tar.gz <a href="https://github.com/pagespeed/ngx_pagespeed/releases" target="_blank">here</a>.)
+	- `sudo tar -xzvf {npsTarFile}`
+	- `sudo rm {npsTarFile}`
 	- `cd ngx_pagespeed-{npsCurVer}-beta/`
 	- `sudo wget https://dl.google.com/dl/page-speed/psol/{npsCurVer}.tar.gz`
 	- `sudo tar -xzvf {npsCurVer}.tar.gz`
