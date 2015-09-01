@@ -134,4 +134,4 @@ This build guide is constructed from a compilation of sources from all over the 
 		- Uncomment and update `Unattended-Upgrade::Automatic-Reboot "true";`
 13. Work in progress...
 99. TBD
-	- Delete ufw rule for port 80 once full TLS is configured.
+	- Delete ufw rule for port 80 once full-site TLS is configured.
