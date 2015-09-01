@@ -174,8 +174,8 @@ This build guide is constructed from a compilation of sources from all over the 
 		- Using the DO node that your VPS is hosted on as the mirror (third command).
 		- Provide a password.
 	- `mysql_secure_installation`
-	- Type "n" for do not change root password.
-	- Press "return" repeatedly to accept the rest of the default options.
+		- Type "n" for do not change root password.
+		- Press "return" repeatedly to accept the rest of the default options.
 16. Install PHP.
 	- `sudo apt-get install php5-fpm php5-mysql`
 	- `sudo nano /etc/php5/fpm/php.ini`
@@ -192,7 +192,8 @@ This build guide is constructed from a compilation of sources from all over the 
 	- `sudo nano /etc/redis/redis.conf`
 		- Add `maxmemory 256mb`
 		- Add `maxmemory-policy allkeys-lru`
-19. **TODO**: Work in progress...
+19. Snapshot 4
+20. **TODO**: Work in progress...
 99. TBD
 	- Delete ufw rule for port 80 once full-site TLS is configured.
 
