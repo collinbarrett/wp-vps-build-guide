@@ -66,7 +66,7 @@ This build guide is constructed from a compilation of sources from all over the 
 		- Press "return" repeatedly to accept the rest of the default options.
 	- `gpasswd -a {myUser} sudo`
 	- _via <a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04" target="_blank">DigitalOcean</a>_
-5. Copy the root ssh key to the new account.
+5. Copy the ssh key to the new user.
 	- `mkdir /home/{myUser}/.ssh`
 	- `cp ~/.ssh/authorized_keys /home/{myUser}/.ssh/`
 	- `chown -R {myUser}:{myUser} /home/{myUser}/.ssh`
@@ -76,7 +76,7 @@ This build guide is constructed from a compilation of sources from all over the 
         - Modify `Port {myRandomSshPort}` (<a href="http://www.wolframalpha.com/input/?i=RandomInteger%281025%2C65536%29" target="_blank">Generate Port</a>)
 		- Modify `PermitRootLogin no`
  	- `service ssh restart`
-	- Don’t close the Terminal window, yet. In another Terminal window,
+	- Don’t close the Terminal window, yet. In another Terminal window:
     	- `sudo nano ~/.ssh/config`
 
 			```
@@ -89,12 +89,12 @@ This build guide is constructed from a compilation of sources from all over the 
         
 	- Test ssh into the VPS as {myUser} before closing the root Terminal window.
 		- `ssh {myVPSName}`
-	- Type "exit" in root Terminal window.
+	- Type "exit" in the root Terminal window.
 	- _via <a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04" target="_blank">DigitalOcean</a>_
 6. Snapshot 1
 	- `sudo poweroff now`
 	- Create a Snapshot in the DO control panel.
-7. Update all the things and cleanup after yourself.
+7. Update all the things and tidy up.
 	- `sudo apt-get update`
 	- `sudo apt-get upgrade`
 	- `sudo apt-get dist-upgrade`
@@ -105,7 +105,7 @@ This build guide is constructed from a compilation of sources from all over the 
 	- `sudo ufw allow 80/tcp`
 	- `sudo ufw allow 443/tcp`
 	- `sudo ufw enable`
-		- Type "y" to proceed with operation.
+		- Type "y" to proceed with the operation.
 	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank">DigitalOcean</a>_
 9. Update the timezone and configure ntp sync.
 	- `sudo dpkg-reconfigure tzdata`
@@ -166,12 +166,13 @@ This build guide is constructed from a compilation of sources from all over the 
 	- `sudo dpkg -i nginx_{nginxCurVer}+trusty0_all.deb nginx-common_{nginxCurVer}+trusty0_all.deb nginx-doc_{nginxCurVer}+trusty0_all.deb nginx-light_{nginxCurVer}+trusty0_amd64.deb`
 		- If there are dependency errors due to python:
         	- `sudo apt-get -f install`
-	- `sudo rm -rf /opt/nginx/`
 	- `echo "nginx-light hold" | sudo dpkg --set-selections`
-	- Verify nginx is installed by visiting {myVpsIP} in a browser.
 	- `sudo nano /etc/nginx/nginx.conf`
     	- **TODO**: Insert link to nginx.conf here.
-	- _via <a href="https://github.com/h5bp/server-configs-nginx/blob/master/nginx.conf" target="_blank">h5bp</a>, <a href="https://blog.rudeotter.com/nginx-modules-pagespeed-ubuntu/" target="_blank">Rude Otter</a>_
+    - `sudo service nginx restart`
+    - Verify nginx is installed by visiting {myVpsIP} in a browser.
+    - `sudo rm -rf /opt/nginx/`
+	- _via <a href="https://blog.rudeotter.com/nginx-modules-pagespeed-ubuntu/" target="_blank">Rude Otter</a>, <a href="https://github.com/h5bp/server-configs-nginx/blob/master/nginx.conf" target="_blank">h5bp</a>_
 14. Snapshot 3
 15. Install MariaDB.
 	- Follow the 5 commands <a href="https://downloads.mariadb.org/mariadb/repositories/" target="_blank">here</a> based on your setup.
@@ -197,9 +198,11 @@ This build guide is constructed from a compilation of sources from all over the 
 		- Add `maxmemory 256mb`
 		- Add `maxmemory-policy allkeys-lru`
 19. Snapshot 4
-20. **TODO**: Work in progress...
-99. TBD
-	- Delete ufw rule for port 80 once full-site TLS is configured.
+20. **TODO**: Work in progress... Install WordPress, configure nginx server blocks, configure ngx_pagespeed, etc.
+99. Block port 80 once https access is verified to be working on the entire site.
+	- `sudo ufw delete allow 80/tcp`
+    - `sudo ufw disable`
+	- `sudo ufw enable`
 
-## Ongoing Maintenance
+## Recommended Ongoing Maintenance
 - Whenever nginx, ngx_pagespeed, or OpenSSL have a new release, repeat step 13. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
