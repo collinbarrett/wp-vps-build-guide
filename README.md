@@ -197,7 +197,38 @@ This build guide is constructed from a compilation of sources from all over the 
 		- Add `maxmemory 256mb`
 		- Add `maxmemory-policy allkeys-lru`
 19. Snapshot 4
-20. **TODO**: Work in progress... Install WordPress, configure nginx server blocks, configure ngx_pagespeed, etc.
+20. Create a database for WordPress.
+	- `mysql -u root -p`
+    	- Provide your MariaDB root password.
+	- `CREATE DATABASE {myWPDB};`
+    - `CREATE USER {myWPDBUser}@localhost IDENTIFIED BY '{myWPDBPassword}';`
+    - `GRANT ALL PRIVILEGES ON {myWPDB}.* TO {myWPDBUser}@localhost;`
+    - `FLUSH PRIVILEGES;`
+    - `exit`
+    - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, and {myWPDBPassword}. Multisite WordPress installs count as a single site.
+    - via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>
+21. Download and install WordPress.
+	- `sudo apt-get update`
+	- `sudo apt-get install php5-gd libssh2-php`
+    - `cd ~`
+    - `wget http://wordpress.org/latest.tar.gz`
+    - `tar -xzvf latest.tar.gz`
+    - `cd ~/wordpress`
+    - `cp wp-config-sample.php wp-config.php`
+    - `rm wp-config-sample.php`
+    - `nano wp-config.php`
+    	- Modify `define('DB_NAME', '{myWPDB}');`
+        - Modify `define('DB_USER', '{myWPDBUser}');`
+        - Modify `define('DB_PASSWORD', '{myWPDBPassword}');`
+        - Add `{myWPSecurityKeys}` (<a href="https://api.wordpress.org/secret-key/1.1/salt/" target="_blank">Generate Keys</a>)
+	- `sudo mkdir wp-content/uploads`
+    - `sudo chown -R :www-data wp-content/uploads`
+	- `sudo mkdir -p /var/www/{myWPSiteName}`
+    - `sudo rsync -avP ~/wordpress/ /var/www/{myWPSiteName}/`
+    - `cd /var/www/{myWPSiteName}/`
+    - `sudo chown -R {myUser}:www-data /var/www/{myWPSiteName}/*`
+    - via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>
+22. **TODO**: Work in progress... Configure nginx server blocks, configure ngx_pagespeed, etc.
 99. Block port 80 once https access is verified to be working on the entire site.
 	- `sudo ufw delete allow 80/tcp`
     - `sudo ufw disable`
