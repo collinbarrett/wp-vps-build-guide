@@ -4,19 +4,19 @@ A verbose build guide for a modern, high-performance WordPress production VPS.
 **This guide is a work in progress. Feel free to look it over, but it is currently incomplete.**
 
 ## Intro
-I have been building WordPress sites for more than five years. After getting fed up with typical cheap shared hosting options, I decided to explore the world of VPSs. After using DigitalOcean for a couple years, I have pieced together this workflow that I use to spin up new servers. It is shared here both to gain feedback and improvements from others, and to provide a resource for folks who are newer to server administration.
+This project aims to provide a straightforward, albeit lengthy, all-inclusive build guide for a low-budget, high-performance WordPress hosting solution. For as little as $5/mo. today, one can develop a cutting edge hosting stack for his or her projects. The instructions are verbose so that developers with little server administration experience can track.
 
 #### Scope
-This stack is designed for any WordPress site (including multisite or multiple sites) with small to medium loads. It will scale well, but it is not designed for an ultra-heavy use case that requires load balancing across multiple servers, etc. Server configurations are not a one-size-fits-all solution, for sure, but hopefully this guide serves as a "good-enough-for-most" for WordPress hosting.
+This stack is designed for any WordPress site (including multisite or multiple sites) with light to medium loads. It will scale well, but it is not designed for an ultra-heavy use case that requires load balancing across multiple servers, etc. Server configurations are not a one-size-fits-all solution, for sure, but hopefully this guide serves as a "good-enough-for-most" solution.
 
-#### If you are an amateur WordPresser...
-feel free to use this guide to turbocharge your client's sites! If you come across any issues when following the guide, feel free to submit an issue or pull request.
+#### To amateurs at WordPress DevOps...
+feel free to use this guide to turbocharge projects! Please submit issues or pull requests for any problems discovered.
 
-#### If you are an expert at WordPress DevOps...
-please provide feedback. I'd love to continue to tweak and optimize this stack. I believe this to be a "pretty good" solution, but I know that it is not perfect and the technologies powering it are constantly changing. Issues and pull requests welcome.
+#### To experts at WordPress DevOps...
+please provide feedback. This guide should continue to receive ongoing optimizations and updates. In its current state, it will lead to a server that is higher-performing than most, but it is not perfect and the technologies powering it are constantly changing. Issues and pull requests are welcome.
 
 ## The Stack
-- Dev. Machine: OS X
+- Client: OS X
 - Host: DigitalOcean
 - Server: Ubuntu x64
 - Web Server: nginx
@@ -26,22 +26,22 @@ please provide feedback. I'd love to continue to tweak and optimize this stack. 
 - PHP Processor: HHVM
   - w/php5-fpm failover
 - Object Cache: Redis
-- TLS w/SPDY: yes (A+ SSL labs)
+- TLS w/SPDY
 - IPv4 & IPv6
 
 ## General Notes
-- Items in curly brackets {} should be treated as variables and replaced with your own info.
-- I have annotated recommended spots where I like to stop and take a DigitalOcean (DO) Snapshot so I don’t have to roll all the way back if I bork something up.
+- Items in curly brackets {} should be treated as variables and replaced with custom info.
+- Recommended Snapshot points are annotated throughout, but feel free to take these more or less frequently.
 
 ## Assumptions
-- You have basic *nix terminal skills.
-- You have a ssh key already created with the public key on DO and the private .pem stored locally at {myPK}.
+- The developer has basic *nix terminal skills.
+- The developer has a ssh key already created with the public key on DO and the private .pem stored locally at {myPK}.
 
 ## Sources
-This build guide is constructed from a compilation of sources from all over the web. I have tried to credit sources where I could (using inline "via"), but I am sure that I left somebody's blog out.
+This build guide is constructed from a compilation of sources from all over the web. Inline "via"s give credit to some of these source, but apologies go out to any blogs that were forgotten.
 
 ## Support
-The best way to support this project is to submit issues and pull requests. I hope that this becomes a useful resource for the average WordPress shop or freelancer to maintain cutting-edge hosting at a low cost. It'd also make my happy to have you check out my site and services at <a href="https://collinmbarrett.com" target="_blank">collinmbarrett.com</a>.
+The best way to support this project is to submit issues and pull requests to assist in keeping the guide up-to-date. Clicking through the maintainer's <a href="brrt.co/CBDigitalOcean" target="_blank">DigitalOcean affiliate link</a> when signing up is helpful as well, but by no means expected.
 
 ## Build Guide
 1. Create a new VPS running the newest Ubuntu x64.
