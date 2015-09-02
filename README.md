@@ -225,7 +225,6 @@ This build guide is constructed from a compilation of sources from all over the 
     - `sudo chown -R :www-data wp-content/uploads`
 	- `sudo mkdir -p /var/www/{myWPSiteName}`
     - `sudo rsync -avP ~/wordpress/ /var/www/{myWPSiteName}/`
-    - `cd /var/www/{myWPSiteName}/`
     - `sudo chown -R {myUser}:www-data /var/www/{myWPSiteName}/*`
     - via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>
 22. **TODO**: Work in progress... Configure nginx server blocks, configure ngx_pagespeed, etc.
