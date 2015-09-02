@@ -166,8 +166,8 @@ This build guide is constructed from a compilation of sources from all over the 
 		- If there are dependency errors due to python:
         	- `sudo apt-get -f install`
 	- `echo "nginx-light hold" | sudo dpkg --set-selections`
-	- `sudo nano /etc/nginx/nginx.conf`
-    	- **TODO**: Insert link to nginx.conf here.
+	- `cd /etc/nginx/`
+    - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/nginx.conf -O nginx.conf`
     - `sudo service nginx restart`
     - Verify nginx is installed by visiting {myVpsIP} in a browser.
     - `sudo rm -rf /opt/nginx/`
