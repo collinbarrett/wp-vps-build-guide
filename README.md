@@ -7,7 +7,7 @@ A verbose build guide for a modern, high-performance WordPress production VPS.
 This project aims to provide a straightforward, albeit lengthy, all-inclusive build guide for a low-budget, high-performance WordPress hosting solution. For as little as $5/mo., one can develop a cutting edge hosting stack for his or her projects. The instructions are verbose so that developers with little server administration experience can track.
 
 #### Scope
-This stack is designed for any WordPress site (including multisite or multiple sites) with light to medium loads. It will scale well, but it is not designed for an ultra-heavy use case that requires load balancing across multiple servers, etc. Server configurations are not a one-size-fits-all solution, for sure, but hopefully this guide serves as a "good-enough-for-most" solution. While configuration recommendations provided are a good starting point, it is no substitution for ongoing testing.
+This stack is designed for any WordPress site (including multisite or multiple sites) with light to medium loads. It will scale well, but it is not designed for an ultra-heavy use case that requires load balancing across multiple servers, etc. Server configurations are not a one-size-fits-all solution, for sure, but hopefully this guide serves as a "good-enough-for-most" solution. While configuration recommendations provided are a good starting point, it is no substitution for ongoing testing. Both speed and security have been key values during the development of this guide.
 
 #### To amateurs at WordPress DevOps...
 feel free to use this guide to turbocharge projects! Please submit issues or pull requests for any problems discovered.
@@ -35,10 +35,11 @@ please provide feedback. This guide should continue to receive ongoing optimizat
 
 ## Assumptions
 - The developer has basic *nix terminal skills.
+- The developer has access to a VPS host. DO is used for the purposes of this guide, but competitors such as Linode work just fine.
 - The developer has a ssh key already created with the public key on DO and the private .pem stored locally at {myPK}.
 
 ## Sources
-This build guide is constructed from a compilation of sources from all over the web. Inline "via"s give credit to some of these source, but apologies go out to any blogs that were forgotten.
+This build guide is constructed from a compilation of sources from all over the web. Inline "via"s give credit to some of these authors, but apologies go out to any blogs that were forgotten.
 
 ## Support
 The best way to support this project is to submit issues and pull requests to assist in keeping the guide up-to-date. Clicking through the maintainer's <a href="http://brrt.co/CBDigitalOcean" target="_blank">DigitalOcean affiliate link</a> when signing up is helpful as well, but by no means expected.
@@ -166,7 +167,7 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo dpkg-buildpackage -b`
 	- `cd /opt/nginx/`
 	- `sudo dpkg -i nginx_{nginxCurVer}+trusty0_all.deb nginx-common_{nginxCurVer}+trusty0_all.deb nginx-doc_{nginxCurVer}+trusty0_all.deb nginx-light_{nginxCurVer}+trusty0_amd64.deb`
-		- If there are dependency errors due to python:
+		- If there are dependency errors due to the version of python installed:
         	- `sudo apt-get -f install`
 	- `echo "nginx-light hold" | sudo dpkg --set-selections`
 	- `cd /etc/nginx/`
@@ -177,9 +178,9 @@ The best way to support this project is to submit issues and pull requests to as
 	- _via <a href="https://blog.rudeotter.com/nginx-modules-pagespeed-ubuntu/" target="_blank">Rude Otter</a>, <a href="https://github.com/h5bp/server-configs-nginx/blob/master/nginx.conf" target="_blank">h5bp</a>_
 14. Snapshot 3
 15. Install MariaDB.
-	- Follow the 5 commands <a href="https://downloads.mariadb.org/mariadb/repositories/" target="_blank">here</a> based on your setup.
-		- Use the DO node that your VPS is hosted on as the mirror (third command).
-		- Provide a password.
+	- Follow the 5 commands <a href="https://downloads.mariadb.org/mariadb/repositories/" target="_blank">here</a> based on the setup.
+		- Use the DO node that the VPS is hosted on as the mirror in the third command.
+		- Provide a root password for MariaDB.
 	- `mysql_secure_installation`
 		- Type "n" for do not change root password.
 		- Press "return" repeatedly to accept the rest of the default options.
@@ -188,7 +189,7 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo nano /etc/php5/fpm/php.ini`
 		- Uncomment and modify `cgi.fix_pathinfo=0`
 17. Install HHVM.
-	- Follow the commands for your linux distro <a href="https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM" target="_blank">here</a>.
+	- Follow the commands for the linux distro <a href="https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM" target="_blank">here</a>.
 	- `sudo /usr/share/hhvm/install_fastcgi.sh`
 	- `sudo update-rc.d hhvm defaults`
 	- `sudo /usr/bin/update-alternatives --install /usr/bin/php php /usr/bin/hhvm 60`
@@ -202,7 +203,7 @@ The best way to support this project is to submit issues and pull requests to as
 19. Snapshot 4
 20. Create a database for WordPress.
 	- `mysql -u root -p`
-    	- Provide your MariaDB root password.
+    	- Provide the MariaDB root password.
 	- `CREATE DATABASE {myWPDB};`
     - `CREATE USER {myWPDBUser}@localhost IDENTIFIED BY '{myWPDBPassword}';`
     - `GRANT ALL PRIVILEGES ON {myWPDB}.* TO {myWPDBUser}@localhost;`
@@ -238,3 +239,4 @@ The best way to support this project is to submit issues and pull requests to as
 
 ## Recommended Ongoing Maintenance
 - Whenever nginx, ngx_pagespeed, or OpenSSL have a new release, repeat step 13. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
+- MariaDB should be tuned on occasion for optimum performance. Currently, the process of doing so is beyond the scope of this guide.
