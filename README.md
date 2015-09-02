@@ -205,7 +205,7 @@ This build guide is constructed from a compilation of sources from all over the 
     - `GRANT ALL PRIVILEGES ON {myWPDB}.* TO {myWPDBUser}@localhost;`
     - `FLUSH PRIVILEGES;`
     - `exit`
-    - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, and {myWPDBPassword}. Multisite WordPress installs count as a single site.
+    - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, and {myWPDBPassword}. WordPress multisite networks only need one database.
     - via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>
 21. Download and install WordPress.
 	- `sudo apt-get update`
