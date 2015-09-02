@@ -151,7 +151,7 @@ This build guide is constructed from a compilation of sources from all over the 
 	- `sudo wget https://dl.google.com/dl/page-speed/psol/{npsCurVer}.tar.gz`
 	- `sudo tar -xzvf {npsCurVer}.tar.gz`
 	- `sudo rm {npsCurVer}.tar.gz`
-	- **TODO**: Download newest OpenSSL and compile with nginx. Otherwise, nginx will compile with the system version of OpenSSL.
+	- **TODO**: Download newest OpenSSL and compile with nginx. Otherwise, nginx will compile with the system version of OpenSSL. See [issue #2](https://github.com/collinbarrett/wp-vps-build-guide/issues/2).
 	- `sudo nano /opt/nginx/nginx-{npsCurVer}/debian/rules`
 		- Under "light" version flags:
 			- Delete `--without-ngx_http_limit_req_module \`
