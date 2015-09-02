@@ -4,10 +4,10 @@ A verbose build guide for a modern, high-performance WordPress production VPS.
 **This guide is a work in progress. Feel free to look it over, but it is currently incomplete.**
 
 ## Intro
-This project aims to provide a straightforward, albeit lengthy, all-inclusive build guide for a low-budget, high-performance WordPress hosting solution. For as little as $5/mo. today, one can develop a cutting edge hosting stack for his or her projects. The instructions are verbose so that developers with little server administration experience can track.
+This project aims to provide a straightforward, albeit lengthy, all-inclusive build guide for a low-budget, high-performance WordPress hosting solution. For as little as $5/mo., one can develop a cutting edge hosting stack for his or her projects. The instructions are verbose so that developers with little server administration experience can track.
 
 #### Scope
-This stack is designed for any WordPress site (including multisite or multiple sites) with light to medium loads. It will scale well, but it is not designed for an ultra-heavy use case that requires load balancing across multiple servers, etc. Server configurations are not a one-size-fits-all solution, for sure, but hopefully this guide serves as a "good-enough-for-most" solution.
+This stack is designed for any WordPress site (including multisite or multiple sites) with light to medium loads. It will scale well, but it is not designed for an ultra-heavy use case that requires load balancing across multiple servers, etc. Server configurations are not a one-size-fits-all solution, for sure, but hopefully this guide serves as a "good-enough-for-most" solution. While configuration recommendations provided are a good starting point, it is no substitution for ongoing testing.
 
 #### To amateurs at WordPress DevOps...
 feel free to use this guide to turbocharge projects! Please submit issues or pull requests for any problems discovered.
