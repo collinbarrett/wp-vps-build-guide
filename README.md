@@ -239,4 +239,4 @@ The best way to support this project is to submit issues and pull requests to as
 
 ## Recommended Ongoing Maintenance
 - Whenever nginx, ngx_pagespeed, or OpenSSL have a new release, repeat step 13. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
-- MariaDB should be tuned on occasion for optimum performance. Currently, the process of doing so is beyond the scope of this guide.
+- **TODO**: MariaDB should be tuned on occasion for optimum performance. See [issue #3](https://github.com/collinbarrett/wp-vps-build-guide/issues/3).
