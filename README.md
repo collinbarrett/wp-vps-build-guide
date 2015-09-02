@@ -1,10 +1,10 @@
 # wp-vps-build-guide
 A verbose build guide for a modern, high-performance WordPress production VPS.
 
-**This guide is a work in progress. Feel free to look it over, but it is currently unusable. Incomplete areas are marked with TODO.**
+**This guide is a work in progress. Feel free to look it over, but it is currently incomplete.**
 
 ## Intro
-I have been tinkering with building WordPress sites for more than five years. After getting fed up with typical cheap shared hosting options, I decided to explore the world of VPSs. After using DigitalOcean for a couple years, I have pieced together this workflow that I use to spin up new servers. I know that scripting and other modern tools such as what the team at <a href="https://roots.io/" target="_blank">Roots</a> is working on are out there, but I prefer understanding the underlying technologies of the server. For the same reason, and because I am cheap, I avoid the newer breed of managed WordPress hosts as well.
+I have been building WordPress sites for more than five years. After getting fed up with typical cheap shared hosting options, I decided to explore the world of VPSs. After using DigitalOcean for a couple years, I have pieced together this workflow that I use to spin up new servers. It is shared here both to gain feedback and improvements from others, and to provide a resource for folks who are newer to server administration.
 
 #### Scope
 This stack is designed for any WordPress site (including multisite or multiple sites) with small to medium loads. It will scale well, but it is not designed for an ultra-heavy use case that requires load balancing across multiple servers, etc. Server configurations are not a one-size-fits-all solution, for sure, but hopefully this guide serves as a "good-enough-for-most" for WordPress hosting.
@@ -38,7 +38,10 @@ please provide feedback. I'd love to continue to tweak and optimize this stack. 
 - You have a ssh key already created with the public key on DO and the private .pem stored locally at {myPK}.
 
 ## Sources
-This build guide is constructed from a compilation of sources from all over the web. I have tried to credit sources where I could (using "via"), but I am sure that I left somebody's blog out.
+This build guide is constructed from a compilation of sources from all over the web. I have tried to credit sources where I could (using inline "via"), but I am sure that I left somebody's blog out.
+
+## Support
+The best way to support this project is to submit issues and pull requests. I hope that this becomes a useful resource for the average WordPress shop or freelancer to maintain cutting-edge hosting at a low cost. It'd also make my happy to have you check out my site and services at <a href="https://collinmbarrett.com" target="_blank">collinmbarrett.com</a>.
 
 ## Build Guide
 1. Create a new VPS running the newest Ubuntu x64.
