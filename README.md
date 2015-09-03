@@ -233,9 +233,8 @@ The best way to support this project is to submit issues and pull requests to as
 22. **TODO**: Work in progress... Configure nginx server blocks, configure ngx_pagespeed, etc.
 99. Block port 80 once https access is verified to be working on the entire site.
 	- `sudo ufw delete allow 80/tcp`
-    - `sudo ufw disable`
-	- `sudo ufw enable`
+    - `sudo ufw reload`
 
 ## Recommended Ongoing Maintenance
-- Whenever nginx, ngx_pagespeed, or OpenSSL have a new release, repeat step 13. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
+- Whenever nginx or ngx_pagespeed have a new release, repeat step 13. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
 - **TODO**: MariaDB should be tuned on occasion for optimum performance. See [issue #3](https://github.com/collinbarrett/wp-vps-build-guide/issues/3).
