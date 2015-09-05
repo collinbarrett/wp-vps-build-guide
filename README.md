@@ -150,7 +150,7 @@ The best way to support this project is to submit issues and pull requests to as
 	- `cd /opt/nginx`
 	- `sudo apt-get source nginx`
 	- `cd nginx-{nginxCurVer}/debian/modules/`
-	- `sudo wget {npsTarLink}` (Copy link to newest tar.gz <a href="https://github.com/pagespeed/ngx_pagespeed/releases" target="_blank">here</a>.)
+	- `sudo wget {npsTarLink}` (Copy link to the newest tar.gz <a href="https://github.com/pagespeed/ngx_pagespeed/releases" target="_blank">here</a>.)
 	- `sudo tar -xzvf {npsTarFile}`
 	- `sudo rm {npsTarFile}`
 	- `cd ngx_pagespeed-{npsCurVer}-beta/`
