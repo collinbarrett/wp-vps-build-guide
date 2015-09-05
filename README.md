@@ -79,6 +79,7 @@ The best way to support this project is to submit issues and pull requests to as
 	- `nano /etc/ssh/sshd_config`
         - Modify `Port {myRandomSshPort}` (<a href="http://www.wolframalpha.com/input/?i=RandomInteger%281025%2C65536%29" target="_blank">Generate Port</a>)
 		- Modify `PermitRootLogin no`
+        - Uncomment and modify `PasswordAuthentication no`
  	- `service ssh restart`
 	- Don’t close the Terminal window, yet. In another Terminal window:
     	- `sudo nano ~/.ssh/config`
