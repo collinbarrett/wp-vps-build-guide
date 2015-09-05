@@ -232,7 +232,7 @@ The best way to support this project is to submit issues and pull requests to as
         - Modify `define('DB_USER', '{myWPDBUser}');`
         - Modify `define('DB_PASSWORD', '{myWPDBPassword}');`
         - Replace `{myWPSecurityKeys}` (<a href="https://api.wordpress.org/secret-key/1.1/salt/" target="_blank">Generate {myWPSecurityKeys}</a>)
-        - Modify `$table_prefix  = '{myRandomTablePrefix}_';` (<a href="https://www.wolframalpha.com/input/?i=password+generator&a=*MC.~-_*Formula.dflt-&a=FSelect_**PasswordSingleBasic-.dflt-&f3=16+characters&f=PasswordSingleBasic.pl_16+characters" target="_blank">Generate {myRandomTablePrefix}</a>)
+        - Modify `$table_prefix  = '{myRandomPrefix}_';` (<a href="https://www.wolframalpha.com/input/?i=password+generator&a=*MC.~-_*Formula.dflt-&a=FSelect_**PasswordSingleBasic-.dflt-&f3=16+characters&f=PasswordSingleBasic.pl_16+characters" target="_blank">Generate {myRandomPrefix}</a>)
         - Add `define( 'WP_AUTO_UPDATE_CORE', true );`
         - Add `define( 'WP_CACHE_KEY_SALT', '{mySiteURL}_' );`
         - Add `$redis_server = array( 'host' => '127.0.0.1', 'port' => 6379, );`
