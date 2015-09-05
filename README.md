@@ -193,6 +193,7 @@ The best way to support this project is to submit issues and pull requests to as
 		- Uncomment and modify `cgi.fix_pathinfo=0`
 17. Install HHVM.
 	- Follow the commands for the linux distro <a href="https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM" target="_blank">here</a>.
+       	- Press "return" to install.
 	- `sudo /usr/share/hhvm/install_fastcgi.sh`
 	- `sudo update-rc.d hhvm defaults`
 	- `sudo /usr/bin/update-alternatives --install /usr/bin/php php /usr/bin/hhvm 60`
