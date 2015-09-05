@@ -140,7 +140,7 @@ The best way to support this project is to submit issues and pull requests to as
 		- Add `APT::Periodic::Download-Upgradeable-Packages "1";`
 		- Add `APT::Periodic::AutocleanInterval "1";`
 	- `sudo nano /etc/apt/apt.conf.d/50unattended-upgrades`
-		- Uncomment `"${distro_id}:${distro_codename}-updates";` (curly brackets are non-variable)
+		- Uncomment `"${distro_id}:${distro_codename}-updates";`
 		- Uncomment and modify `Unattended-Upgrade::Automatic-Reboot "true";`
 13. Download, compile, and install nginx w/ngx_pagespeed.
 	- `sudo add-apt-repository -s -y ppa:nginx/development`
