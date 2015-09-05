@@ -200,6 +200,7 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo service hhvm restart`
 18. Install redis.
 	- `sudo apt-get install redis-server`
+       	- Press "return" to install.
 	- `sudo apt-get install php5-redis`
 	- `sudo nano /etc/redis/redis.conf`
 		- Add `maxmemory 256mb`
