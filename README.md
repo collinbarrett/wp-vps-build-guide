@@ -234,6 +234,8 @@ The best way to support this project is to submit issues and pull requests to as
         - Replace `{myWPSecurityKeys}` (<a href="https://api.wordpress.org/secret-key/1.1/salt/" target="_blank">Generate Keys</a>)
         - Modify `$table_prefix  = '{myRandomTablePrefix}_';` (<a href="https://www.wolframalpha.com/input/?i=password+generator&a=*MC.~-_*Formula.dflt-&a=FSelect_**PasswordSingleBasic-.dflt-&f3=16+characters&f=PasswordSingleBasic.pl_16+characters" target="_blank">Generate Table Prefix</a>)
         - Add `define( 'WP_AUTO_UPDATE_CORE', true );`
+        - Add `define( 'WP_CACHE_KEY_SALT', '{mySiteURL}_' );`
+        - Add `$redis_server = array( 'host' => '127.0.0.1', 'port' => 6379, );`
 	- `sudo mkdir wp-content/uploads`
     - `sudo chown -R :www-data wp-content/uploads`
 	- `sudo mkdir -p /var/www/{myWPSiteName}`
