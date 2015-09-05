@@ -120,7 +120,7 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo apt-get install ntp`
 		- Press "return" to install.
 	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank">DigitalOcean</a>_
-10. Enable a swap file of 2x RAM size. (Resize if droplet is ever scaled.)
+10. Enable a swap file of 2x RAM size. (Resize if the VPS is ever scaled.)
 	- `sudo fallocate -l {swapSizeInGb}G /swapfile`
 	- `sudo chmod 600 /swapfile`
 	- `sudo mkswap /swapfile`
