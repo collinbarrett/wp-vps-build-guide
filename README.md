@@ -242,10 +242,11 @@ The best way to support this project is to submit issues and pull requests to as
         - Add `@ini_set('display_errors', 0);`
         - Add `define( 'WP_CACHE_KEY_SALT', '{mySiteURL}_' );`
         - Add `$redis_server = array( 'host' => '127.0.0.1', 'port' => 6379, );`
-	- `sudo mkdir wp-content/uploads`
+	- `mkdir wp-content/uploads`
     - `sudo chown -R :www-data wp-content/uploads`
 	- `sudo mkdir -p /var/www/{myWPSiteName}`
     - `sudo rsync -avP ~/wordpress/ /var/www/{myWPSiteName}/`
+    - `rm -rf ~/wordpress/`
     - `sudo chown -R {myUser}:www-data /var/www/{myWPSiteName}/*`
     - via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>
 22. **TODO**: Work in progress... Configure nginx server blocks, configure ngx_pagespeed, etc.
