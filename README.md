@@ -248,6 +248,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo rsync -avP ~/wordpress/ /var/www/{myWPSiteName}/`
     - `rm -rf ~/wordpress/`
     - `sudo chown -R {myUser}:www-data /var/www/{myWPSiteName}/*`
+    - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, {myWPDBPassword}, {myWPSecurityKeys}, {myRandomPrefix}, and {mySiteURL}.
     - via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>
 22. **TODO**: Work in progress... Configure nginx server blocks, configure ngx_pagespeed, etc.
 99. Block port 80 once https access is verified to be working on the entire site.
