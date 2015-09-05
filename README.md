@@ -66,7 +66,7 @@ The best way to support this project is to submit issues and pull requests to as
 		- Type "yes" to continue connecting.
 4. Create a new user and add it to the sudo group.
 	- `adduser {myUser}`
-		- Provide a password.
+		- Provide {myUserPassword.
 		- Press "return" repeatedly to accept the rest of the default options.
 	- `gpasswd -a {myUser} sudo`
 	- _via <a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04" target="_blank">DigitalOcean</a>_
@@ -182,7 +182,7 @@ The best way to support this project is to submit issues and pull requests to as
 15. Install MariaDB.
 	- Follow the 5 commands <a href="https://downloads.mariadb.org/mariadb/repositories/" target="_blank">here</a> based on the setup.
 		- Use the DO node that the VPS is hosted on as the mirror in both the 4th box and the 3rd command.
-		- Provide a root password for MariaDB.
+		- Provide {myMariaDBRootPassword}.
 	- `mysql_secure_installation`
 		- Type "n" for do not change root password.
 		- Press "return" repeatedly to accept the rest of the default options.
@@ -208,13 +208,13 @@ The best way to support this project is to submit issues and pull requests to as
 19. Snapshot 4
 20. Create a database for WordPress.
 	- `mysql -u root -p`
-    	- Provide the MariaDB root password.
+    	- Provide {myMariaDBRootPassword}.
 	- `CREATE DATABASE {myWPDB};`
     - `CREATE USER {myWPDBUser}@localhost IDENTIFIED BY '{myWPDBPassword}';`
     - `GRANT ALL PRIVILEGES ON {myWPDB}.* TO {myWPDBUser}@localhost;`
     - `FLUSH PRIVILEGES;`
     - `exit`
-    - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, and {myWPDBPassword}. WordPress multisite networks only need one database.
+    - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, and {myWPDBPassword}.
     - via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>
 21. Download and install WordPress.
 	- `sudo apt-get update`
