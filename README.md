@@ -99,7 +99,7 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo poweroff`
 	- Create a Snapshot in the DO control panel.
 7. Update all the things and tidy up.
-	- For any of the following, type "Y" to proceed if prompted.
+	- For any of the following, press "return" to proceed if prompted.
       - `sudo apt-get update`
       - `sudo apt-get upgrade`
       	- If prompted about updating the grub file, keep the locally modified version.
