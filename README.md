@@ -188,6 +188,7 @@ The best way to support this project is to submit issues and pull requests to as
 		- Press "return" repeatedly to accept the rest of the default options.
 16. Install PHP.
 	- `sudo apt-get install php5-fpm php5-mysql`
+    	- Press "return" to install.
 	- `sudo nano /etc/php5/fpm/php.ini`
 		- Uncomment and modify `cgi.fix_pathinfo=0`
 17. Install HHVM.
