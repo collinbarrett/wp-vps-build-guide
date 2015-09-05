@@ -99,11 +99,13 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo poweroff`
 	- Create a Snapshot in the DO control panel.
 7. Update all the things and tidy up.
-	- `sudo apt-get update`
-	- `sudo apt-get upgrade`
-	- `sudo apt-get dist-upgrade`
-	- `sudo apt-get autoremove`
-	- `sudo apt-get autoclean`
+	- For any of the following, type "Y" to proceed if prompted.
+      - `sudo apt-get update`
+      - `sudo apt-get upgrade`
+      	-If prompted about updating the grub file, keep the locally modified version.
+      - `sudo apt-get dist-upgrade`
+      - `sudo apt-get autoremove`
+      - `sudo apt-get autoclean`
 8. Configure a basic firewall with ufw.
 	- `sudo ufw allow {myRandomSshPort}/tcp`
 	- `sudo ufw allow 80/tcp`
