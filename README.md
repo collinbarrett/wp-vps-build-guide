@@ -96,7 +96,7 @@ The best way to support this project is to submit issues and pull requests to as
 	- Type "exit" in the root Terminal window.
 	- _via <a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04" target="_blank">DigitalOcean</a>_
 6. Snapshot 1
-	- `sudo poweroff now`
+	- `sudo poweroff`
 	- Create a Snapshot in the DO control panel.
 7. Update all the things and tidy up.
 	- `sudo apt-get update`
