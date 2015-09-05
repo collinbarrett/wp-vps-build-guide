@@ -170,6 +170,7 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo dpkg -i nginx_{nginxCurVer}+trusty0_all.deb nginx-common_{nginxCurVer}+trusty0_all.deb nginx-doc_{nginxCurVer}+trusty0_all.deb nginx-light_{nginxCurVer}+trusty0_amd64.deb`
 		- If there are dependency errors due to the version of python installed:
         	- `sudo apt-get -f install`
+            	- Press "return" to install.
 	- `echo "nginx-light hold" | sudo dpkg --set-selections`
 	- `cd /etc/nginx/`
     - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/nginx.conf -O nginx.conf`
