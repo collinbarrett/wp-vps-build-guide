@@ -176,7 +176,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/nginx.conf -O nginx.conf`
     - `sudo service nginx restart`
     - Verify nginx is installed by visiting {myVpsIP} in a browser.
-    - `sudo rm -rf /opt/nginx/`
+    - `sudo rm -rf /opt/`
 	- _via <a href="https://blog.rudeotter.com/nginx-modules-pagespeed-ubuntu/" target="_blank">Rude Otter</a>, <a href="https://github.com/h5bp/server-configs-nginx/blob/master/nginx.conf" target="_blank">h5bp</a>_
 14. Snapshot 3
 15. Install MariaDB.
