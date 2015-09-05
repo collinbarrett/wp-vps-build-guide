@@ -66,7 +66,7 @@ The best way to support this project is to submit issues and pull requests to as
 		- Type "yes" to continue connecting.
 4. Create a new user and add it to the sudo group.
 	- `adduser {myUser}`
-		- Provide {myUserPassword.
+		- Provide {myUserPassword}.
 		- Press "return" repeatedly to accept the rest of the default options.
 	- `gpasswd -a {myUser} sudo`
 	- _via <a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04" target="_blank">DigitalOcean</a>_
