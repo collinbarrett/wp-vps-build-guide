@@ -223,6 +223,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `cd ~`
     - `wget http://wordpress.org/latest.tar.gz`
     - `tar -xzvf latest.tar.gz`
+    - `rm latest.tar.gz`
     - `cd ~/wordpress`
     - `cp wp-config-sample.php wp-config.php`
     - `rm wp-config-sample.php`
