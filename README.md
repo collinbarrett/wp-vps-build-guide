@@ -231,7 +231,8 @@ The best way to support this project is to submit issues and pull requests to as
     	- Modify `define('DB_NAME', '{myWPDB}');`
         - Modify `define('DB_USER', '{myWPDBUser}');`
         - Modify `define('DB_PASSWORD', '{myWPDBPassword}');`
-        - Add `{myWPSecurityKeys}` (<a href="https://api.wordpress.org/secret-key/1.1/salt/" target="_blank">Generate Keys</a>)
+        - Replace `{myWPSecurityKeys}` (<a href="https://api.wordpress.org/secret-key/1.1/salt/" target="_blank">Generate Keys</a>)
+        - Modify `$table_prefix  = '{myRandomTablePrefix}_';` (<a href="https://www.wolframalpha.com/input/?i=password+generator&a=*MC.~-_*Formula.dflt-&a=FSelect_**PasswordSingleBasic-.dflt-&f3=16+characters&f=PasswordSingleBasic.pl_16+characters" target="_blank">Generate Random Table Prefix</a>)
 	- `sudo mkdir wp-content/uploads`
     - `sudo chown -R :www-data wp-content/uploads`
 	- `sudo mkdir -p /var/www/{myWPSiteName}`
