@@ -26,7 +26,7 @@ please provide feedback. This guide should continue to receive ongoing optimizat
 - PHP Processor: HHVM
   - w/php5-fpm failover
 - Object Cache: Redis
-- TLS w/SPDY
+- TLS w/ HTTP/2
 - IPv4 & IPv6
 
 ## General Notes
@@ -158,11 +158,11 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo wget https://dl.google.com/dl/page-speed/psol/{npsCurVer}.tar.gz`
 	- `sudo tar -xzvf {npsCurVer}.tar.gz`
 	- `sudo rm {npsCurVer}.tar.gz`
-	- `sudo nano /opt/nginx/nginx-{npsCurVer}/debian/rules`
+	- `sudo nano /opt/nginx/nginx-{nginxCurVer}/debian/rules`
 		- Under "light" version flags:
 			- Delete `--without-ngx_http_limit_req_module \`
             - Add ` \` to the end of the last flag.
-			- Add `--with-http_spdy_module \`
+			- Add `--with-http_v2_module \`
 			- Add `--add-module=$(MODULESDIR)/nginx-cache-purge \`
 			- Add `--add-module=$(MODULESDIR)/ngx_pagespeed-{NpsCurVer}-beta`
 	- `cd /opt/nginx/nginx-{nginxCurVer}/`
