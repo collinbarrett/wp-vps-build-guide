@@ -137,10 +137,10 @@ The best way to support this project is to submit issues and pull requests to as
 		- Uncomment and modify `Unattended-Upgrade::Automatic-Reboot "true";`        
 12. Update kernel. (DO only.)
 	- `ls /boot/`
-      - Make a note of the newest version of vmlinuz installed.
+      - Note the newest version of vmlinuz installed.
     - `sudo poweroff`
     - In DO control panel, navigate to the droplet's settings->kernel.
-    - If available, select and change to the newest version of vmlinuz installed on the droplet.
+    - If available/applicable, select and change to the newest version of vmlinuz installed on the droplet.
 13. Snapshot 2
 14. Download, compile, and install nginx w/ngx_pagespeed.
 	- `sudo add-apt-repository -s -y ppa:nginx/development`
