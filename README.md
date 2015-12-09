@@ -206,6 +206,7 @@ The best way to support this project is to submit issues and pull requests to as
         - Add `hhvm.server.file_socket=/var/run/hhvm/hhvm.sock`
 	- `sudo service hhvm restart`
     - Verify HHVM is configured as the php processor by `php -v`
+    - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
 19. Install redis.
 	- `sudo apt-get install redis-server`
        	- Press "return" to install.
@@ -213,7 +214,7 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo nano /etc/redis/redis.conf`
 		- Add `maxmemory 256mb`
 		- Add `maxmemory-policy allkeys-lru`
-    - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank>Codeable</a>_
+    - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
 20. Snapshot 4
 21. Create a database for WordPress.
 	- `mysql -u root -p`
