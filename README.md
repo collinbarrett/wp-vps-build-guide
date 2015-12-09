@@ -18,7 +18,7 @@ please provide feedback. This guide should continue to receive ongoing optimizat
 ## The Stack
 - Client: OS X
 - Host: DigitalOcean
-- Server: Ubuntu x64
+- Server: Ubuntu 14.04.3 LTS x64
 - Web Server: nginx
   - w/FastCGI caching
   - w/ngx_pagespeed
@@ -45,7 +45,7 @@ This build guide is constructed from a compilation of sources from all over the 
 The best way to support this project is to submit issues and pull requests to assist in keeping the guide up-to-date. Clicking through the maintainer's <a href="http://brrt.co/CBDigitalOcean" target="_blank">DigitalOcean affiliate link</a> when signing up is helpful as well, but by no means expected.
 
 ## Build Guide
-1. Create a new VPS running the newest Ubuntu x64.
+1. Create a new VPS running Ubuntu 14.04.3 LTS x64.
     - Enable backups.
     - Enable ipv6.
     - Select SSH key.
@@ -103,7 +103,6 @@ The best way to support this project is to submit issues and pull requests to as
 	- For any of the following, press "return" to proceed if prompted.
       - `sudo apt-get update`
       - `sudo apt-get upgrade`
-      	- If prompted about updating the grub file, keep the locally modified version.
       - `sudo apt-get dist-upgrade`
       - `sudo apt-get autoremove`
       - `sudo apt-get autoclean`
@@ -141,8 +140,14 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo nano /etc/apt/apt.conf.d/50unattended-upgrades`
 		- Uncomment `"${distro_id}:${distro_codename}-updates";`
 		- Uncomment and modify `Unattended-Upgrade::Automatic-Reboot "true";`        
-12. Snapshot 2
-13. Download, compile, and install nginx w/ngx_pagespeed.
+12. Update kernel. (DO only.)
+	- `ls /boot/`
+    - Make a note of the newest version of vmlinuz installed.
+    - `sudo poweroff`
+    - In DO control panel, navigate to the droplet's settings->kernel.
+    - If available, select and change to the newest version of vmlinuz installed on the droplet.
+13. Snapshot 2
+14. Download, compile, and install nginx w/ngx_pagespeed.
 	- `sudo add-apt-repository -s -y ppa:nginx/development`
 	- `sudo apt-get update`
 	- `sudo apt-get -y build-dep nginx`
@@ -162,7 +167,6 @@ The best way to support this project is to submit issues and pull requests to as
 		- Under "light" version flags:
 			- Delete `--without-ngx_http_limit_req_module \`
             - Add ` \` to the end of the last flag.
-			- Add `--with-cc-opt="-D_GLIBCXX_USE_CXX11_ABI=0" \` (Temporary until <a href="https://github.com/pagespeed/ngx_pagespeed/pull/1048" target="_blank">merged pull</a> is released.)
             - Add `--with-http_v2_module \`
 			- Add `--add-module=$(MODULESDIR)/nginx-cache-purge \`
 			- Add `--add-module=$(MODULESDIR)/ngx_pagespeed-{NpsCurVer}-beta`
@@ -180,35 +184,35 @@ The best way to support this project is to submit issues and pull requests to as
     - Verify nginx is installed by visiting {myVpsIP} in a browser.
     - `sudo rm -rf /opt/`
 	- _via <a href="https://blog.rudeotter.com/nginx-modules-pagespeed-ubuntu/" target="_blank">Rude Otter</a>, <a href="https://github.com/h5bp/server-configs-nginx/blob/master/nginx.conf" target="_blank">h5bp</a>_
-14. Snapshot 3
-15. Install MariaDB.
+15. Snapshot 3
+16. Install MariaDB.
 	- Follow the 5 commands <a href="https://downloads.mariadb.org/mariadb/repositories/" target="_blank">here</a> based on the setup.
 		- Use the DO node that the VPS is hosted on as the mirror in both the 4th box and the 3rd command.
 		- Provide {myMariaDBRootPassword}.
 	- `mysql_secure_installation`
 		- Type "n" for do not change root password.
 		- Press "return" repeatedly to accept the rest of the default options.
-16. Install PHP.
+17. Install PHP.
 	- `sudo apt-get install php5-fpm php5-mysql`
     	- Press "return" to install.
 	- `sudo nano /etc/php5/fpm/php.ini`
 		- Uncomment and modify `cgi.fix_pathinfo=0`
-17. Install HHVM.
+18. Install HHVM.
 	- Follow the commands for the linux distro <a href="https://github.com/facebook/hhvm/wiki/Prebuilt%20Packages%20for%20HHVM" target="_blank">here</a>.
        	- Press "return" to install.
 	- `sudo /usr/share/hhvm/install_fastcgi.sh`
 	- `sudo update-rc.d hhvm defaults`
 	- `sudo /usr/bin/update-alternatives --install /usr/bin/php php /usr/bin/hhvm 60`
 	- `sudo service hhvm restart`
-18. Install redis.
+19. Install redis.
 	- `sudo apt-get install redis-server`
        	- Press "return" to install.
 	- `sudo apt-get install php5-redis`
 	- `sudo nano /etc/redis/redis.conf`
 		- Add `maxmemory 256mb`
 		- Add `maxmemory-policy allkeys-lru`
-19. Snapshot 4
-20. Create a database for WordPress.
+20. Snapshot 4
+21. Create a database for WordPress.
 	- `mysql -u root -p`
     	- Provide {myMariaDBRootPassword}.
 	- `CREATE DATABASE {myWPDB};`
@@ -218,7 +222,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `exit`
     - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, and {myWPDBPassword}.
     - via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>
-21. Download and install WordPress.
+22. Download and install WordPress.
 	- `sudo apt-get update`
 	- `sudo apt-get install php5-gd libssh2-php`
     - `cd ~`
@@ -251,7 +255,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo chown -R {myUser}:www-data /var/www/{myWPSiteName}/*`
     - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, {myWPDBPassword}, {myWPSecurityKeys}, {myRandomPrefix}, and {mySiteURL}.
     - via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>
-22. **TODO**: Work in progress... Configure nginx server blocks, configure ngx_pagespeed, etc.
+23. **TODO**: Work in progress... Configure nginx server blocks, configure ngx_pagespeed, etc.
 99. Block port 80 once https access is verified to be working on the entire site.
 	- `sudo ufw delete allow 80/tcp`
     - `sudo ufw reload`
