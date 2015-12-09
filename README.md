@@ -100,12 +100,11 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo poweroff`
 	- Create a Snapshot in the DO control panel.
 7. Update all the things and tidy up.
-	- For any of the following, press "return" to proceed if prompted.
-      - `sudo apt-get update`
-      - `sudo apt-get upgrade`
-      - `sudo apt-get dist-upgrade`
-      - `sudo apt-get autoremove`
-      - `sudo apt-get autoclean`
+    - `sudo apt-get update`
+    - `sudo apt-get upgrade`
+    - `sudo apt-get dist-upgrade`
+    - `sudo apt-get autoremove`
+    - `sudo apt-get autoclean`
 8. Configure a basic firewall with ufw.
 	- `sudo ufw allow {myRandomSshPort}/tcp`
 	- `sudo ufw allow 80/tcp`
@@ -118,9 +117,8 @@ The best way to support this project is to submit issues and pull requests to as
 		- Select the local timezone.
 	- `sudo apt-get update`
 	- `sudo apt-get install ntp`
-		- Press "return" to install.
 	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank">DigitalOcean</a>_
-10. Enable a swap file of 2x RAM size. (Resize if the VPS is ever scaled.)
+10. Enable a swap file of 2x RAM size.
 	- `sudo fallocate -l {swapSizeInGb}G /swapfile`
 	- `sudo chmod 600 /swapfile`
 	- `sudo mkswap /swapfile`
@@ -139,7 +137,7 @@ The best way to support this project is to submit issues and pull requests to as
 		- Uncomment and modify `Unattended-Upgrade::Automatic-Reboot "true";`        
 12. Update kernel. (DO only.)
 	- `ls /boot/`
-    - Make a note of the newest version of vmlinuz installed.
+      - Make a note of the newest version of vmlinuz installed.
     - `sudo poweroff`
     - In DO control panel, navigate to the droplet's settings->kernel.
     - If available, select and change to the newest version of vmlinuz installed on the droplet.
@@ -189,12 +187,10 @@ The best way to support this project is to submit issues and pull requests to as
 		- Press "return" repeatedly to accept the rest of the default options.
 17. Install PHP.
 	- `sudo apt-get install php5-fpm php5-mysql`
-    	- Press "return" to install.
 	- `sudo nano /etc/php5/fpm/php.ini`
 		- Uncomment and modify `cgi.fix_pathinfo=0`
 18. Install HHVM.
 	- Follow the commands for the linux distro <a href="http://docs.hhvm.com/hhvm/installation/introduction#prebuilt-packages" target="_blank">here</a>.
-       	- Press "return" to install.
 	- `sudo /usr/share/hhvm/install_fastcgi.sh`
 	- `sudo update-rc.d hhvm defaults`
 	- `sudo /usr/bin/update-alternatives --install /usr/bin/php php /usr/bin/hhvm 60`
@@ -206,7 +202,6 @@ The best way to support this project is to submit issues and pull requests to as
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
 19. Install redis.
 	- `sudo apt-get install redis-server`
-       	- Press "return" to install.
 	- `sudo apt-get install php5-redis`
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
 20. Snapshot 4
@@ -260,4 +255,6 @@ The best way to support this project is to submit issues and pull requests to as
 
 ## Recommended Ongoing Maintenance
 - Whenever nginx or ngx_pagespeed have a new release, repeat step 13. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
+- If VPS is ever resized, the swap file should be resized.
+- Step 12 should be repeated on occassion to keep the kernel updated.
 - **TODO**: MariaDB should be tuned on occasion for optimum performance. See [issue #3](https://github.com/collinbarrett/wp-vps-build-guide/issues/3).
