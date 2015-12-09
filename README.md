@@ -181,7 +181,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo service nginx restart`
     - Verify nginx is installed by visiting {myVpsIP} in a browser.
     - `sudo rm -rf /opt/`
-	- _via <a href="https://blog.rudeotter.com/nginx-modules-pagespeed-ubuntu/" target="_blank">Rude Otter</a>, <a href="https://github.com/h5bp/server-configs-nginx/blob/master/nginx.conf" target="_blank">h5bp</a>_
+	- _via <a href="https://blog.rudeotter.com/nginx-modules-pagespeed-ubuntu/" target="_blank">Rude Otter</a>_
 15. Snapshot 3
 16. Install MariaDB.
 	- Follow the 5 commands <a href="https://downloads.mariadb.org/mariadb/repositories/" target="_blank">here</a> based on the setup.
@@ -206,7 +206,7 @@ The best way to support this project is to submit issues and pull requests to as
         - Add `hhvm.server.file_socket=/var/run/hhvm/hhvm.sock`
 	- `sudo service hhvm restart`
     - `Verify HHVM is configured as the php processor by `php -v`
-    - via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank>Codeable</a>
+    - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank>Codeable</a>_
 19. Install redis.
 	- `sudo apt-get install redis-server`
        	- Press "return" to install.
@@ -214,7 +214,7 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo nano /etc/redis/redis.conf`
 		- Add `maxmemory 256mb`
 		- Add `maxmemory-policy allkeys-lru`
-    - via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank>Codeable</a>
+    - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank>Codeable</a>_
 20. Snapshot 4
 21. Create a database for WordPress.
 	- `mysql -u root -p`
