@@ -225,7 +225,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `cd ~/wordpress`
     - `cp wp-config-sample.php wp-config.php`
     - `rm wp-config-sample.php`
-    - `nano wp-config.php`
+    - `sudo nano wp-config.php`
     	- Modify `define('DB_NAME', '{myWPDB}');`
         - Modify `define('DB_USER', '{myWPDBUser}');`
         - Modify `define('DB_PASSWORD', '{myWPDBPassword}');`
