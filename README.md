@@ -126,9 +126,6 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo mkswap /swapfile`
 	- `sudo swapon /swapfile`
 	- `sudo sh -c 'echo "/swapfile none swap sw 0 0" >> /etc/fstab'`
-	- `sudo nano /etc/sysctl.conf`
-		- Add `vm.swappiness=10`
-		- Add `vm.vfs_cache_pressure=50`
 	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank">DigitalOcean</a>, <a href="https://help.ubuntu.com/community/SwapFaq" target="_blank">Ubuntu</a>_
 11. Configure automatic updates, upgrades, & cleanup.
 	- `sudo apt-get install unattended-upgrades`
@@ -211,9 +208,6 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo apt-get install redis-server`
        	- Press "return" to install.
 	- `sudo apt-get install php5-redis`
-	- `sudo nano /etc/redis/redis.conf`
-		- Add `maxmemory 256mb`
-		- Add `maxmemory-policy allkeys-lru`
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
 20. Snapshot 4
 21. Create a database for WordPress.
