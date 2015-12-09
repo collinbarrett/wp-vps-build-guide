@@ -149,20 +149,21 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo mkdir -p /opt/nginx`
 	- `sudo chown {myUser}:{myUser} /opt/nginx`
 	- `cd /opt/nginx`
-	- `sudo apt-get source nginx`
+	- `apt-get source nginx`
 	- `cd nginx-{nginxCurVer}/debian/modules/`
-	- `sudo wget {npsTarLink}` (Copy link to the newest tar.gz <a href="https://github.com/pagespeed/ngx_pagespeed/releases" target="_blank">here</a>.)
-	- `sudo tar -xzvf {npsTarFile}`
-	- `sudo rm {npsTarFile}`
+	- `wget {npsTarLink}` (Copy link to the newest tar.gz <a href="https://github.com/pagespeed/ngx_pagespeed/releases" target="_blank">here</a>.)
+	- `tar -xzvf {npsTarFile}`
+	- `rm {npsTarFile}`
 	- `cd ngx_pagespeed-{npsCurVer}-beta/`
-	- `sudo wget https://dl.google.com/dl/page-speed/psol/{npsCurVer}.tar.gz`
-	- `sudo tar -xzvf {npsCurVer}.tar.gz`
-	- `sudo rm {npsCurVer}.tar.gz`
+	- `wget https://dl.google.com/dl/page-speed/psol/{npsCurVer}.tar.gz`
+	- `tar -xzvf {npsCurVer}.tar.gz`
+	- `rm {npsCurVer}.tar.gz`
 	- `sudo nano /opt/nginx/nginx-{nginxCurVer}/debian/rules`
 		- Under "light" version flags:
 			- Delete `--without-ngx_http_limit_req_module \`
             - Add ` \` to the end of the last flag.
-			- Add `--with-http_v2_module \`
+			- Add `--with-cc-opt="-D_GLIBCXX_USE_CXX11_ABI=0" \` (Temporary until <a href="https://github.com/pagespeed/ngx_pagespeed/pull/1048" target="_blank">merged pull</a> is released.)
+            - Add `--with-http_v2_module \`
 			- Add `--add-module=$(MODULESDIR)/nginx-cache-purge \`
 			- Add `--add-module=$(MODULESDIR)/ngx_pagespeed-{NpsCurVer}-beta`
 	- `cd /opt/nginx/nginx-{nginxCurVer}/`
