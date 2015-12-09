@@ -131,8 +131,7 @@ The best way to support this project is to submit issues and pull requests to as
 		- Add `vm.swappiness=10`
 		- Add `vm.vfs_cache_pressure=50`
 	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank">DigitalOcean</a>, <a href="https://help.ubuntu.com/community/SwapFaq" target="_blank">Ubuntu</a>_
-11. Snapshot 2
-12. Configure automatic updates, upgrades, & cleanup.
+11. Configure automatic updates, upgrades, & cleanup.
 	- `sudo apt-get install unattended-upgrades`
 	- `sudo dpkg-reconfigure -plow unattended-upgrades`
 		- Select "Yes" to auto-install upgrades.
@@ -141,7 +140,8 @@ The best way to support this project is to submit issues and pull requests to as
 		- Add `APT::Periodic::AutocleanInterval "1";`
 	- `sudo nano /etc/apt/apt.conf.d/50unattended-upgrades`
 		- Uncomment `"${distro_id}:${distro_codename}-updates";`
-		- Uncomment and modify `Unattended-Upgrade::Automatic-Reboot "true";`
+		- Uncomment and modify `Unattended-Upgrade::Automatic-Reboot "true";`        
+12. Snapshot 2
 13. Download, compile, and install nginx w/ngx_pagespeed.
 	- `sudo add-apt-repository -s -y ppa:nginx/development`
 	- `sudo apt-get update`
