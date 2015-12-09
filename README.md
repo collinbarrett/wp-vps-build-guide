@@ -225,7 +225,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `FLUSH PRIVILEGES;`
     - `exit`
     - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, and {myWPDBPassword}.
-    - via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>
+    - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>_
 22. Download and install WordPress.
 	- `sudo apt-get update`
 	- `sudo apt-get install php5-gd libssh2-php`
