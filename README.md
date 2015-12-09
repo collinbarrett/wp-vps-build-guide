@@ -35,8 +35,8 @@ please provide feedback. This guide should continue to receive ongoing optimizat
 
 ## Assumptions
 - The developer has basic *nix terminal skills.
-- The developer has access to a VPS host. DO is used for the purposes of this guide, but competitors such as Linode work just fine.
-- The developer has a ssh key already created with the public key on DO and the private .pem stored locally at {myPK}.
+- The developer has access to a VPS host. DigitalOcean (DO) is used for the purposes of this guide, but competitors such as Linode work just fine.
+- The developer has a ssh key already created with the public key stored with the host and the private .pem stored locally at {myPK}.
 
 ## Sources
 This build guide is constructed from a compilation of sources from all over the web. Inline "via"s give credit to some of these authors, but apologies go out to any blogs that were forgotten.
