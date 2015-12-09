@@ -163,7 +163,7 @@ The best way to support this project is to submit issues and pull requests to as
 	- `wget https://dl.google.com/dl/page-speed/psol/{npsCurVer}.tar.gz`
 	- `tar -xzvf {npsCurVer}.tar.gz`
 	- `rm {npsCurVer}.tar.gz`
-	- `sudo nano ../rules`
+	- `sudo nano ../../rules`
 		- Under "light" version flags:
 			- Delete `--without-ngx_http_limit_req_module \`
             - Add ` \` to the end of the last flag.
