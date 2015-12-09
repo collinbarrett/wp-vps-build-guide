@@ -178,8 +178,6 @@ The best way to support this project is to submit issues and pull requests to as
         	- `sudo apt-get -f install`
             	- Press "return" to install.
 	- `echo "nginx-light hold" | sudo dpkg --set-selections`
-	- `cd /etc/nginx/`
-    - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/nginx.conf -O nginx.conf`
     - `sudo service nginx restart`
     - Verify nginx is installed by visiting {myVpsIP} in a browser.
     - `sudo rm -rf /opt/`
@@ -203,7 +201,12 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo /usr/share/hhvm/install_fastcgi.sh`
 	- `sudo update-rc.d hhvm defaults`
 	- `sudo /usr/bin/update-alternatives --install /usr/bin/php php /usr/bin/hhvm 60`
+    - `sudo nano /etc/hhvm/server.ini`
+    	- Comment out `hhvm.server.port = 9000`
+        - Add `hhvm.server.file_socket=/var/run/hhvm/hhvm.sock`
 	- `sudo service hhvm restart`
+    - `Verify HHVM is configured as the php processor by `php -v`
+    - via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank>Codeable</a>
 19. Install redis.
 	- `sudo apt-get install redis-server`
        	- Press "return" to install.
@@ -211,6 +214,7 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo nano /etc/redis/redis.conf`
 		- Add `maxmemory 256mb`
 		- Add `maxmemory-policy allkeys-lru`
+    - via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank>Codeable</a>
 20. Snapshot 4
 21. Create a database for WordPress.
 	- `mysql -u root -p`
