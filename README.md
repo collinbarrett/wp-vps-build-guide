@@ -26,7 +26,7 @@ please provide feedback. This guide should continue to receive ongoing optimizat
 - PHP Processor: HHVM
   - w/php5-fpm failover
 - Object Cache: Redis
-- TLS w/ HTTP/2
+- Let's Encrypt TLS w/ HTTP/2
 - IPv4 & IPv6
 
 ## General Notes
