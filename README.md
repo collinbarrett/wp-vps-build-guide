@@ -248,6 +248,14 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/common.conf -O /etc/nginx/global/common.conf`
     - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/wordpress.conf -O /etc/nginx/global/wordpress.conf`
     - If multisite, `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/multisite.conf -O /etc/nginx/global/multisite.conf`
+    - `sudo rm /etc/nginx/sites-available/default`
+    - `sudo rm /etc/nginx/sites-enabled/default`
+    - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/sites-available/example.com -O /etc/nginx/sites-available/example.com`
+    - `sudo mv /etc/nginx/sites-available/example.com /etc/nginx/sites-available/{myWPSiteName}`
+    - `sudo nano /etc/nginx/sites-available/{myWPSiteName}`
+        - Replace `example.com` with `{myWPSiteName}`
+    - `sudo ln -s /etc/nginx/sites-available/{myWPSiteName} /etc/nginx/sites-enabled/{myWPSiteName}`
+    - `sudo service nginx reload`
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-single-and-multiple-wordpress-site-settings-with-nginx" target="_blank">DigitalOcean</a>, <a href="https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration" target="_blank">DigitalOcean</a>_
 25. **TODO**: Configure ngx_pagespeed, configure ssl, optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, configure monit to restart HHVM, optimize php5-fpm, optimize redis, etc.
 
