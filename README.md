@@ -256,6 +256,8 @@ The best way to support this project is to submit issues and pull requests to as
         - Replace `example.com` with `{myWPSiteName}`
     - `sudo ln -s /etc/nginx/sites-available/{myWPSiteName} /etc/nginx/sites-enabled/{myWPSiteName}`
     - `sudo service nginx reload`
+    - Verify nginx is configured by visiting {myWPSiteName} in a browser.
+    	- This assumes DNS records have already been configured to point {myWPSiteName} to {myVpsIp}.
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-single-and-multiple-wordpress-site-settings-with-nginx" target="_blank">DigitalOcean</a>, <a href="https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration" target="_blank">DigitalOcean</a>_
 25. **TODO**: Configure ngx_pagespeed, configure ssl, optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, configure monit to restart HHVM, optimize php5-fpm, optimize redis, etc.
 
