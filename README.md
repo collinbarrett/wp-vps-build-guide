@@ -241,9 +241,10 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo chown -R {myUser}:www-data /var/www/{myWPSiteName}/*`
     - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, {myWPDBPassword}, {myWPSecurityKeys}, {myRandomPrefix}, and {mySiteURL}.
     - via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>
-23. Configure nginx server blocks.
+23. Snapshot 5
+24. Configure nginx.
     - **TODO**
-24. **TODO**: Configure ngx_pagespeed, configure ssl, optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, configure monit to restart HHVM, optimize php5-fpm, optimize redis, etc.
+25. **TODO**: Configure ngx_pagespeed, configure ssl, optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, configure monit to restart HHVM, optimize php5-fpm, optimize redis, etc.
 
 ## Recommended Ongoing Maintenance
 - Whenever nginx or ngx_pagespeed have a new release, repeat step 14. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
