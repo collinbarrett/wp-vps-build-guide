@@ -247,7 +247,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo mkdir /etc/nginx/global`
     - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/common.conf -O /etc/nginx/global/common.conf`
     - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/wordpress.conf -O /etc/nginx/global/wordpress.conf`
-    - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/multisite.conf -O /etc/nginx/global/multisite.conf`
+    - If multisite, `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/multisite.conf -O /etc/nginx/global/multisite.conf`
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-single-and-multiple-wordpress-site-settings-with-nginx" target="_blank">DigitalOcean</a>, <a href="https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration" target="_blank">DigitalOcean</a>_
 25. **TODO**: Configure ngx_pagespeed, configure ssl, optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, configure monit to restart HHVM, optimize php5-fpm, optimize redis, etc.
 
