@@ -239,7 +239,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo rsync -avP ~/wordpress/ /var/www/{myWPSiteName}/`
     - `rm -rf ~/wordpress/`
     - `sudo chown -R {myUser}:www-data /var/www/{myWPSiteName}/*`
-    - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, {myWPDBPassword}, {myWPSecurityKeys}, {myRandomPrefix}, and {mySiteURL}.
+    - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, {myWPDBPassword}, {myWPSecurityKeys}, and {myRandomPrefix}.
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>_
 23. Snapshot 5
 24. Configure nginx.
