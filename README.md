@@ -240,10 +240,14 @@ The best way to support this project is to submit issues and pull requests to as
     - `rm -rf ~/wordpress/`
     - `sudo chown -R {myUser}:www-data /var/www/{myWPSiteName}/*`
     - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, {myWPDBPassword}, {myWPSecurityKeys}, {myRandomPrefix}, and {mySiteURL}.
-    - via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>
+    - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>_
 23. Snapshot 5
 24. Configure nginx.
-    - **TODO**
+    - `wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/nginx.conf`
+    - `sudo chown root:root nginx.conf`
+    - `sudo chmod 644 nginx.conf`
+    - `sudo mv -f nginx.conf /etc/nginx/nginx.conf`
+    - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-single-and-multiple-wordpress-site-settings-with-nginx" target="_blank">DigitalOcean</a>, <a href="https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration" target="_blank">DigitalOcean</a>_
 25. **TODO**: Configure ngx_pagespeed, configure ssl, optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, configure monit to restart HHVM, optimize php5-fpm, optimize redis, etc.
 
 ## Recommended Ongoing Maintenance
