@@ -46,7 +46,7 @@ This build guide is constructed from a compilation of sources from all over the 
 The best way to support this project is to submit issues and pull requests to assist in keeping the guide up-to-date. Clicking through the maintainer's <a href="http://brrt.co/CBDigitalOcean" target="_blank">DigitalOcean affiliate link</a> when signing up is helpful as well, but by no means expected.
 
 ## Build Guide
-1. Create a new VPS running Ubuntu 14.04.3 LTS x64.
+1. Create a new VPS running Ubuntu LTS x64.
     - Enable backups.
     - Enable ipv6.
     - Select SSH key.
