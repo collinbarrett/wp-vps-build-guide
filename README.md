@@ -201,12 +201,46 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo service hhvm restart`
     - Verify HHVM is configured as the php processor by `php -v`
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
-19. Install redis.
+19. Install monit to automatically restart HHVM on crash.
+    - `sudo apt-get install monit`
+    - `sudo nano /etc/monit/conf.d/hhvm`
+
+        ```
+        check process hhvm with pidfile /var/run/hhvm/pid
+          group hhvm
+          start program = "/usr/sbin/service hhvm start" with timeout 60 seconds
+          stop program = "/usr/sbin/service hhvm stop"
+          if failed unixsocket /var/run/hhvm/hhvm.sock then restart
+          if mem > 400.0 MB for 1 cycles then restart
+          if 5 restarts with 5 cycles then timeout
+        ```
+
+    - `sudo nano /etc/monit/monitrc`
+        - Uncomment and modify
+
+            ```
+            set mailserver {mySmtpMailServer} port {mySmtpPort}
+            username "{mySmtpEmailAddress}" password "{mySmtpPassword}"
+            using tlsv1
+            ```
+
+        - Modify `set alert {mySmtpEmailAddress} with reminder on 15 cycles`
+        - Uncomment
+
+            ```
+            set httpd port 2812 and
+            use address localhost
+            allow localhost
+            ```
+
+    - `sudo service monit restart`
+    - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
+20. Install redis.
 	- `sudo apt-get install redis-server`
 	- `sudo apt-get install php5-redis`
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
-20. Snapshot 4
-21. Create a database for WordPress.
+21. Snapshot 4
+22. Create a database for WordPress.
 	- `mysql -u root -p`
     	- Provide {myMariaDBRootPassword}.
 	- `CREATE DATABASE {myWPDB};`
@@ -216,7 +250,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `exit`
     - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, and {myWPDBPassword}.
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>_
-22. Download and install WordPress.
+23. Download and install WordPress.
 	- `sudo apt-get update`
 	- `sudo apt-get install php5-gd libssh2-php`
     - `cd ~`
@@ -241,8 +275,8 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo chown -R {myUser}:www-data /var/www/{myWPSiteName}/*`
     - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, {myWPDBPassword}, {myWPSecurityKeys}, and {myRandomPrefix}.
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>_
-23. Snapshot 5
-24. Configure nginx.
+24. Snapshot 5
+25. Configure nginx.
     - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/nginx.conf -O /etc/nginx/nginx.conf`
     - `sudo mkdir /etc/nginx/global`
     - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/common.conf -O /etc/nginx/global/common.conf`
@@ -259,7 +293,7 @@ The best way to support this project is to submit issues and pull requests to as
     - Verify nginx is configured by visiting {myWPSiteName} in a browser.
     	- This assumes DNS records have already been configured to point {myWPSiteName} to {myVpsIp}.
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-single-and-multiple-wordpress-site-settings-with-nginx" target="_blank">DigitalOcean</a>, <a href="https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration" target="_blank">DigitalOcean</a>_
-25. **TODO**: Configure ngx_pagespeed, configure ssl, optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, configure monit to restart HHVM, optimize php5-fpm, optimize redis, etc.
+26. **TODO**: Configure ngx_pagespeed, configure ssl, optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, configure monit to restart HHVM, optimize php5-fpm, optimize redis, etc.
 
 ## Recommended Ongoing Maintenance
 - Whenever nginx or ngx_pagespeed have a new release, repeat step 14. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
