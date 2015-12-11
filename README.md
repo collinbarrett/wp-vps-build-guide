@@ -290,6 +290,10 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo ln -s /etc/nginx/sites-available/{myWPSiteName} /etc/nginx/sites-enabled/{myWPSiteName}`
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-single-and-multiple-wordpress-site-settings-with-nginx" target="_blank">DigitalOcean</a>, <a href="https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration" target="_blank">DigitalOcean</a>_
 26. Configure TLS encryption.
+    - `sudo mkdir /etc/nginx/cert`
+    - `sudo chmod 710 /etc/nginx/cert`
+    - `sudo openssl dhparam 2048 -out /etc/nginx/cert/dhparam.pem`
+    - `sudo chmod 600 /etc/nginx/cert/dhparam.pem`
     - `sudo apt-get install git`
     - `git clone https://github.com/letsencrypt/letsencrypt`
     - `cd letsencrypt`
@@ -305,6 +309,7 @@ The best way to support this project is to submit issues and pull requests to as
         - Uncomment `ssl_certificate /etc/letsencrypt/live/{myWPSiteUrl}/fullchain.pem;`
     - `sudo service nginx start`
     - Verify nginx and TLS is configured by visiting {myWPSiteUrl} in a browser.
+    - **TODO**: Document how to create more certificates for more domains using Let's Encrypt.
     - _via <a href="https://oct.im/install-lets-encrypt-ca-on-apache-and-nginx.html" target="_blank">oct.im</a>_
 27. **TODO**: Configure ngx_pagespeed, optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, optimize php5-fpm, configure redis, optimize redis, configure cron to auto-renew TLS cert., etc.
 
