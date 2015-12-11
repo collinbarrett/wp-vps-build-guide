@@ -300,16 +300,9 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo service nginx stop`
     - `./letsencrypt-auto certonly`
     	- This assumes DNS records have already been configured to point {myWPSiteUrl} to {myVpsIp}.
-    - `sudo nano /etc/nginx/sites-available/{myWPSiteName}`
-        - Modify `rewrite ^/(.*)$ https://{myWPSiteUrl}/$1 permanent;`
-        - Comment out `listen 80;`
-        - Uncomment `listen 443 default ssl http2;`
-        - Uncomment `listen [::]:443 default ssl http2 ipv6only=on;`
-        - Uncomment `ssl_certificate_key /etc/letsencrypt/live/{myWPSiteUrl}/privkey.pem;`
-        - Uncomment `ssl_certificate /etc/letsencrypt/live/{myWPSiteUrl}/fullchain.pem;`
     - `sudo service nginx start`
     - Verify nginx and TLS is configured by visiting {myWPSiteUrl} in a browser.
-    - **TODO**: Document how to create more certificates for more domains using Let's Encrypt.
+    - **TODO**: Document how to create additional certificates for more domains using Let's Encrypt.
     - _via <a href="https://oct.im/install-lets-encrypt-ca-on-apache-and-nginx.html" target="_blank">oct.im</a>_
 27. **TODO**: Configure ngx_pagespeed, optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, optimize php5-fpm, configure redis, optimize redis, configure cron to auto-renew TLS cert., etc.
 
