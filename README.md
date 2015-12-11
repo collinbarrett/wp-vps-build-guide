@@ -253,7 +253,6 @@ The best way to support this project is to submit issues and pull requests to as
 23. Download and install WordPress.
 	- `sudo apt-get update`
 	- `sudo apt-get install php5-gd libssh2-php`
-    - `cd ~`
     - `wget http://wordpress.org/latest.tar.gz`
     - `tar -xzvf latest.tar.gz`
     - `rm latest.tar.gz`
