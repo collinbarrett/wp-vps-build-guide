@@ -18,15 +18,16 @@ please provide feedback. This guide should continue to receive ongoing optimizat
 ## The Stack
 - Client: OS X
 - Host: DigitalOcean
-- Server: Ubuntu 14.04.3 LTS x64
+- Server: Ubuntu LTS x64
 - Web Server: nginx
   - w/FastCGI caching
   - w/ngx_pagespeed
 - Database: MariaDB
 - PHP Processor: HHVM
-  - w/php5-fpm failover
+  - w/php7-fpm failover
 - Object Cache: Redis
-- Let's Encrypt TLS w/ HTTP/2
+- Let's Encrypt TLS
+- HTTP/2
 - IPv4 & IPv6
 
 ## General Notes
@@ -187,9 +188,12 @@ The best way to support this project is to submit issues and pull requests to as
 		- Type "n" for do not change root password.
 		- Press "return" repeatedly to accept the rest of the default options.
 17. Install PHP.
-	- `sudo apt-get install php5-fpm php5-mysql`
-	- `sudo nano /etc/php5/fpm/php.ini`
+    - `sudo apt-get install python-software-properties`
+    - `sudo add-apt-repository ppa:ondrej/php-7.0`
+    - `sudo apt-get install php7.0-fpm php7.0-mysql`
+	- `sudo nano /etc/php7/fpm/php.ini`
 		- Uncomment and modify `cgi.fix_pathinfo=0`
+	- _via <a href="https://bjornjohansen.no/upgrade-to-php7" target="_blank">Bjørn Johansen</a>_
 18. Install HHVM.
 	- Follow the commands for the linux distro <a href="http://docs.hhvm.com/hhvm/installation/introduction#prebuilt-packages" target="_blank">here</a>.
 	- `sudo /usr/share/hhvm/install_fastcgi.sh`
