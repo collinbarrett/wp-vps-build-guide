@@ -293,6 +293,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo apt-get install git`
     - `git clone https://github.com/letsencrypt/letsencrypt`
     - `cd letsencrypt`
+    - `sudo service nginx stop`
     - `./letsencrypt-auto certonly`
     	- This assumes DNS records have already been configured to point {myWPSiteUrl} to {myVpsIp}.
     - `sudo nano /etc/nginx/sites-available/{myWPSiteName}`
@@ -302,7 +303,7 @@ The best way to support this project is to submit issues and pull requests to as
         - Uncomment `listen [::]:443 default ssl http2 ipv6only=on;`
         - Uncomment `ssl_certificate_key /etc/letsencrypt/live/{myWPSiteUrl}/privkey.pem;`
         - Uncomment `ssl_certificate /etc/letsencrypt/live/{myWPSiteUrl}/fullchain.pem;`
-    - `sudo service nginx reload`
+    - `sudo service nginx start`
     - Verify nginx and TLS is configured by visiting {myWPSiteUrl} in a browser.
     - _via <a href="https://oct.im/install-lets-encrypt-ca-on-apache-and-nginx.html" target="_blank">oct.im</a>_
 27. **TODO**: Configure ngx_pagespeed, configure ssl, optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, configure monit to restart HHVM, optimize php5-fpm, optimize redis, etc.
