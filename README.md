@@ -243,7 +243,7 @@ The best way to support this project is to submit issues and pull requests to as
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
 20. Install redis.
 	- `sudo apt-get install redis-server`
-	- `sudo apt-get install php5-redis`
+	- `sudo apt-get install php7-redis`
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
 21. Snapshot 4
 22. Create a database for WordPress.
@@ -258,7 +258,7 @@ The best way to support this project is to submit issues and pull requests to as
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>_
 23. Download and install WordPress.
 	- `sudo apt-get update`
-	- `sudo apt-get install php5-gd libssh2-php`
+	- `sudo apt-get install php7-gd libssh2-php`
     - `wget http://wordpress.org/latest.tar.gz`
     - `tar -xzvf latest.tar.gz`
     - `rm latest.tar.gz`
@@ -313,7 +313,7 @@ The best way to support this project is to submit issues and pull requests to as
     - **TODO**: Document how to create certificates for additional domains using Let's Encrypt.
     - **TODO**: Configure cron to auto-renew TLS certificate every 60 days.
     - _via <a href="https://oct.im/install-lets-encrypt-ca-on-apache-and-nginx.html" target="_blank">oct.im</a>_
-27. **TODO**: Configure ngx_pagespeed, optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, optimize php5-fpm, configure redis, optimize redis, etc.
+27. **TODO**: Configure ngx_pagespeed, optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, optimize php7-fpm, configure redis, optimize redis, etc.
 
 ## Recommended Ongoing Maintenance
 - Whenever nginx or ngx_pagespeed have a new release, repeat step 14. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
