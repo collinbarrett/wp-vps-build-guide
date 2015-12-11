@@ -179,7 +179,7 @@ The best way to support this project is to submit issues and pull requests to as
     - Verify nginx is installed by visiting {myVpsIP} in a browser.
     - `sudo rm -rf /opt/`
     - `sudo rm -rf /var/www/html/`
-    - **TODO**: Determine if any more modules can be ommitted to reduce bloat.
+    - **TODO**: Determine if any more nginx modules can be ommitted to reduce bloat.
 	- _via <a href="https://blog.rudeotter.com/nginx-modules-pagespeed-ubuntu/" target="_blank">Rude Otter</a>_
 15. Snapshot 3
 16. Install MariaDB.
