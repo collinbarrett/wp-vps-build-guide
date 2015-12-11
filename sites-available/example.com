@@ -1,12 +1,11 @@
 server {
     server_name www.example.com;
-    rewrite ^/(.*)$ http://example.com/$1 permanent;
+    rewrite ^/(.*)$ https://example.com/$1 permanent;
 }
 
 server {
-    listen 80;
-    # listen 443 default ssl http2;
-    # listen [::]:443 default ssl http2 ipv6only=on;
+    listen 443 default ssl http2;
+    listen [::]:443 default ssl http2 ipv6only=on;
 
     server_name example.com;
     root /var/www/example.com;
