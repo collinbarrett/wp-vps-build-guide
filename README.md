@@ -312,10 +312,12 @@ The best way to support this project is to submit issues and pull requests to as
         - Provide `{myWPSiteUrl},www.{myWPSiteUrl}` as domains for the certificates.
     - `sudo service nginx start`
     - Verify nginx and TLS is configured by visiting {myWPSiteUrl} in a browser.
+    - Complete the 1-page WordPress setup so that a random passerby might not botch your new site.
     - **TODO**: Document how to create certificates for additional domains using Let's Encrypt.
     - **TODO**: Configure cron to auto-renew TLS certificate every 60 days.
     - _via <a href="https://oct.im/install-lets-encrypt-ca-on-apache-and-nginx.html" target="_blank">oct.im</a>_
-27. **TODO**: Configure ngx_pagespeed, optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, optimize php7-fpm, configure redis, optimize redis, etc.
+27. Snapshot 6
+28. **TODO**: Configure ngx_pagespeed, optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, optimize php7-fpm, configure redis, optimize redis, etc.
 
 ## Recommended Ongoing Maintenance
 - Whenever nginx or ngx_pagespeed have a new release, repeat step 14. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
