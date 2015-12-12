@@ -349,6 +349,7 @@ The best way to support this project is to submit issues and pull requests to as
         - Enable Purge
         - Select nginx Fastcgi cache
         - Customize when Fastcgi cache should be purged
+    - _via <a href="https://easyengine.io/wordpress-nginx/tutorials/single-site/fastcgi-cache-with-purging/" target="_blank">EasyEngine</a>_
 30. **TODO**: Configure ngx_pagespeed
 31. **TODO**: Optimize swap, nginx, MariaDB, HHVM, php7.0-fpm, Redis, etc.
 
