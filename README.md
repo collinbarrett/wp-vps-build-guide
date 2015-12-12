@@ -145,6 +145,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo poweroff`
     - In DO control panel, navigate to the droplet's settings->kernel.
     - If available/applicable, select and change to the newest version of vmlinuz installed on the droplet.
+	- _via <a href="http://askubuntu.com/a/598934" target="_blank">David Foerster</a>_
 13. Update all the things and tidy up.
     - `sudo apt-get update`
     - `sudo apt-get upgrade`
