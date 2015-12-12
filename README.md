@@ -20,7 +20,7 @@ please provide feedback. This guide should continue to receive ongoing optimizat
 - Host: DigitalOcean
 - Server: Ubuntu LTS x64
 - Web Server: nginx
-  - w/FastCGI caching
+  - w/FastCGI microcaching
   - w/ngx_pagespeed
 - Database: MariaDB
 - PHP Processor: HHVM
@@ -325,7 +325,10 @@ The best way to support this project is to submit issues and pull requests to as
     - **TODO**: Configure cron to auto-renew TLS certificate every 60 days.
     - _via <a href="https://oct.im/install-lets-encrypt-ca-on-apache-and-nginx.html" target="_blank">oct.im</a>_
 28. Snapshot 6
-29. **TODO**: Configure ngx_pagespeed, optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, optimize php7-fpm, configure redis, optimize redis, etc.
+29. **TODO**: Configure redis
+30. **TODO**: Configure FastCGI microcaching
+31. **TODO**: Configure ngx_pagespeed
+32. **TODO**: Optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, optimize php7.0-fpm, etc.
 
 ## Recommended Ongoing Maintenance
 - Whenever nginx or ngx_pagespeed have a new release, repeat step 15. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
