@@ -344,7 +344,7 @@ The best way to support this project is to submit issues and pull requests to as
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
 29. **TODO**: Configure FastCGI microcaching
 30. **TODO**: Configure ngx_pagespeed
-31. **TODO**: Optimize swap, nginx, MariaDB, HHVM, php7.0-fpm, optimize redis, etc.
+31. **TODO**: Optimize swap, nginx, MariaDB, HHVM, php7.0-fpm, Redis, etc.
 
 ## Recommended Ongoing Maintenance
 - Whenever nginx or ngx_pagespeed have a new release, repeat step 15. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
