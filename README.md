@@ -260,7 +260,7 @@ The best way to support this project is to submit issues and pull requests to as
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>_
 23. Download and install WordPress.
 	- `sudo apt-get update`
-	- `sudo apt-get install php7-gd libssh2-php`
+	- `sudo apt-get install php7.0-gd`
     - `wget http://wordpress.org/latest.tar.gz`
     - `tar -xzvf latest.tar.gz`
     - `rm latest.tar.gz`
