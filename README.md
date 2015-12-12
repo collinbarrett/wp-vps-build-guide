@@ -304,6 +304,7 @@ The best way to support this project is to submit issues and pull requests to as
         - Modify `root /var/www/{myWPSiteName};`
         - Replace `example.com` with `{myWPSiteUrl}`
     - `sudo ln -s /etc/nginx/sites-available/{myWPSiteName} /etc/nginx/sites-enabled/{myWPSiteName}`
+    - Repeat the last four bullets for each WordPress site to be installed with new values for {myWPSiteName} and {myWPSiteUrl}.
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-single-and-multiple-wordpress-site-settings-with-nginx" target="_blank">DigitalOcean</a>, <a href="https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration" target="_blank">DigitalOcean</a>_
 27. Configure TLS encryption.
     - `sudo mkdir /etc/nginx/cert`
