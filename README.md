@@ -329,7 +329,7 @@ The best way to support this project is to submit issues and pull requests to as
 29. **TODO**: Configure ngx_pagespeed, optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, optimize php7-fpm, configure redis, optimize redis, etc.
 
 ## Recommended Ongoing Maintenance
-- Whenever nginx or ngx_pagespeed have a new release, repeat step 14. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
+- Whenever nginx or ngx_pagespeed have a new release, repeat step 15. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
 - If the VPS is ever resized, the swap file should be resized.
 - Step 12 should be repeated whenever a new version of the kernel is installed.
 - MariaDB should be tuned on occasion for optimum performance.
