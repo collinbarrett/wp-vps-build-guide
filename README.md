@@ -24,7 +24,7 @@ please provide feedback. This guide should continue to receive ongoing optimizat
   - w/ngx_pagespeed
 - Database: MariaDB
 - PHP Processor: HHVM
-  - w/php7-fpm failover
+  - w/php7.0-fpm failover
 - Object Cache: Redis
 - Let's Encrypt TLS
 - HTTP/2
