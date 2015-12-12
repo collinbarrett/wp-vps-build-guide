@@ -245,7 +245,7 @@ The best way to support this project is to submit issues and pull requests to as
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
 20. Install redis.
 	- `sudo apt-get install redis-server`
-	- `sudo apt-get install php7-redis`
+	- `sudo apt-get install php-redis`
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
 21. Snapshot 4
 22. Create a database for WordPress.
