@@ -342,7 +342,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo ln -s /var/www/{myWPSiteName}/wp-content/plugins/wp-redis/object-cache.php /var/www/{myWPSiteName}/wp-content`
     - Verify redis is working by `redis-cli monitor` and refresh the webpage.
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
-29. Configure FastCGI microcaching
+29. Configure FastCGI microcaching.
     - Search the plugin repository for "nginx-helper" and install it.
     - Activate "nginx-helper"
     - In Settings->nginx-helper,
