@@ -23,6 +23,7 @@ please provide feedback. This guide should continue to receive ongoing optimizat
   - w/FastCGI microcaching
   - w/ngx_pagespeed
 - Database: MariaDB
+  - w/Query Cache
 - PHP Processor: HHVM
   - w/php7.0-fpm failover
 - Object Cache: Redis
@@ -196,6 +197,10 @@ The best way to support this project is to submit issues and pull requests to as
 	- `mysql_secure_installation`
 		- Type "n" for do not change root password.
 		- Press "return" repeatedly to accept the rest of the default options.
+    - `mysql -u root -p`
+        - Provide {myMariaDBRootPassword}.
+    - `SET GLOBAL query_cache_size = 16000000;`
+    - `exit`
 18. Install PHP.
     - `sudo apt-get install python-software-properties`
     - `sudo add-apt-repository ppa:ondrej/php-7.0`
