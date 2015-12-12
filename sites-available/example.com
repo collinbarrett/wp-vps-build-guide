@@ -8,7 +8,7 @@ server {
     listen [::]:443 default ssl http2 ipv6only=on;
 
     server_name example.com;
-    root /var/www/example.com;
+    root /var/www/example;
     access_log /var/log/nginx/example.com.access.log;
     error_log /var/log/nginx/example.com.error.log;
     include global/common.conf;
