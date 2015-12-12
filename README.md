@@ -255,12 +255,8 @@ The best way to support this project is to submit issues and pull requests to as
 
     - `sudo service monit restart`
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
-21. Install redis.
-	- `sudo apt-get install redis-server`
-	- `sudo apt-get install php-redis`
-    - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
-22. Snapshot 4
-23. Create a database for WordPress.
+21. Snapshot 4
+22. Create a database for WordPress.
 	- `mysql -u root -p`
     	- Provide {myMariaDBRootPassword}.
 	- `CREATE DATABASE {myWPDB};`
@@ -270,7 +266,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `exit`
     - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, and {myWPDBPassword}.
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>_
-24. Download and install WordPress.
+23. Download and install WordPress.
 	- `sudo apt-get update`
 	- `sudo apt-get install php7.0-gd`
     - `wget http://wordpress.org/latest.tar.gz`
@@ -287,15 +283,15 @@ The best way to support this project is to submit issues and pull requests to as
         - Modify `$table_prefix  = '{myRandomPrefix}_';` (<a href="https://www.wolframalpha.com/input/?i=password+generator&a=*MC.~-_*Formula.dflt-&a=FSelect_**PasswordSingleBasic-.dflt-&f3=16+characters&f=PasswordSingleBasic.pl_16+characters" target="_blank">Generate {myRandomPrefix}</a>)
         - Add `define( 'WP_AUTO_UPDATE_CORE', true );`
 	- `mkdir wp-content/uploads`
-    - `sudo chown -R :www-data wp-content/uploads`
 	- `sudo mkdir -p /var/www/{myWPSiteName}`
     - `sudo rsync -avP ~/wordpress/ /var/www/{myWPSiteName}/`
+    - `sudo chown -R www-data:www-data /var/www/{myWPSiteName}`
     - `rm -rf ~/wordpress/`
     - `sudo chown -R {myUser}:www-data /var/www/{myWPSiteName}/*`
     - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, {myWPDBPassword}, {myWPSecurityKeys}, and {myRandomPrefix}.
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>_
-25. Snapshot 5
-26. Configure nginx.
+24. Snapshot 5
+25. Configure nginx.
     - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/nginx.conf -O /etc/nginx/nginx.conf`
     - `sudo mkdir /etc/nginx/global`
     - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/common.conf -O /etc/nginx/global/common.conf`
@@ -311,7 +307,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo ln -s /etc/nginx/sites-available/{myWPSiteName} /etc/nginx/sites-enabled/{myWPSiteName}`
     - Repeat the last four bullets for each WordPress site to be installed with new values for {myWPSiteName} and {myWPSiteUrl}.
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-single-and-multiple-wordpress-site-settings-with-nginx" target="_blank">DigitalOcean</a>, <a href="https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration" target="_blank">DigitalOcean</a>_
-27. Configure TLS encryption.
+26. Configure TLS encryption.
     - `sudo mkdir /etc/nginx/cert`
     - `sudo chmod 710 /etc/nginx/cert`
     - `sudo openssl dhparam 2048 -out /etc/nginx/cert/dhparam.pem`
@@ -329,11 +325,27 @@ The best way to support this project is to submit issues and pull requests to as
     - **TODO**: Document how to create certificates for additional domains using Let's Encrypt.
     - **TODO**: Configure cron to auto-renew TLS certificate every 60 days.
     - _via <a href="https://oct.im/install-lets-encrypt-ca-on-apache-and-nginx.html" target="_blank">oct.im</a>_
-28. Snapshot 6
-29. **TODO**: Configure redis
-30. **TODO**: Configure FastCGI microcaching
-31. **TODO**: Configure ngx_pagespeed
-32. **TODO**: Optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, optimize php7.0-fpm, etc.
+27. Snapshot 6
+28. Install and configure redis.
+	- `sudo apt-get install redis-server`
+	- `sudo apt-get install php-redis`
+    - `sudo nano /var/www/{myWPSiteName}/wp-config.php`
+        - Add
+        
+            ```
+            define( 'WP_CACHE_KEY_SALT', '{myWPSiteName}_' );
+            $redis_server = array( 'host' => '127.0.0.1', 'port' => 6379, );
+            ```
+
+    - Login to your site at {myWPSiteUrl}/wp-login.php.
+    - Search the plugin repository for "wp-redis" and install it.
+        - The plugin does not ever need to be activated, though.
+    - `sudo ln -s /var/www/{myWPSiteName}/wp-content/plugins/wp-redis/object-cache.php /var/www/{myWPSiteName}/wp-content`
+    - Verify redis is working by `redis-cli monitor` and refresh the webpage.
+    - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
+29. **TODO**: Configure FastCGI microcaching
+30. **TODO**: Configure ngx_pagespeed
+31. **TODO**: Optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, optimize php7.0-fpm, etc.
 
 ## Recommended Ongoing Maintenance
 - Whenever nginx or ngx_pagespeed have a new release, repeat step 15. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
