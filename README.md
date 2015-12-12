@@ -196,6 +196,7 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo apt-get install php7.0-fpm php7.0-mysql`
 	- `sudo nano /etc/php/7.0/fpm/php.ini`
 		- Uncomment and modify `cgi.fix_pathinfo=0`
+    - `sudo service php7.0-fpm restart`
 	- _via <a href="https://bjornjohansen.no/upgrade-to-php7" target="_blank">Bjørn Johansen</a>_
 18. Install HHVM.
 	- Follow the commands for the linux distro <a href="http://docs.hhvm.com/hhvm/installation/introduction#prebuilt-packages" target="_blank">here</a>.
