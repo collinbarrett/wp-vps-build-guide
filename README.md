@@ -171,7 +171,6 @@ The best way to support this project is to submit issues and pull requests to as
 	- `rm {npsCurVer}.tar.gz`
 	- `sudo nano ../../rules`
 		- Under "light" version flags:
-			- Delete `--without-ngx_http_limit_req_module \`
             - Add ` \` to the end of the last flag.
             - Add `--with-http_v2_module \`
 			- Add `--add-module=$(MODULESDIR)/nginx-cache-purge \`
@@ -188,7 +187,6 @@ The best way to support this project is to submit issues and pull requests to as
     - Verify nginx is installed by visiting {myVpsIP} in a browser.
     - `sudo rm -rf /opt/`
     - `sudo rm -rf /var/www/html/`
-    - **TODO**: Determine if any more nginx modules can be ommitted to reduce bloat.
 	- _via <a href="https://blog.rudeotter.com/nginx-modules-pagespeed-ubuntu/" target="_blank">Rude Otter</a>_
 16. Snapshot 3
 17. Install MariaDB.
