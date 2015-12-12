@@ -137,14 +137,23 @@ The best way to support this project is to submit issues and pull requests to as
 		- Uncomment `"${distro_id}:${distro_codename}-updates";`
 		- Uncomment and modify `Unattended-Upgrade::Automatic-Reboot "true";`        
 12. Update kernel. (DO only.)
-	- `ls /boot/`
+	- `sudo apt-get install linux-generic-lts-` (Double-tap "Tab")
+        - Note the newest alphabetical codename {newestKernelCodename}.
+        - `sudo apt-get install linux-generic-lts-{newestKernelCodename}`
+    - `ls /boot/`
       - Note the newest version of vmlinuz installed.
     - `sudo poweroff`
     - In DO control panel, navigate to the droplet's settings->kernel.
     - If available/applicable, select and change to the newest version of vmlinuz installed on the droplet.
     - **TODO**: Determine if kernel should be updated beyond newest LTS version.
-13. Snapshot 2
-14. Download, compile, and install nginx w/ngx_pagespeed.
+13. Update all the things and tidy up.
+    - `sudo apt-get update`
+    - `sudo apt-get upgrade`
+    - `sudo apt-get dist-upgrade`
+    - `sudo apt-get autoremove`
+    - `sudo apt-get autoclean`
+14. Snapshot 2
+15. Download, compile, and install nginx w/ngx_pagespeed.
 	- `sudo add-apt-repository -s -y ppa:nginx/development`
 	- `sudo apt-get update`
 	- `sudo apt-get -y build-dep nginx`
@@ -181,15 +190,15 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo rm -rf /var/www/html/`
     - **TODO**: Determine if any more nginx modules can be ommitted to reduce bloat.
 	- _via <a href="https://blog.rudeotter.com/nginx-modules-pagespeed-ubuntu/" target="_blank">Rude Otter</a>_
-15. Snapshot 3
-16. Install MariaDB.
+16. Snapshot 3
+17. Install MariaDB.
 	- Follow the 5 commands <a href="https://downloads.mariadb.org/mariadb/repositories/" target="_blank">here</a> based on the setup.
 		- Use the DO node that the VPS is hosted on as the mirror in both the 4th box and the 3rd command.
 		- Provide {myMariaDBRootPassword}.
 	- `mysql_secure_installation`
 		- Type "n" for do not change root password.
 		- Press "return" repeatedly to accept the rest of the default options.
-17. Install PHP.
+18. Install PHP.
     - `sudo apt-get install python-software-properties`
     - `sudo add-apt-repository ppa:ondrej/php-7.0`
     - `sudo apt-get update`
@@ -198,7 +207,7 @@ The best way to support this project is to submit issues and pull requests to as
 		- Uncomment and modify `cgi.fix_pathinfo=0`
     - `sudo service php7.0-fpm restart`
 	- _via <a href="https://bjornjohansen.no/upgrade-to-php7" target="_blank">Bjørn Johansen</a>_
-18. Install HHVM.
+19. Install HHVM.
 	- Follow the commands for the linux distro <a href="http://docs.hhvm.com/hhvm/installation/introduction#prebuilt-packages" target="_blank">here</a>.
 	- `sudo /usr/share/hhvm/install_fastcgi.sh`
 	- `sudo update-rc.d hhvm defaults`
@@ -209,7 +218,7 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo service hhvm restart`
     - Verify HHVM is configured as the php processor by `php -v`
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
-19. Install monit to automatically restart HHVM on crash.
+20. Install monit to automatically restart HHVM on crash.
     - `sudo apt-get install monit`
     - `sudo nano /etc/monit/conf.d/hhvm`
 
@@ -243,12 +252,12 @@ The best way to support this project is to submit issues and pull requests to as
 
     - `sudo service monit restart`
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
-20. Install redis.
+21. Install redis.
 	- `sudo apt-get install redis-server`
 	- `sudo apt-get install php-redis`
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
-21. Snapshot 4
-22. Create a database for WordPress.
+22. Snapshot 4
+23. Create a database for WordPress.
 	- `mysql -u root -p`
     	- Provide {myMariaDBRootPassword}.
 	- `CREATE DATABASE {myWPDB};`
@@ -258,7 +267,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `exit`
     - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, and {myWPDBPassword}.
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>_
-23. Download and install WordPress.
+24. Download and install WordPress.
 	- `sudo apt-get update`
 	- `sudo apt-get install php7.0-gd`
     - `wget http://wordpress.org/latest.tar.gz`
@@ -282,8 +291,8 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo chown -R {myUser}:www-data /var/www/{myWPSiteName}/*`
     - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, {myWPDBPassword}, {myWPSecurityKeys}, and {myRandomPrefix}.
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>_
-24. Snapshot 5
-25. Configure nginx.
+25. Snapshot 5
+26. Configure nginx.
     - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/nginx.conf -O /etc/nginx/nginx.conf`
     - `sudo mkdir /etc/nginx/global`
     - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/common.conf -O /etc/nginx/global/common.conf`
@@ -298,7 +307,7 @@ The best way to support this project is to submit issues and pull requests to as
         - Replace `example.com` with `{myWPSiteUrl}`
     - `sudo ln -s /etc/nginx/sites-available/{myWPSiteName} /etc/nginx/sites-enabled/{myWPSiteName}`
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-single-and-multiple-wordpress-site-settings-with-nginx" target="_blank">DigitalOcean</a>, <a href="https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration" target="_blank">DigitalOcean</a>_
-26. Configure TLS encryption.
+27. Configure TLS encryption.
     - `sudo mkdir /etc/nginx/cert`
     - `sudo chmod 710 /etc/nginx/cert`
     - `sudo openssl dhparam 2048 -out /etc/nginx/cert/dhparam.pem`
@@ -316,8 +325,8 @@ The best way to support this project is to submit issues and pull requests to as
     - **TODO**: Document how to create certificates for additional domains using Let's Encrypt.
     - **TODO**: Configure cron to auto-renew TLS certificate every 60 days.
     - _via <a href="https://oct.im/install-lets-encrypt-ca-on-apache-and-nginx.html" target="_blank">oct.im</a>_
-27. Snapshot 6
-28. **TODO**: Configure ngx_pagespeed, optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, optimize php7-fpm, configure redis, optimize redis, etc.
+28. Snapshot 6
+29. **TODO**: Configure ngx_pagespeed, optimize swap, optimize nginx, optimize MariaDB, optimize HHVM, optimize php7-fpm, configure redis, optimize redis, etc.
 
 ## Recommended Ongoing Maintenance
 - Whenever nginx or ngx_pagespeed have a new release, repeat step 14. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
