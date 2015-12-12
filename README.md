@@ -192,8 +192,9 @@ The best way to support this project is to submit issues and pull requests to as
 17. Install PHP.
     - `sudo apt-get install python-software-properties`
     - `sudo add-apt-repository ppa:ondrej/php-7.0`
-    - `sudo apt-get install php7.0-fpm php7.0-mysql`
-	- `sudo nano /etc/php7/fpm/php.ini`
+    - `sudo apt-get update`
+	- `sudo apt-get install php7.0-fpm php7.0-mysql`
+	- `sudo nano /etc/php/7.0/fpm/php.ini`
 		- Uncomment and modify `cgi.fix_pathinfo=0`
 	- _via <a href="https://bjornjohansen.no/upgrade-to-php7" target="_blank">Bjørn Johansen</a>_
 18. Install HHVM.
