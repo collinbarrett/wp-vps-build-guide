@@ -349,7 +349,6 @@ The best way to support this project is to submit issues and pull requests to as
         - Enable Purge
         - Select nginx Fastcgi cache
         - Customize when Fastcgi cache should be purged
-    - **TODO**: Store FastCGI cache in tmpfs.
     - _via <a href="https://easyengine.io/wordpress-nginx/tutorials/single-site/fastcgi-cache-with-purging/" target="_blank">EasyEngine</a>_
 30. Configure ngx_pagespeed.
     - `sudo nano /etc/nginx/nginx.conf`
