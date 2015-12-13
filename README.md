@@ -348,9 +348,17 @@ The best way to support this project is to submit issues and pull requests to as
         - Enable Purge
         - Select nginx Fastcgi cache
         - Customize when Fastcgi cache should be purged
+    - **TODO**: Store FastCGI cache in tmpfs.
     - _via <a href="https://easyengine.io/wordpress-nginx/tutorials/single-site/fastcgi-cache-with-purging/" target="_blank">EasyEngine</a>_
-30. **TODO**: Configure ngx_pagespeed
-31. **TODO**: Optimize swap, nginx, MariaDB, HHVM, php7.0-fpm, Redis, etc.
+30. Configure ngx_pagespeed.
+    - `sudo nano /etc/fstab`
+        - Add `tmpfs /var/ngx_pagespeed_cache tmpfs size=256m,mode=0775,uid=www-data,gid=www-data 0 0`
+    - `mount /var/ngx_pagespeed_cache`
+    - `sudo nano /etc/nginx/global/wordpress.conf`
+        - Uncomment `pagespeed on;`
+    - `sudo service nginx restart`
+    - _via <a href="https://developers.google.com/speed/pagespeed/module/" target="_blank">Google PageSpeed Module</a>_
+31. **TODO**: Optimize swap, nginx, MariaDB, HHVM, php7.0-fpm, Redis, ngx_pagespeed, etc.
 
 ## Recommended Ongoing Maintenance
 - Whenever nginx or ngx_pagespeed have a new release, repeat step 15. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
