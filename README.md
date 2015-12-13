@@ -351,9 +351,11 @@ The best way to support this project is to submit issues and pull requests to as
     - **TODO**: Store FastCGI cache in tmpfs.
     - _via <a href="https://easyengine.io/wordpress-nginx/tutorials/single-site/fastcgi-cache-with-purging/" target="_blank">EasyEngine</a>_
 30. Configure ngx_pagespeed.
+    - `sudo mkdir -p /var/ngx_pagespeed_cache`
+    - `sudo chown www-data:www-data /var/ngx_pagespeed_cache`
     - `sudo nano /etc/fstab`
-        - Add `tmpfs /var/ngx_pagespeed_cache tmpfs size=256m,mode=0775,uid=www-data,gid=www-data 0 0`
-    - `mount /var/ngx_pagespeed_cache`
+        - Add `tmpfs /var/ngx_pagespeed_cache tmpfs size=100m,mode=0775,uid=www-data,gid=www-data 0 0`
+    - `mount -t tmpfs -o size=100M,mode=0755 tmpfs /var/ngx_pagespeed_cache`
     - `sudo nano /etc/nginx/global/wordpress.conf`
         - Uncomment `pagespeed on;`
     - `sudo service nginx restart`
