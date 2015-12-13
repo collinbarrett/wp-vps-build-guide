@@ -357,8 +357,6 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo nano /etc/fstab`
         - Add `tmpfs /var/ngx_pagespeed_cache tmpfs size=100m,mode=0775,uid=www-data,gid=www-data 0 0`
     - `sudo mount -t tmpfs -o size=100M,mode=0755 tmpfs /var/ngx_pagespeed_cache`
-    - `sudo nano /etc/nginx/global/wordpress.conf`
-        - Uncomment `pagespeed on;`
     - `sudo service nginx restart`
     - _via <a href="https://developers.google.com/speed/pagespeed/module/" target="_blank">Google PageSpeed Module</a>_
 31. **TODO**: Optimize swap, nginx, MariaDB, HHVM, php7.0-fpm, Redis, ngx_pagespeed, etc.
