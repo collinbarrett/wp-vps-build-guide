@@ -19,6 +19,7 @@ please provide feedback. This guide should continue to receive ongoing optimizat
 - Client: OS X
 - Host: DigitalOcean
 - Server: Ubuntu LTS x64
+  - w/Upgraded Kernel
 - Web Server: nginx
   - w/FastCGI microcaching (RAM-cached)
   - w/ngx_pagespeed (RAM-cached)
