@@ -1,8 +1,6 @@
 # wp-vps-build-guide
 A verbose build guide for a modern, high-performance WordPress production VPS.
 
-**This guide is a work in progress. Feel free to look it over, but it is currently incomplete.**
-
 ## Intro
 This project aims to provide a straightforward, albeit lengthy, all-inclusive build guide for a low-budget, high-performance WordPress hosting solution. For as little as $5/mo., one can develop a cutting edge hosting stack for his or her projects. The instructions are verbose so that developers with little server administration experience can track.
 
@@ -355,12 +353,13 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo nano /etc/nginx/nginx.conf`
         - Modify `pagespeed on;`
     - `sudo service nginx restart`
+    - Core filters are enabled by default, but further filter tweaking should be performed on a site-specific basis.
     - _via <a href="https://developers.google.com/speed/pagespeed/module/" target="_blank">Google PageSpeed Module</a>_
-31. **TODO**: Optimize swap, nginx, MariaDB, HHVM, php7.0-fpm, Redis, ngx_pagespeed, etc.
+31. **TODO**: Optimize swap, nginx, MariaDB, HHVM, php7.0-fpm, Redis, FastCGI microcaching, etc. Audit file permisssions, ownership, and security. Configure secure WordPress updates via ssh.
 
 ## Recommended Ongoing Maintenance
-- Whenever nginx or ngx_pagespeed have a new release, repeat step 15. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
 - If the VPS is ever resized, the swap file should be resized.
 - Step 12 should be repeated whenever a new version of the kernel is installed.
+- Whenever nginx or ngx_pagespeed have a new release, repeat step 15. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
 - MariaDB should be tuned on occasion for optimum performance.
 - Renew TLS certificate every 60 days via `./letsencrypt-auto certonly`.
