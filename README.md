@@ -20,8 +20,8 @@ please provide feedback. This guide should continue to receive ongoing optimizat
 - Host: DigitalOcean
 - Server: Ubuntu LTS x64
 - Web Server: nginx
-  - w/FastCGI microcaching
-  - w/ngx_pagespeed
+  - w/FastCGI microcaching (RAM-cached)
+  - w/ngx_pagespeed (RAM-cached)
 - Database: MariaDB
   - w/Query Cache
 - PHP Processor: HHVM
@@ -352,11 +352,6 @@ The best way to support this project is to submit issues and pull requests to as
     - **TODO**: Store FastCGI cache in tmpfs.
     - _via <a href="https://easyengine.io/wordpress-nginx/tutorials/single-site/fastcgi-cache-with-purging/" target="_blank">EasyEngine</a>_
 30. Configure ngx_pagespeed.
-    - `sudo mkdir -p /var/ngx_pagespeed_cache`
-    - `sudo chown www-data:www-data /var/ngx_pagespeed_cache`
-    - `sudo nano /etc/fstab`
-        - Add `tmpfs /var/ngx_pagespeed_cache tmpfs size=100m,mode=0775,uid=www-data,gid=www-data 0 0`
-    - `sudo mount -t tmpfs -o size=100M,mode=0755 tmpfs /var/ngx_pagespeed_cache`
     - `sudo nano /etc/nginx/nginx.conf`
         - Modify `pagespeed on;`
     - `sudo service nginx restart`
