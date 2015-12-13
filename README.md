@@ -301,6 +301,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo mv /etc/nginx/sites-available/example.com /etc/nginx/sites-available/{myWPSiteName}`
     - `sudo nano /etc/nginx/sites-available/{myWPSiteName}`
         - Modify `root /var/www/{myWPSiteName};`
+        - Modify `pagespeed LoadFromFile "https://{myWPSiteUrl}/" "/var/www/{myWPSiteName}/";`
         - Replace `example.com` with `{myWPSiteUrl}`
     - `sudo ln -s /etc/nginx/sites-available/{myWPSiteName} /etc/nginx/sites-enabled/{myWPSiteName}`
     - Repeat the last four bullets for each WordPress site to be installed with new values for {myWPSiteName} and {myWPSiteUrl}.
