@@ -196,7 +196,7 @@ The best way to support this project is to submit issues and pull requests to as
 		- Press "return" repeatedly to accept the rest of the default options.
     - `mysql -u root -p`
         - Provide {myMariaDBRootPassword}.
-    - `SET GLOBAL query_cache_size = 16000000;`
+    - `SET GLOBAL query_cache_size = 8000000;`
     - `exit`
 18. Install PHP.
     - `sudo apt-get install python-software-properties`
