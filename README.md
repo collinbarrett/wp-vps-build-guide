@@ -115,6 +115,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo apt-get install fail2ban`
     - `sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local`
     - `sudo service fail2ban restart`
+	- _via <a href="https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-ubuntu-12-04" target="_blank">DigitalOcean</a>_
 10. Update the timezone and configure ntp sync.
 	- `sudo dpkg-reconfigure tzdata`
 		- Select the local timezone.
