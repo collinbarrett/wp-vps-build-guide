@@ -350,10 +350,8 @@ The best way to support this project is to submit issues and pull requests to as
         - Customize when Fastcgi cache should be purged
     - _via <a href="https://easyengine.io/wordpress-nginx/tutorials/single-site/fastcgi-cache-with-purging/" target="_blank">EasyEngine</a>_
 30. Configure ngx_pagespeed.
-    - `sudo nano /etc/nginx/nginx.conf`
-        - Modify `pagespeed on;`
-    - `sudo service nginx restart`
     - Core filters are enabled by default, but further filter tweaking should be performed on a site-specific basis.
+    - Visit {myWPSiteUrl}/pagespeed to assist in optimization for your site.
     - _via <a href="https://developers.google.com/speed/pagespeed/module/" target="_blank">Google PageSpeed Module</a>_
 31. **TODO**: Optimize swap, nginx, MariaDB, HHVM, php7.0-fpm, Redis, FastCGI microcaching, etc. Audit file permisssions, ownership, and security. Configure secure WordPress updates via ssh.
 
