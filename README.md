@@ -19,8 +19,8 @@ please provide feedback. This guide should continue to receive ongoing optimizat
 - Server: Ubuntu LTS x64
   - w/Upgraded Kernel
 - Web Server: nginx
-  - w/FastCGI microcaching (RAM-cached)
-  - w/ngx_pagespeed (RAM-cached)
+  - w/FastCGI microcaching
+  - w/ngx_pagespeed
 - Database: MariaDB
   - w/Query Cache
 - PHP Processor: HHVM
@@ -45,7 +45,7 @@ This build guide is constructed from a compilation of sources from all over the 
 The best way to support this project is to submit issues and pull requests to assist in keeping the guide up-to-date. Clicking through the maintainer's <a href="http://brrt.co/CBDigitalOcean" target="_blank">DigitalOcean affiliate link</a> when signing up is helpful as well, but by no means expected.
 
 ## Build Guide
-1. Create a new VPS running Ubuntu LTS x64.
+1. Create a new VPS running Ubuntu LTS x64 in the DO control panel.
     - Enable backups.
     - Enable ipv6.
     - Select SSH key.
@@ -77,17 +77,16 @@ The best way to support this project is to submit issues and pull requests to as
 	- `chmod 700 /home/{myUser}/.ssh`
 	- `chmod 600 /home/{myUser}/.ssh/authorized_keys`
 	- `nano /etc/ssh/sshd_config`
-        - Modify `Port {myRandomSshPort}` (<a href="http://www.wolframalpha.com/input/?i=RandomInteger%281025%2C65536%29" target="_blank">Generate {myRandomSshPort}</a>)
 		- Modify `PermitRootLogin no`
         - Uncomment and modify `PasswordAuthentication no`
  	- `service ssh restart`
-	- Don’t close the Terminal window, yet. In another Terminal window:
+	- Don’t close the Terminal window, yet. In another local Terminal window:
     	- `sudo nano ~/.ssh/config`
 
 			```
 			Host {myVpsName}
 			  HostName {myVpsIP}
-			  Port {myRandomSshPort}
+			  Port 22
 			  User {myUser}
 			  IdentityFile {myPK}
 			```
@@ -112,20 +111,21 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo ufw enable`
 		- Type "y" to proceed with the operation.
 	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank">DigitalOcean</a>_
-9. Update the timezone and configure ntp sync.
+9. **TODO**: Install and configure fail2ban.
+10. Update the timezone and configure ntp sync.
 	- `sudo dpkg-reconfigure tzdata`
 		- Select the local timezone.
 	- `sudo apt-get update`
 	- `sudo apt-get install ntp`
 	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank">DigitalOcean</a>_
-10. Enable a swap file of 2x RAM size.
+11. Enable a swap file of 2x RAM size.
 	- `sudo fallocate -l {swapSizeInGb}G /swapfile`
 	- `sudo chmod 600 /swapfile`
 	- `sudo mkswap /swapfile`
 	- `sudo swapon /swapfile`
 	- `sudo sh -c 'echo "/swapfile none swap sw 0 0" >> /etc/fstab'`
 	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank">DigitalOcean</a>, <a href="https://help.ubuntu.com/community/SwapFaq" target="_blank">Ubuntu</a>_
-11. Configure automatic updates, upgrades, & cleanup.
+12. Configure automatic updates, upgrades, & cleanup.
 	- `sudo apt-get install unattended-upgrades`
 	- `sudo dpkg-reconfigure -plow unattended-upgrades`
 		- Select "Yes" to auto-install upgrades.
@@ -135,7 +135,7 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo nano /etc/apt/apt.conf.d/50unattended-upgrades`
 		- Uncomment `"${distro_id}:${distro_codename}-updates";`
 		- Uncomment and modify `Unattended-Upgrade::Automatic-Reboot "true";`        
-12. Update kernel. (DO only.)
+13. Update kernel. (DO only.)
 	- `sudo apt-get install linux-generic-lts-` (Double-tap "Tab")
         - Note the newest alphabetical codename {newestKernelCodename}.
         - `sudo apt-get install linux-generic-lts-{newestKernelCodename}`
@@ -146,14 +146,14 @@ The best way to support this project is to submit issues and pull requests to as
     - If available/applicable, select and change to the newest version of vmlinuz installed on the droplet.
     - Power droplet back on from the DO control panel.
 	- _via <a href="http://askubuntu.com/a/598934" target="_blank">David Foerster</a>_
-13. Update all the things and tidy up.
+14. Update all the things and tidy up.
     - `sudo apt-get update`
     - `sudo apt-get upgrade`
     - `sudo apt-get dist-upgrade`
     - `sudo apt-get autoremove`
     - `sudo apt-get autoclean`
-14. Snapshot 2
-15. Download, compile, and install nginx w/ngx_pagespeed.
+15. Snapshot 2
+16. Download, compile, and install nginx w/ngx_pagespeed.
 	- `sudo add-apt-repository -s -y ppa:nginx/development`
 	- `sudo apt-get update`
 	- `sudo apt-get -y build-dep nginx`
@@ -186,8 +186,8 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo rm -rf /opt/`
     - `sudo rm -rf /var/www/html/`
 	- _via <a href="https://blog.rudeotter.com/nginx-modules-pagespeed-ubuntu/" target="_blank">Rude Otter</a>_
-16. Snapshot 3
-17. Install MariaDB.
+17. Snapshot 3
+18. Install MariaDB.
 	- Follow the 5 commands <a href="https://downloads.mariadb.org/mariadb/repositories/" target="_blank">here</a> based on the setup.
 		- Use the DO node that the VPS is hosted on as the mirror in both the 4th box and the 3rd command.
 		- Provide {myMariaDBRootPassword}.
@@ -198,7 +198,7 @@ The best way to support this project is to submit issues and pull requests to as
         - Provide {myMariaDBRootPassword}.
     - `SET GLOBAL query_cache_size = 8000000;`
     - `exit`
-18. Install PHP.
+19. Install PHP.
     - `sudo apt-get install python-software-properties`
     - `sudo add-apt-repository ppa:ondrej/php-7.0`
     - `sudo apt-get update`
@@ -207,7 +207,7 @@ The best way to support this project is to submit issues and pull requests to as
 		- Uncomment and modify `cgi.fix_pathinfo=0`
     - `sudo service php7.0-fpm restart`
 	- _via <a href="https://bjornjohansen.no/upgrade-to-php7" target="_blank">Bjørn Johansen</a>_
-19. Install HHVM.
+20. Install HHVM.
 	- Follow the commands for the linux distro <a href="http://docs.hhvm.com/hhvm/installation/introduction#prebuilt-packages" target="_blank">here</a>.
 	- `sudo /usr/share/hhvm/install_fastcgi.sh`
 	- `sudo update-rc.d hhvm defaults`
@@ -216,7 +216,7 @@ The best way to support this project is to submit issues and pull requests to as
     	- Replace `hhvm.server.port = 9000` with `hhvm.server.file_socket=/var/run/hhvm/hhvm.sock`
 	- `sudo service hhvm restart`
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
-20. Install monit to automatically restart HHVM on crash.
+21. Install monit to automatically restart HHVM on crash.
     - `sudo apt-get install monit`
     - `sudo nano /etc/monit/conf.d/hhvm`
 
@@ -250,8 +250,8 @@ The best way to support this project is to submit issues and pull requests to as
 
     - `sudo service monit restart`
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
-21. Snapshot 4
-22. Create a database for WordPress.
+22. Snapshot 4
+23. Create a database for WordPress.
 	- `mysql -u root -p`
     	- Provide {myMariaDBRootPassword}.
 	- `CREATE DATABASE {myWPDB};`
@@ -261,7 +261,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `exit`
     - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, and {myWPDBPassword}.
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>_
-23. Download and install WordPress.
+24. Download and install WordPress.
 	- `sudo apt-get update`
 	- `sudo apt-get install php7.0-gd`
     - `wget http://wordpress.org/latest.tar.gz`
@@ -284,8 +284,8 @@ The best way to support this project is to submit issues and pull requests to as
     - `rm -rf ~/wordpress/`
     - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, {myWPDBPassword}, {myWPSecurityKeys}, and {myRandomPrefix}.
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>_
-24. Snapshot 5
-25. Configure nginx.
+25. Snapshot 5
+26. Configure nginx.
     - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/nginx.conf -O /etc/nginx/nginx.conf`
     - `sudo mkdir /etc/nginx/global`
     - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/common.conf -O /etc/nginx/global/common.conf`
@@ -302,7 +302,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo ln -s /etc/nginx/sites-available/{myWPSiteName} /etc/nginx/sites-enabled/{myWPSiteName}`
     - Repeat the last four bullets for each WordPress site to be installed with new values for {myWPSiteName} and {myWPSiteUrl}.
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-single-and-multiple-wordpress-site-settings-with-nginx" target="_blank">DigitalOcean</a>, <a href="https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration" target="_blank">DigitalOcean</a>_
-26. Configure TLS encryption.
+27. Configure TLS encryption.
     - `sudo mkdir /etc/nginx/cert`
     - `sudo chmod 710 /etc/nginx/cert`
     - `sudo openssl dhparam 2048 -out /etc/nginx/cert/dhparam.pem`
@@ -320,8 +320,8 @@ The best way to support this project is to submit issues and pull requests to as
         - Required to purge cache after completing WordPress setup.
     - **TODO**: Configure cron to auto-renew TLS certificate every 60 days.
     - _via <a href="https://oct.im/install-lets-encrypt-ca-on-apache-and-nginx.html" target="_blank">oct.im</a>_
-27. Snapshot 6
-28. Install and configure redis.
+28. Snapshot 6
+29. Install and configure redis.
 	- `sudo apt-get install redis-server`
 	- `sudo apt-get install php-redis`
     - `sudo nano /var/www/{myWPSiteName}/wp-config.php`
@@ -338,7 +338,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo ln -s /var/www/{myWPSiteName}/wp-content/plugins/wp-redis/object-cache.php /var/www/{myWPSiteName}/wp-content`
     - Verify redis is working by `redis-cli monitor` and refresh the webpage.
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
-29. Configure FastCGI microcaching.
+30. Configure FastCGI microcaching.
     - Search the plugin repository for "nginx-helper" and install it.
     - Activate "nginx-helper"
     - In Settings->nginx-helper,
@@ -346,15 +346,15 @@ The best way to support this project is to submit issues and pull requests to as
         - Select nginx Fastcgi cache
         - Customize when Fastcgi cache should be purged
     - _via <a href="https://easyengine.io/wordpress-nginx/tutorials/single-site/fastcgi-cache-with-purging/" target="_blank">EasyEngine</a>_
-30. Configure ngx_pagespeed.
+31. Configure ngx_pagespeed.
     - Core filters are enabled by default, but further filter tweaking should be performed on a site-specific basis.
     - Visit {myWPSiteUrl}/pagespeed to assist in optimization for your site.
     - _via <a href="https://developers.google.com/speed/pagespeed/module/" target="_blank">Google PageSpeed Module</a>_
-31. Snapshot 7
+32. Snapshot 7
 
 ## Recommended Ongoing Maintenance
 - If the VPS is ever resized, the swap file should be resized.
-- Step 12 should be repeated whenever a new version of the kernel is installed.
-- Whenever nginx or ngx_pagespeed have a new release, repeat step 15. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
+- Step 13 should be repeated whenever a new version of the kernel is installed.
+- Whenever nginx or ngx_pagespeed have a new release, repeat step 16. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
 - MariaDB should be tuned on occasion for optimum performance.
 - Renew TLS certificate every 60 days via `./letsencrypt-auto certonly`.
