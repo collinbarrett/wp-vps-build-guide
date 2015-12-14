@@ -213,8 +213,7 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo update-rc.d hhvm defaults`
 	- `sudo /usr/bin/update-alternatives --install /usr/bin/php php /usr/bin/hhvm 60`
     - `sudo nano /etc/hhvm/server.ini`
-    	- Comment out `hhvm.server.port = 9000`
-        - Add `hhvm.server.file_socket=/var/run/hhvm/hhvm.sock`
+    	- Replace `hhvm.server.port = 9000` with `hhvm.server.file_socket=/var/run/hhvm/hhvm.sock`
 	- `sudo service hhvm restart`
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
 20. Install monit to automatically restart HHVM on crash.
