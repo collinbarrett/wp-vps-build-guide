@@ -28,7 +28,6 @@ please provide feedback. This guide should continue to receive ongoing optimizat
 - Object Cache: Redis
 - Let's Encrypt TLS
 - HTTP/2
-- IPv4 & IPv6
 
 ## General Notes
 - Items in curly brackets {} should be treated as variables and replaced with custom info.
@@ -354,7 +353,7 @@ The best way to support this project is to submit issues and pull requests to as
     - Visit {myWPSiteUrl}/pagespeed to assist in optimization for your site.
     - _via <a href="https://developers.google.com/speed/pagespeed/module/" target="_blank">Google PageSpeed Module</a>_
 31. Snapshot 7
-32. **TODO**: Optimize swap, nginx, MariaDB, HHVM, php7.0-fpm, Redis, FastCGI microcaching, etc.
+32. **TODO**: Optimize MariaDB, HHVM, php7.0-fpm, Redis, FastCGI microcaching, etc.
 
 ## Recommended Ongoing Maintenance
 - If the VPS is ever resized, the swap file should be resized.
