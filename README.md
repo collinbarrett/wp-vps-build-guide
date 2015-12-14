@@ -111,7 +111,10 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo ufw enable`
 		- Type "y" to proceed with the operation.
 	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank">DigitalOcean</a>_
-9. **TODO**: Install and configure fail2ban.
+9. Install fail2ban.
+    - `sudo apt-get install fail2ban`
+    - `sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local`
+    - `sudo service fail2ban restart`
 10. Update the timezone and configure ntp sync.
 	- `sudo dpkg-reconfigure tzdata`
 		- Select the local timezone.
