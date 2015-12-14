@@ -316,6 +316,8 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo service nginx start`
     - Verify nginx and TLS is configured by visiting {myWPSiteUrl} in a browser.
     - Complete the 1-page WordPress setup so that a random passerby might not botch your new site.
+    - `sudo reboot now`
+        - Required to purge cache after completing WordPress setup.
     - **TODO**: Configure cron to auto-renew TLS certificate every 60 days.
     - _via <a href="https://oct.im/install-lets-encrypt-ca-on-apache-and-nginx.html" target="_blank">oct.im</a>_
 27. Snapshot 6
