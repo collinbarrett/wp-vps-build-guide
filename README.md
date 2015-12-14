@@ -105,7 +105,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo apt-get autoremove`
     - `sudo apt-get autoclean`
 8. Configure a basic firewall with ufw.
-	- `sudo ufw allow {myRandomSshPort}/tcp`
+	- `sudo ufw allow 22/tcp`
 	- `sudo ufw allow 80/tcp`
 	- `sudo ufw allow 443/tcp`
 	- `sudo ufw enable`
