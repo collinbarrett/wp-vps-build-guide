@@ -313,13 +313,11 @@ The best way to support this project is to submit issues and pull requests to as
     - `git clone https://github.com/letsencrypt/letsencrypt`
     - `cd letsencrypt`
     - `sudo service nginx stop`
-    - `./letsencrypt-auto certonly`
+    - `./letsencrypt-auto certonly --standalone --agree-tos --email {myEmailAddress} -d {myWPSiteUrl} -d www.{myWPSiteUrl} -d {myWPSiteUrl2} -d www.{myWPSiteUrl2}`
     	- This assumes DNS records have already been configured to point {myWPSiteUrl} to {myVpsIp}.
-        - Provide `{myWPSiteUrl},www.{myWPSiteUrl}` as domains for the certificates.
     - `sudo service nginx start`
     - Verify nginx and TLS is configured by visiting {myWPSiteUrl} in a browser.
     - Complete the 1-page WordPress setup so that a random passerby might not botch your new site.
-    - **TODO**: Document how to create certificates for additional domains using Let's Encrypt.
     - **TODO**: Configure cron to auto-renew TLS certificate every 60 days.
     - _via <a href="https://oct.im/install-lets-encrypt-ca-on-apache-and-nginx.html" target="_blank">oct.im</a>_
 27. Snapshot 6
