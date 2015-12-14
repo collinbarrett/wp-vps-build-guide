@@ -354,7 +354,7 @@ The best way to support this project is to submit issues and pull requests to as
     - Visit {myWPSiteUrl}/pagespeed to assist in optimization for your site.
     - _via <a href="https://developers.google.com/speed/pagespeed/module/" target="_blank">Google PageSpeed Module</a>_
 31. Snapshot 7
-32. **TODO**: Optimize swap, nginx, MariaDB, HHVM, php7.0-fpm, Redis, FastCGI microcaching, etc. Audit file permisssions, ownership, and security. Configure secure WordPress updates via ssh.
+32. **TODO**: Optimize swap, nginx, MariaDB, HHVM, php7.0-fpm, Redis, FastCGI microcaching, etc.
 
 ## Recommended Ongoing Maintenance
 - If the VPS is ever resized, the swap file should be resized.
