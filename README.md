@@ -141,10 +141,10 @@ The best way to support this project is to submit issues and pull requests to as
         - `sudo apt-get install linux-generic-lts-{newestKernelCodename}`
     - `ls /boot/`
       - Note the newest version of vmlinuz installed.
+    - `sudo poweroff`
     - In DO control panel, navigate to the droplet's settings->kernel.
     - If available/applicable, select and change to the newest version of vmlinuz installed on the droplet.
-    - `sudo poweroff`
-    - Power on droplet from the DO control panel.
+    - Power on the droplet from the DO control panel.
 	- _via <a href="http://askubuntu.com/a/598934" target="_blank">David Foerster</a>_
 14. Update all the things and tidy up.
     - `sudo apt-get update`
