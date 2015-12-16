@@ -5,7 +5,7 @@ A verbose build guide for a modern, high-performance WordPress production VPS.
 This project aims to provide a straightforward, albeit lengthy, all-inclusive build guide for a low-budget, high-performance WordPress hosting solution. For as little as $5/mo., one can develop a cutting edge hosting stack for his or her projects. The instructions are verbose so that developers with little server administration experience can track.
 
 #### Scope
-This stack is designed for any WordPress site (including multisite or multiple sites) with light to medium loads. It will scale well, but it is not designed for an ultra-heavy use case that requires load balancing across multiple servers, etc. Server configurations are not a one-size-fits-all solution, for sure, but hopefully this guide serves as a "good-enough-for-most" solution. While configuration recommendations provided are a good starting point, it is no substitution for ongoing testing. Both speed and security have been key values during the development of this guide. This guide is scoped to only cover a single self-contained VPS. No load-balancing or CDN configuration is described, while these are highly recommended.
+This stack is designed to host one or multiple WordPress sites with light to medium loads. It will scale well, but it is not designed for an ultra-heavy use case that requires load balancing across multiple servers, etc. Server configurations are not a one-size-fits-all solution, for sure, but hopefully this guide serves as a "good-enough-for-most" solution. While configuration recommendations provided are a good starting point, it is no substitution for ongoing testing. Both speed and security have been key values during the development of this guide. This guide is scoped to only cover a single self-contained VPS. No load-balancing or CDN configuration is described, while these are highly recommended.
 
 #### To amateurs at WordPress DevOps...
 feel free to use this guide to turbocharge projects! Please submit issues or pull requests for any problems discovered.
@@ -20,11 +20,9 @@ please provide feedback. This guide should continue to receive ongoing optimizat
   - w/Upgraded Kernel
 - Web Server: nginx
   - w/FastCGI microcaching
-  - w/ngx_pagespeed
 - Database: MariaDB
   - w/Query Cache
 - PHP Processor: HHVM
-  - w/php7.0-fpm failover
 - Object Cache: Redis
 - Let's Encrypt TLS
 - HTTP/2
@@ -157,41 +155,9 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo apt-get autoremove`
     - `sudo apt-get autoclean`
 15. Snapshot 2
-16. Download, compile, and install nginx w/ngx_pagespeed.
-	- `sudo add-apt-repository -s -y ppa:nginx/development`
-	- `sudo apt-get update`
-	- `sudo apt-get -y build-dep nginx`
-	- `sudo mkdir -p /opt/nginx`
-	- `sudo chown {myUser}:{myUser} /opt/nginx`
-	- `cd /opt/nginx`
-	- `apt-get source nginx`
-	- `cd nginx-{nginxCurVer}/debian/modules/`
-	- `wget {npsTarLink}` (Copy link to the newest tar.gz <a href="https://github.com/pagespeed/ngx_pagespeed/releases" target="_blank">here</a>.)
-	- `tar -xzvf {npsTarFile}`
-	- `cd ngx_pagespeed-{npsCurVer}-beta/`
-	- `wget https://dl.google.com/dl/page-speed/psol/{npsCurVer}.tar.gz`
-	- `tar -xzvf {npsCurVer}.tar.gz`
-	- `sudo nano ../../rules`
-		- Under "light" version flags:
-            - Add ` \` to the end of the last flag.
-            - Add `--with-http_v2_module \`
-			- Add `--add-module=$(MODULESDIR)/nginx-cache-purge \`
-			- Add `--add-module=$(MODULESDIR)/ngx_pagespeed-{NpsCurVer}-beta`
-	- `cd /opt/nginx/nginx-{nginxCurVer}/`
-	- `sudo dpkg-buildpackage -b`
-	- `cd /opt/nginx/`
-	- `sudo dpkg -i nginx_{nginxCurVer}+trusty0_all.deb nginx-common_{nginxCurVer}+trusty0_all.deb nginx-doc_{nginxCurVer}+trusty0_all.deb nginx-light_{nginxCurVer}+trusty0_amd64.deb`
-		- If there are dependency errors due to the version of python installed:
-        	- `sudo apt-get -f install`
-            	- Press "return" to install.
-	- `echo "nginx-light hold" | sudo dpkg --set-selections`
-    - `sudo service nginx restart`
-    - Verify nginx is installed by visiting {myVpsIP} in a browser.
-    - `sudo rm -rf /opt/`
-    - `sudo rm -rf /var/www/html/`
-	- _via <a href="https://blog.rudeotter.com/nginx-modules-pagespeed-ubuntu/" target="_blank">Rude Otter</a>_
-17. Snapshot 3
-18. Install MariaDB.
+16. Install nginx.
+	- `sudo apt-get install nginx`
+17. Install MariaDB.
 	- Follow the 5 commands <a href="https://downloads.mariadb.org/mariadb/repositories/" target="_blank">here</a> based on the setup.
 		- Use the DO node that the VPS is hosted on as the mirror in both the 4th box and the 3rd command.
 		- Provide {myMariaDBRootPassword}.
@@ -202,16 +168,7 @@ The best way to support this project is to submit issues and pull requests to as
         - Provide {myMariaDBRootPassword}.
     - `SET GLOBAL query_cache_size = 8000000;`
     - `exit`
-19. Install PHP.
-    - `sudo apt-get install python-software-properties`
-    - `sudo add-apt-repository ppa:ondrej/php-7.0`
-    - `sudo apt-get update`
-	- `sudo apt-get install php7.0-fpm php7.0-mysql`
-	- `sudo nano /etc/php/7.0/fpm/php.ini`
-		- Uncomment and modify `cgi.fix_pathinfo=0`
-    - `sudo service php7.0-fpm restart`
-	- _via <a href="https://bjornjohansen.no/upgrade-to-php7" target="_blank">Bjørn Johansen</a>_
-20. Install HHVM.
+18. Install HHVM.
 	- Follow the commands for the linux distro <a href="http://docs.hhvm.com/hhvm/installation/introduction#prebuilt-packages" target="_blank">here</a>.
 	- `sudo /usr/share/hhvm/install_fastcgi.sh`
 	- `sudo update-rc.d hhvm defaults`
@@ -220,42 +177,8 @@ The best way to support this project is to submit issues and pull requests to as
     	- Replace `hhvm.server.port = 9000` with `hhvm.server.file_socket=/var/run/hhvm/hhvm.sock`
 	- `sudo service hhvm restart`
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
-21. Install monit to automatically restart HHVM on crash.
-    - `sudo apt-get install monit`
-    - `sudo nano /etc/monit/conf.d/hhvm`
-
-        ```
-        check process hhvm with pidfile /var/run/hhvm/pid
-          group hhvm
-          start program = "/usr/sbin/service hhvm start" with timeout 60 seconds
-          stop program = "/usr/sbin/service hhvm stop"
-          if failed unixsocket /var/run/hhvm/hhvm.sock then restart
-          if mem > 400.0 MB for 1 cycles then restart
-          if 5 restarts with 5 cycles then timeout
-        ```
-
-    - `sudo nano /etc/monit/monitrc`
-        - Uncomment and modify
-
-            ```
-            set mailserver {mySmtpMailServer} port {mySmtpPort}
-            username "{mySmtpEmailAddress}" password "{mySmtpPassword}"
-            using tlsv1
-            ```
-
-        - Modify `set alert {mySmtpEmailAddress} with reminder on 15 cycles`
-        - Uncomment
-
-            ```
-            set httpd port 2812 and
-            use address localhost
-            allow localhost
-            ```
-
-    - `sudo service monit restart`
-    - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
-22. Snapshot 4
-23. Create a database for WordPress.
+19. Snapshot 3
+20. Create a database for WordPress.
 	- `mysql -u root -p`
     	- Provide {myMariaDBRootPassword}.
 	- `CREATE DATABASE {myWPDB};`
@@ -265,7 +188,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `exit`
     - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, and {myWPDBPassword}.
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>_
-24. Download and install WordPress.
+21. Download and install WordPress.
 	- `sudo apt-get update`
 	- `sudo apt-get install php7.0-gd`
     - `wget http://wordpress.org/latest.tar.gz`
@@ -288,8 +211,8 @@ The best way to support this project is to submit issues and pull requests to as
     - `rm -rf ~/wordpress/`
     - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, {myWPDBPassword}, {myWPSecurityKeys}, and {myRandomPrefix}.
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>_
-25. Snapshot 5
-26. Configure nginx.
+22. Snapshot 4
+23. Configure nginx.
     - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/nginx.conf -O /etc/nginx/nginx.conf`
     - `sudo mkdir /etc/nginx/global`
     - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/common.conf -O /etc/nginx/global/common.conf`
@@ -301,12 +224,11 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo mv /etc/nginx/sites-available/example.com /etc/nginx/sites-available/{myWPSiteName}`
     - `sudo nano /etc/nginx/sites-available/{myWPSiteName}`
         - Modify `root /var/www/{myWPSiteName};`
-        - Modify `pagespeed LoadFromFile "https://{myWPSiteUrl}/" "/var/www/{myWPSiteName}/";`
         - Replace `example.com` with `{myWPSiteUrl}`
     - `sudo ln -s /etc/nginx/sites-available/{myWPSiteName} /etc/nginx/sites-enabled/{myWPSiteName}`
     - Repeat the last four bullets for each WordPress site to be installed with new values for {myWPSiteName} and {myWPSiteUrl}.
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-single-and-multiple-wordpress-site-settings-with-nginx" target="_blank">DigitalOcean</a>, <a href="https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration" target="_blank">DigitalOcean</a>_
-27. Configure TLS encryption.
+24. Configure TLS encryption.
     - `sudo mkdir /etc/nginx/cert`
     - `sudo chmod 710 /etc/nginx/cert`
     - `sudo openssl dhparam 2048 -out /etc/nginx/cert/dhparam.pem`
@@ -324,8 +246,8 @@ The best way to support this project is to submit issues and pull requests to as
         - Required to purge cache after completing WordPress setup.
     - **TODO**: Configure cron to auto-renew TLS certificate every 60 days.
     - _via <a href="https://oct.im/install-lets-encrypt-ca-on-apache-and-nginx.html" target="_blank">oct.im</a>_
-28. Snapshot 6
-29. Install and configure redis.
+25. Snapshot 5
+26. Install and configure redis.
 	- `sudo apt-get install redis-server`
 	- `sudo apt-get install php-redis`
     - `sudo nano /var/www/{myWPSiteName}/wp-config.php`
@@ -342,23 +264,19 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo ln -s /var/www/{myWPSiteName}/wp-content/plugins/wp-redis/object-cache.php /var/www/{myWPSiteName}/wp-content`
     - Verify redis is working by `redis-cli monitor` and refresh the webpage.
     - _via <a href="https://codeable.io/community/speed-up-wp-admin-redis-hhvm/" target="_blank">Codeable</a>_
-30. Configure FastCGI microcaching.
+27. Configure FastCGI microcaching.
     - Search the plugin repository for "nginx-helper" and install it.
     - Activate "nginx-helper"
     - In Settings->nginx-helper,
-        - Enable Purge
-        - Select nginx Fastcgi cache
-        - Customize when Fastcgi cache should be purged
+        - Select "Enable Purge"
+        - Select "nginx Fastcgi cache"
+        - Select "Delete local server cache files"
+        - Customize when the FastCGI cache should be purged
     - _via <a href="https://easyengine.io/wordpress-nginx/tutorials/single-site/fastcgi-cache-with-purging/" target="_blank">EasyEngine</a>_
-31. Configure ngx_pagespeed.
-    - Core filters are enabled by default, but further filter tweaking should be performed on a site-specific basis.
-    - Visit {myWPSiteUrl}/pagespeed to assist in optimization for your site.
-    - _via <a href="https://developers.google.com/speed/pagespeed/module/" target="_blank">Google PageSpeed Module</a>_
-32. Snapshot 7
+28. Snapshot 6
 
 ## Recommended Ongoing Maintenance
 - If the VPS is ever resized, the swap file should be resized.
 - Step 13 should be repeated whenever a new version of the kernel is installed.
-- Whenever nginx or ngx_pagespeed have a new release, repeat step 16. nginx will first need to be uninstalled (`sudo apt-get remove nginx`) before installing the newly compiled version.
 - MariaDB should be tuned on occasion for optimum performance.
 - Renew TLS certificate every 60 days via `./letsencrypt-auto certonly`.
