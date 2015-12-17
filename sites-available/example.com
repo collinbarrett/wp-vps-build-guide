@@ -4,8 +4,8 @@ server {
 }
 
 server {
-    listen 443 default ssl http2;
-    listen [::]:443 default ssl http2 ipv6only=on;
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
 
     server_name example.com;
     root /var/www/example;
