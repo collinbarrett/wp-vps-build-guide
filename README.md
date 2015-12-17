@@ -249,7 +249,6 @@ The best way to support this project is to submit issues and pull requests to as
 25. Snapshot 5
 26. Install and configure redis.
 	- `sudo apt-get install redis-server`
-	- `sudo apt-get install php-redis`
     - `sudo nano /var/www/{myWPSiteName}/wp-config.php`
         - Add
         
