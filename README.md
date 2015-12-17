@@ -189,7 +189,6 @@ The best way to support this project is to submit issues and pull requests to as
     - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, and {myWPDBPassword}.
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>_
 21. Download and install WordPress.
-	- `sudo apt-get update`
     - `wget http://wordpress.org/latest.tar.gz`
     - `tar -xzvf latest.tar.gz`
     - `rm latest.tar.gz`
