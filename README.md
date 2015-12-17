@@ -154,7 +154,9 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo apt-get autoclean`
 15. Snapshot 2
 16. Install nginx.
-	- `sudo apt-get install nginx`
+	- `sudo add-apt-repository ppa:nginx/stable`
+    - `sudo apt-get update`
+    - `sudo apt-get install nginx`
 17. Install MariaDB.
 	- Follow the 5 commands <a href="https://downloads.mariadb.org/mariadb/repositories/" target="_blank">here</a> based on the setup.
 		- Use the DO node that the VPS is hosted on as the mirror in both the 4th box and the 3rd command.
@@ -188,7 +190,6 @@ The best way to support this project is to submit issues and pull requests to as
     - _via <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04" target="_blank">DigitalOcean</a>_
 21. Download and install WordPress.
 	- `sudo apt-get update`
-	- `sudo apt-get install php7.0-gd`
     - `wget http://wordpress.org/latest.tar.gz`
     - `tar -xzvf latest.tar.gz`
     - `rm latest.tar.gz`
@@ -215,7 +216,6 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo mkdir /etc/nginx/global`
     - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/common.conf -O /etc/nginx/global/common.conf`
     - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/wordpress.conf -O /etc/nginx/global/wordpress.conf`
-    - If multisite, `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/multisite.conf -O /etc/nginx/global/multisite.conf`
     - `sudo rm /etc/nginx/sites-available/default`
     - `sudo rm /etc/nginx/sites-enabled/default`
     - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/sites-available/example.com -O /etc/nginx/sites-available/example.com`
@@ -235,8 +235,11 @@ The best way to support this project is to submit issues and pull requests to as
     - `git clone https://github.com/letsencrypt/letsencrypt`
     - `cd letsencrypt`
     - `sudo service nginx stop`
-    - `./letsencrypt-auto certonly --standalone --agree-tos --email {myEmailAddress} -d {myWPSiteUrl} -d www.{myWPSiteUrl} -d {myWPSiteUrl2} -d www.{myWPSiteUrl2}`
+    - `sudo apt-get install python-pip`
+    - `sudo pip install pyopenssl ndg-httpsclient pyasn1`
+    - `./letsencrypt-auto certonly --standalone --agree-tos --email {myEmailAddress} -d {myWPSiteUrl} -d www.{myWPSiteUrl}
     	- This assumes DNS records have already been configured to point {myWPSiteUrl} to {myVpsIp}.
+        - Repeat this command for each WordPress site to be installed.
     - `sudo service nginx start`
     - Verify nginx and TLS is configured by visiting {myWPSiteUrl} in a browser.
     - Complete the 1-page WordPress setup so that a random passerby might not botch your new site.
