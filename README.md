@@ -274,6 +274,18 @@ The best way to support this project is to submit issues and pull requests to as
     - _via <a href="https://easyengine.io/wordpress-nginx/tutorials/single-site/fastcgi-cache-with-purging/" target="_blank">EasyEngine</a>_
 28. Snapshot 6
 
+## Install phpmyadmin manually (Optional)
+- mkdir /usr/share/phpmyadmin
+- chown www-data:www-data /usr/share/phpmyadmin
+- cd /usr/share/phpmyadmin
+- sudo -u www-data -H git clone --depth=1 --branch=STABLE git://github.com/phpmyadmin/phpmyadmin.git .
+- Do not miss the dot at the end of the Git command above.
+- sudo ln -s /usr/share/phpmyadmin /var/www/{myWPSiteName}
+- sudo wget https://raw.githubusercontent.com/CyanMod-X/wp-vps-build-guide/master/config.inc.php -O /usr/share/phpmyadmin`
+- Obtain a randomly generated blowfish secret from this website and add it to the blowfish_secret line.
+- https://www.question-defense.com/tools/phpmyadmin-blowfish-secret-generator
+- sudo service nginx restart
+
 ## Recommended Ongoing Maintenance
 - If the VPS is ever resized, the swap file should be resized.
 - Step 13 should be repeated whenever a new version of the kernel is installed.
