@@ -154,7 +154,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo apt-get autoclean`
 15. Snapshot 2
 16. Install nginx.
-	- `sudo add-apt-repository ppa:nginx/stable`
+	- `sudo add-apt-repository ppa:nginx/development`
     - `sudo apt-get update`
     - `sudo apt-get install nginx`
 17. Install MariaDB.
