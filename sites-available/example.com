@@ -1,13 +1,14 @@
 server {
-    server_name www.example.com;
-    rewrite ^/(.*)$ https://example.com/$1 permanent;
+    listen 80;
+    server_name example.com www.example.com;
+    return 301 https://$server_name$request_uri;
 }
 
 server {
     listen 443 default ssl http2;
     listen [::]:443 default ssl http2 ipv6only=on;
 
-    server_name example.com;
+    server_name example.com www.example.com;
     root /var/www/example;
     include global/common.conf;
     include global/wordpress.conf;
