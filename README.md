@@ -236,7 +236,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo service nginx stop`
     - `sudo apt-get install python-pip`
     - `sudo pip install pyopenssl ndg-httpsclient pyasn1`
-    - `./letsencrypt-auto certonly --standalone --agree-tos --email {myEmailAddress} -d {myWPSiteUrl} -d www.{myWPSiteUrl}
+    - `./letsencrypt-auto certonly --standalone --agree-tos --email {myEmailAddress} -d {myWPSiteUrl} -d www.{myWPSiteUrl}`
     	- This assumes DNS records have already been configured to point {myWPSiteUrl} to {myVpsIp}.
         - Repeat this command for each WordPress site to be installed.
     - `sudo service nginx start`
