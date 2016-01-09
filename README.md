@@ -258,7 +258,7 @@ The best way to support this project is to submit issues and pull requests to as
     - Repeat the previous 5 commands for each WordPress site to be installed.
     - `sudo reboot now`
         - Required to purge cache after completing WordPress setup.
-    - _via <a href="https://oct.im/install-lets-encrypt-ca-on-apache-and-nginx.html" target="_blank">oct.im</a>_
+    - _via <a href="https://oct.im/install-lets-encrypt-ca-on-apache-and-nginx.html" target="_blank">oct.im</a>, <a href="https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-14-04" targer="_blank">DigitalOcean</a>_
 25. Snapshot 5
 26. Install and configure redis.
 	- `sudo apt-get install redis-server`
