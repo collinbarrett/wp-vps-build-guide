@@ -253,7 +253,7 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo nano /usr/local/sbin/le-renew-webroot-{myWPSiteName}`
         - Modify `config_file="/usr/local/etc/le-renew-webroot-{myWPSiteName}.ini"`
     - Verify script works by executing `sudo le-renew-webroot-{myWPSiteName}`
-    - `sudo nano crontab -e`
+    - `sudo crontab -e`
         - Add `0 8 * * * /usr/local/sbin/le-renew-webroot-{myWPSiteName} >> /var/log/le-renewal.log`
     - Repeat the previous 5 commands for each WordPress site to be installed.
     - `sudo reboot now`
