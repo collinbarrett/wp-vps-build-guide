@@ -231,20 +231,33 @@ The best way to support this project is to submit issues and pull requests to as
     - `sudo openssl dhparam 2048 -out /etc/nginx/cert/dhparam.pem`
     - `sudo chmod 600 /etc/nginx/cert/dhparam.pem`
     - `sudo apt-get install git`
-    - `git clone https://github.com/letsencrypt/letsencrypt`
-    - `cd letsencrypt`
-    - `sudo service nginx stop`
     - `sudo apt-get install python-pip`
     - `sudo pip install pyopenssl ndg-httpsclient pyasn1`
-    - `./letsencrypt-auto certonly --standalone --agree-tos --email {myEmailAddress} -d {myWPSiteUrl} -d www.{myWPSiteUrl}`
+    - `sudo git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt`
+    - `cd /opt/letsencrypt`
+    - `sudo service nginx stop`
+    - `./letsencrypt-auto certonly --standalone --rsa-key-size 4096 --agree-tos --email {myEmailAddress} -d {myWPSiteUrl} -d www.{myWPSiteUrl}`
     	- This assumes DNS records have already been configured to point {myWPSiteUrl} to {myVpsIp}.
+        - If your domain is routing through a DNS service like CloudFlare, you will need to temporarily disable it until you have obtained the certificate.
         - Repeat this command for each WordPress site to be installed.
     - `sudo service nginx start`
     - Verify nginx and TLS is configured by visiting {myWPSiteUrl} in a browser.
     - Complete the 1-page WordPress setup so that a random passerby might not botch your new site.
+    - `sudo cp /opt/letsencrypt/examples/cli.ini /usr/local/etc/le-renew-webroot-{myWPSiteName}.ini`
+    - `sudo nano /usr/local/etc/le-renew-webroot-{myWPSiteName}.ini`
+        - Uncomment and modify `email` and `domains` directives
+            - Note: The order of the domains should match the order of the initial certificate creation command above.
+        - Uncomment `webroot-path` directive
+    - `sudo curl -L -o /usr/local/sbin/le-renew-webroot-{myWPSiteName} https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/le-renew-webroot`
+    - `sudo chmod +x /usr/local/sbin/le-renew-webroot-{myWPSiteName}`
+    - `sudo nano /usr/local/sbin/le-renew-webroot-{myWPSiteName}`
+        - Modify `config_file="/usr/local/etc/le-renew-webroot-{myWPSiteName}.ini"`
+    - Verify script works by executing `sudo le-renew-webroot-{myWPSiteName}`
+    - `sudo nano crontab -e`
+        - Add `0 8 * * * /usr/local/sbin/le-renew-webroot-{myWPSiteName} >> /var/log/le-renewal.log`
+    - Repeat the previous 5 commands for each WordPress site to be installed.
     - `sudo reboot now`
         - Required to purge cache after completing WordPress setup.
-    - **TODO**: Configure cron to auto-renew TLS certificate every 60 days.
     - _via <a href="https://oct.im/install-lets-encrypt-ca-on-apache-and-nginx.html" target="_blank">oct.im</a>_
 25. Snapshot 5
 26. Install and configure redis.
