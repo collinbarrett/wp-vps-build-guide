@@ -1,5 +1,5 @@
 # wp-vps-build-guide
-A verbose build guide for a modern, high-performance production WordPress VPS. <a href="https://collinmbarrett.com/wp-vps-build-guide/" target="_blank" title="WordPress VPS: DIY Build Guide for Fast and Cheap Hosting">Introduction Blog Post</a>.
+A verbose build guide for a modern, high-performance production WordPress VPS. <a href="https://collinmbarrett.com/wp-vps-build-guide/" target="_blank" title="WordPress VPS: DIY Build Guide for Fast and Cheap Hosting">Introductory Blog Post</a>.
 
 ## Intro
 This project aims to provide a straightforward, albeit lengthy and all-inclusive, build guide for a low-budget, high-performance WordPress hosting solution. For as little as $5/mo., one can develop a cutting edge hosting stack for his or her projects. The instructions are verbose so that developers with little server administration experience can track.
