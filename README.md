@@ -22,7 +22,7 @@ please provide feedback. This guide should continue to receive ongoing optimizat
   - w/FastCGI microcaching
 - Database: MariaDB
   - w/Query Cache
-- PHP Processor: HHVM
+- PHP Execution Engine: HHVM
 - Object Cache: Redis
 - TLS Certificate: Let's Encrypt
 - Transport Protocol: HTTP/2
