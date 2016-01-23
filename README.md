@@ -1,8 +1,8 @@
 # wp-vps-build-guide
-A verbose build guide for a modern, high-performance WordPress production VPS.
+A verbose build guide for a modern, high-performance production WordPress VPS. <a href="https://collinmbarrett.com/wp-vps-build-guide/" target="_blank" title="WordPress VPS: DIY Build Guide for Fast and Cheap Hosting">Introduction Blog Post</a>.
 
 ## Intro
-This project aims to provide a straightforward, albeit lengthy, all-inclusive build guide for a low-budget, high-performance WordPress hosting solution. For as little as $5/mo., one can develop a cutting edge hosting stack for his or her projects. The instructions are verbose so that developers with little server administration experience can track.
+This project aims to provide a straightforward, albeit lengthy and all-inclusive, build guide for a low-budget, high-performance WordPress hosting solution. For as little as $5/mo., one can develop a cutting edge hosting stack for his or her projects. The instructions are verbose so that developers with little server administration experience can track.
 
 #### Scope
 This stack is designed to host one or multiple WordPress sites with light to medium loads. It will scale well, but it is not designed for an ultra-heavy use case that requires load balancing across multiple servers, etc. Server configurations are not a one-size-fits-all solution, for sure, but hopefully this guide serves as a "good-enough-for-most" solution. While configuration recommendations provided are a good starting point, it is no substitution for ongoing testing. Both speed and security have been key values during the development of this guide. This guide is scoped to only cover a single self-contained VPS. No load-balancing or CDN configuration is described, while these are highly recommended.
@@ -14,9 +14,9 @@ feel free to use this guide to turbocharge projects! Please submit issues or pul
 please provide feedback. This guide should continue to receive ongoing optimizations and updates. In its current state, it will lead to a server that is higher-performing than most, but it is not perfect and the technologies powering it are constantly changing. Issues and pull requests are welcome.
 
 ## The Stack
-- Client: OS X
-- Host: DigitalOcean
-- Server: Ubuntu LTS x64
+- Development Client OS: OS X
+- Production Host: DigitalOcean
+- Server OS: Ubuntu LTS x64
   - w/Upgraded Kernel
 - Web Server: nginx
   - w/FastCGI microcaching
@@ -24,8 +24,8 @@ please provide feedback. This guide should continue to receive ongoing optimizat
   - w/Query Cache
 - PHP Processor: HHVM
 - Object Cache: Redis
-- Let's Encrypt TLS
-- HTTP/2
+- TLS Certificate: Let's Encrypt
+- Transport Protocol: HTTP/2
 
 ## General Notes
 - Items in curly brackets {} should be treated as variables and replaced with custom info.
@@ -33,14 +33,14 @@ please provide feedback. This guide should continue to receive ongoing optimizat
 
 ## Assumptions
 - The developer has basic *nix terminal skills.
-- The developer has access to a VPS host. DigitalOcean (DO) is used for the purposes of this guide, but competitors such as Linode work just fine.
+- The developer has access to a VPS host. DigitalOcean (DO) is used for the purposes of this guide, but competitors such as Linode work just fine with minor adaptations.
 - The developer has a ssh key already created with the public key stored with the host and the private .pem stored locally at {myPK}.
 
 ## Sources
 This build guide is constructed from a compilation of sources from all over the web. Inline "via"s give credit to some of these authors, but apologies go out to any blogs that were forgotten.
 
 ## Support
-The best way to support this project is to submit issues and pull requests to assist in keeping the guide up-to-date. Clicking through the maintainer's <a href="http://brrt.co/CBDigitalOcean" target="_blank">DigitalOcean affiliate link</a> when signing up is helpful as well, but by no means expected.
+The best way to support this project is to submit issues and pull requests to assist in keeping the guide up-to-date. Clicking through the maintainer's <a href="http://brrt.co/CBDigitalOcean" target="_blank" title="DigitalOcean affiliate link">DigitalOcean affiliate link</a> when signing up is helpful as well, but by no means expected.
 
 ## Build Guide
 1. Create a new VPS running Ubuntu LTS x64 in the DO control panel.
@@ -118,7 +118,7 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo apt-get update`
 	- `sudo apt-get install ntp`
 	- _via <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers" target="_blank">DigitalOcean</a>_
-11. Enable a swap file of 2x RAM size.
+11. Enable a swap file.
 	- `sudo fallocate -l {swapSizeInGb}G /swapfile`
 	- `sudo chmod 600 /swapfile`
 	- `sudo mkswap /swapfile`
@@ -135,7 +135,7 @@ The best way to support this project is to submit issues and pull requests to as
 	- `sudo nano /etc/apt/apt.conf.d/50unattended-upgrades`
 		- Uncomment `"${distro_id}:${distro_codename}-updates";`
 		- Uncomment and modify `Unattended-Upgrade::Automatic-Reboot "true";`        
-13. Update kernel. (DO only.)
+13. Update kernel. (DO-specific)
 	- `sudo apt-get install linux-generic-lts-` (Double-tap "Tab")
         - Note the newest alphabetical codename {newestKernelCodename}.
         - `sudo apt-get install linux-generic-lts-{newestKernelCodename}`
