@@ -7,10 +7,10 @@ This project aims to provide a straightforward, albeit lengthy and all-inclusive
 #### Scope
 This stack is designed to host one or multiple WordPress sites with light to medium loads. It will scale well, but it is not designed for an ultra-heavy use case that requires load balancing across multiple servers, etc. Server configurations are not a one-size-fits-all solution, for sure, but hopefully this guide serves as a "good-enough-for-most" solution. While configuration recommendations provided are a good starting point, it is no substitution for ongoing testing. Both speed and security have been key values during the development of this guide. This guide is scoped to only cover a single self-contained VPS. No load-balancing or CDN configuration is described, while these are highly recommended.
 
-#### To amateurs at WordPress DevOps...
+#### To amateurs at WordPress Operations...
 feel free to use this guide to turbocharge projects! Please submit issues or pull requests for any problems discovered.
 
-#### To experts at WordPress DevOps...
+#### To experts at WordPress Operations...
 please provide feedback. This guide should continue to receive ongoing optimizations and updates. In its current state, it will lead to a server that is higher-performing than most, but it is not perfect and the technologies powering it are constantly changing. Issues and pull requests are welcome.
 
 ## The Stack
@@ -288,7 +288,7 @@ The best way to support this project is to submit issues and pull requests to as
 28. Snapshot 6
 
 ## Recommended Ongoing Maintenance
-- If the VPS is ever resized, the swap file should be resized.
+- If the VPS is ever resized, the swap file size should be re-evaluated.
 - Step 13 should be repeated whenever a new version of the kernel is installed.
 - MariaDB should be tuned on occasion for optimum performance.
 - Renew TLS certificate every 60 days via `./letsencrypt-auto certonly`.
