@@ -59,7 +59,7 @@ This build guide is constructed from a compilation of sources from all over the 
       IdentityFile {myPK}
     ```
 
-    - Press "ctrl + x" to save and exit.
+      - Press "ctrl + x" to save and exit.
 3. ssh into the new VPS.
   - `ssh {myVpsName}`
     - Type "yes" to continue connecting.
@@ -82,16 +82,16 @@ This build guide is constructed from a compilation of sources from all over the 
   - Don’t close the Terminal window, yet. In another local Terminal window:
     - `sudo nano ~/.ssh/config`
 
-		```
-		Host {myVpsName}
-		  HostName {myVpsIP}
-		  Port 22
-		  User {myUser}
-		  IdentityFile {myPK}
-		```
+      ```
+      Host {myVpsName}
+        HostName {myVpsIP}
+        Port 22
+        User {myUser}
+        IdentityFile {myPK}
+      ```
 
     - Test ssh into the VPS as {myUser} before closing the root Terminal window.
-		  - `ssh {myVPSName}`
+      - `ssh {myVPSName}`
   - Type `exit` in the root Terminal window and close it.
   - *via [DigitalOcean](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04)*
 6. Ensure all of the latest updates are installed.
@@ -120,18 +120,18 @@ This build guide is constructed from a compilation of sources from all over the 
 11. Enable a swap file.
   - `sudo fallocate -l {swapSizeInGb}G /swapfile`
     - For guidance on determining {swapSizeInGb}, see [here](https://help.ubuntu.com/community/SwapFaq#How_much_swap_do_I_need.3F).
-	- `sudo chmod 600 /swapfile`
-	- `sudo mkswap /swapfile`
-	- `sudo swapon /swapfile`
-	- `sudo sh -c 'echo "/swapfile none swap sw 0 0" >> /etc/fstab'`
-	- *via [DigitalOcean](https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers), [Ubuntu](https://help.ubuntu.com/community/SwapFaq)*
+  - `sudo chmod 600 /swapfile`
+  - `sudo mkswap /swapfile`
+  - `sudo swapon /swapfile`
+  - `sudo sh -c 'echo "/swapfile none swap sw 0 0" >> /etc/fstab'`
+  - *via [DigitalOcean](https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers), [Ubuntu](https://help.ubuntu.com/community/SwapFaq)*
 12. Configure automatic updates, upgrades, and cleanup.
   - `sudo nano /etc/apt/apt.conf.d/50unattended-upgrades`
-		- Uncomment `"${distro_id}:${distro_codename}-updates";`
+    - Uncomment `"${distro_id}:${distro_codename}-updates";`
   - `sudo nano /etc/apt/apt.conf.d/10periodic`
-		- Modify `APT::Periodic::Download-Upgradeable-Packages "1";`
-		- Modify `APT::Periodic::AutocleanInterval "7";`
-	- *via [Ubuntu](https://help.ubuntu.com/lts/serverguide/automatic-updates.html)*
+    - Modify `APT::Periodic::Download-Upgradeable-Packages "1";`
+    - Modify `APT::Periodic::AutocleanInterval "7";`
+  - *via [Ubuntu](https://help.ubuntu.com/lts/serverguide/automatic-updates.html)*
 13. Snapshot 2
 14. Install NGINX.
   - `sudo apt-get install nginx`
@@ -144,23 +144,23 @@ This build guide is constructed from a compilation of sources from all over the 
     - Type "n" for do not change root password.
     - Press "return" repeatedly to accept the rest of the default options.
 16. Install HHVM.
-	- Follow the commands for the linux distro [here](http://docs.hhvm.com/hhvm/installation/introduction#prebuilt-packages).
-	- `sudo /usr/share/hhvm/install_fastcgi.sh`
-	- `sudo update-rc.d hhvm defaults`
-	- `sudo /usr/bin/update-alternatives --install /usr/bin/php php /usr/bin/hhvm 60`
+  - Follow the commands for the linux distro [here](http://docs.hhvm.com/hhvm/installation/introduction#prebuilt-packages).
+  - `sudo /usr/share/hhvm/install_fastcgi.sh`
+  - `sudo update-rc.d hhvm defaults`
+  - `sudo /usr/bin/update-alternatives --install /usr/bin/php php /usr/bin/hhvm 60`
   - `sudo nano /etc/hhvm/server.ini`
-  	- Replace `hhvm.server.port = 9000` with `hhvm.server.file_socket=/var/run/hhvm/hhvm.sock`
-	- `sudo service hhvm restart`
+    - Replace `hhvm.server.port = 9000` with `hhvm.server.file_socket=/var/run/hhvm/hhvm.sock`
+  - `sudo service hhvm restart`
   - *via [Codeable](https://codeable.io/community/speed-up-wp-admin-redis-hhvm/)*
 17. Snapshot 3
 18. Create a database for WordPress.
-	- `mysql -u root -p`
-    	- Provide {myMariaDBRootPassword}.
-	- `CREATE DATABASE {myWPDB};`
-  - `CREATE USER {myWPDBUser}@localhost IDENTIFIED BY '{myWPDBPassword}';`
-  - `GRANT ALL PRIVILEGES ON {myWPDB}.* TO {myWPDBUser}@localhost;`
-  - `FLUSH PRIVILEGES;`
-  - `exit`
+  - `mysql -u root -p`
+    - Provide {myMariaDBRootPassword}.
+    - `CREATE DATABASE {myWPDB};`
+    - `CREATE USER {myWPDBUser}@localhost IDENTIFIED BY '{myWPDBPassword}';`
+    - `GRANT ALL PRIVILEGES ON {myWPDB}.* TO {myWPDBUser}@localhost;`
+    - `FLUSH PRIVILEGES;`
+    - `exit`
   - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, and {myWPDBPassword}.
   - *via [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04)*
 19. Download and install WordPress.
@@ -170,14 +170,14 @@ This build guide is constructed from a compilation of sources from all over the 
   - `cd ~/wordpress`
   - `cp wp-config-sample.php wp-config.php`
   - `sudo nano wp-config.php`
-  	- Modify `define('DB_NAME', '{myWPDB}');`
+    - Modify `define('DB_NAME', '{myWPDB}');`
     - Modify `define('DB_USER', '{myWPDBUser}');`
     - Modify `define('DB_PASSWORD', '{myWPDBPassword}');`
     - Replace `{myWPSecurityKeys}` [Generate {myWPSecurityKeys}](https://api.wordpress.org/secret-key/1.1/salt/)
     - Modify `$table_prefix  = '{myRandomPrefix}_';` ([Generate {myRandomPrefix}](https://www.wolframalpha.com/input/?i=password+generator&a=*MC.~-_*Formula.dflt-&a=FSelect_**PasswordSingleBasic-.dflt-&f3=16+characters&f=PasswordSingleBasic.pl_16+characters))
     - Add `define( 'WP_AUTO_UPDATE_CORE', true );`
-	- `mkdir wp-content/uploads`
-	- `sudo mkdir -p /var/www/{myWPSiteName}`
+  - `mkdir wp-content/uploads`
+  - `sudo mkdir -p /var/www/{myWPSiteName}`
   - `sudo rsync -avP ~/wordpress/ /var/www/{myWPSiteName}/`
   - `sudo chown -R www-data:www-data /var/www/{myWPSiteName}`
   - `rm -rf ~/wordpress/`
@@ -212,9 +212,9 @@ This build guide is constructed from a compilation of sources from all over the 
   - `cd /opt/letsencrypt`
   - `sudo service nginx stop`
   - `./letsencrypt-auto certonly --standalone --rsa-key-size 4096 --agree-tos --email {myEmailAddress} -d {myWPSiteUrl} -d www.{myWPSiteUrl}`
-  	- This assumes DNS records have already been configured to point {myWPSiteUrl} to {myVpsIp}.
-      - If your domain is routing through a DNS service like CloudFlare, you will need to temporarily disable it until you have obtained the certificate.
-      - Repeat this command for each WordPress site to be installed.
+    - This assumes DNS records have already been configured to point {myWPSiteUrl} to {myVpsIp}.
+    - If your domain is routing through a DNS service like CloudFlare, you will need to temporarily disable it until you have obtained the certificate.
+    - Repeat this command for each WordPress site to be installed.
   - `sudo service nginx start`
   - Verify NGINX and TLS is configured by visiting {myWPSiteUrl} in a browser.
   - Complete the 1-page WordPress setup so that a random passerby might not botch your new site.
