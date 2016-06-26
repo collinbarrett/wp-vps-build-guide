@@ -16,7 +16,7 @@ This project aims to provide a straightforward, albeit lengthy and all-inclusive
 | Database | MariaDB | |
 | Object Cache Store | Redis | |
 | PHP Compiler | HHVM | |
-| Web Server | nginx | w/microcaching |
+| Web Server | NGINX | w/microcaching |
 | Connection | Let's Encrypt TLS<br>HTTP/2<br>ipv4 / ipv6 | |
 
 ### Scope
@@ -133,7 +133,7 @@ This build guide is constructed from a compilation of sources from all over the 
 		- Modify `APT::Periodic::AutocleanInterval "7";`
 	- *via [Ubuntu](https://help.ubuntu.com/lts/serverguide/automatic-updates.html)*
 13. Snapshot 2
-14. Install nginx.
+14. Install NGINX.
   - `sudo apt-get install nginx`
 15. Install MariaDB.
   - Follow the 5 commands [here](https://downloads.mariadb.org/mariadb/repositories/) based on the setup.
@@ -144,7 +144,7 @@ This build guide is constructed from a compilation of sources from all over the 
     - Type "n" for do not change root password.
     - Press "return" repeatedly to accept the rest of the default options.
 16. Install HHVM.
-	- Follow the commands for the linux distro [here](<a href=")http://docs.hhvm.com/hhvm/installation/introduction#prebuilt-packages).
+	- Follow the commands for the linux distro [here](http://docs.hhvm.com/hhvm/installation/introduction#prebuilt-packages).
 	- `sudo /usr/share/hhvm/install_fastcgi.sh`
 	- `sudo update-rc.d hhvm defaults`
 	- `sudo /usr/bin/update-alternatives --install /usr/bin/php php /usr/bin/hhvm 60`
@@ -216,7 +216,7 @@ This build guide is constructed from a compilation of sources from all over the 
       - If your domain is routing through a DNS service like CloudFlare, you will need to temporarily disable it until you have obtained the certificate.
       - Repeat this command for each WordPress site to be installed.
   - `sudo service nginx start`
-  - Verify nginx and TLS is configured by visiting {myWPSiteUrl} in a browser.
+  - Verify NGINX and TLS is configured by visiting {myWPSiteUrl} in a browser.
   - Complete the 1-page WordPress setup so that a random passerby might not botch your new site.
   - `sudo cp /opt/letsencrypt/examples/cli.ini /usr/local/etc/le-renew-webroot-{myWPSiteName}.ini`
   - `sudo nano /usr/local/etc/le-renew-webroot-{myWPSiteName}.ini`
