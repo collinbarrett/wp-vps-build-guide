@@ -148,9 +148,8 @@ This build guide is constructed from a compilation of sources from all over the 
   - `sudo add-apt-repository "deb http://dl.hhvm.com/ubuntu $(lsb_release -sc) main"`
   - `sudo apt-get update`
   - `sudo apt-get install hhvm`
-  - `sudo /usr/share/hhvm/install_fastcgi.sh`
   - `sudo update-rc.d hhvm defaults`
-  - `sudo /usr/bin/update-alternatives --install /usr/bin/php php /usr/bin/hhvm 60`
+  - `sudo /usr/share/hhvm/install_fastcgi.sh`
   - `sudo nano /etc/hhvm/server.ini`
     - Replace `hhvm.server.port = 9000` with `hhvm.server.file_socket=/var/run/hhvm/hhvm.sock`
   - `sudo service hhvm restart`
