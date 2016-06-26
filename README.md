@@ -15,7 +15,7 @@ This project aims to provide a straightforward, albeit lengthy and all-inclusive
 | Server | Ubuntu LTS x64 |  |
 | Database | MariaDB | |
 | Object Cache Store | Redis | |
-| PHP Compiler | HHVM<br>w/php-fpm failover | |
+| PHP Compiler | HHVM | |
 | Web Server | nginx | w/microcaching |
 | Connection | Let's Encrypt TLS<br>HTTP/2<br>ipv4 / ipv6 | |
 
