@@ -141,10 +141,13 @@ This build guide is constructed from a compilation of sources from all over the 
     - Provide {myMariaDBRootPassword}.
   - `mysql_secure_installation`
     - Provide {myMariaDBRootPassword}.
-    - Type "n" for do not change root password.
+    - Type `n` for do not change root password.
     - Press "return" repeatedly to accept the rest of the default options.
 16. Install HHVM.
-  - Follow the commands for the linux distro [here](http://docs.hhvm.com/hhvm/installation/introduction#prebuilt-packages).
+  - `sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e7281be7a449`
+  - `sudo add-apt-repository "deb http://dl.hhvm.com/ubuntu $(lsb_release -sc) main"`
+  - `sudo apt-get update`
+  - `sudo apt-get install hhvm`
   - `sudo /usr/share/hhvm/install_fastcgi.sh`
   - `sudo update-rc.d hhvm defaults`
   - `sudo /usr/bin/update-alternatives --install /usr/bin/php php /usr/bin/hhvm 60`
