@@ -236,14 +236,13 @@ This build guide is constructed from a compilation of sources from all over the 
   - *via [oct.im](https://oct.im/install-lets-encrypt-ca-on-apache-and-nginx.html), [DigitalOcean](www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-14-04)*
 23. Snapshot 5
 24. Install and configure redis.
-	- `sudo apt-get install redis-server`
+  - `sudo apt-get install redis-server`
   - `sudo nano /var/www/{myWPSiteName}/wp-config.php`
-    - Add
 
-      ```
-      define( 'WP_CACHE_KEY_SALT', '{myWPSiteName}_' );
-      $redis_server = array( 'host' => '127.0.0.1', 'port' => 6379, );
-      ```
+    ```
+    define( 'WP_CACHE_KEY_SALT', '{myWPSiteName}_' );
+    $redis_server = array( 'host' => '127.0.0.1', 'port' => 6379, );
+    ```
 
   - Login to your site at {myWPSiteUrl}/wp-login.php.
   - Search the plugin repository for "wp-redis" and install it.
