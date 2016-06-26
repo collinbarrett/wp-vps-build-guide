@@ -1,7 +1,7 @@
 # wp-vps-build-guide
 A verbose build guide for a modern, high-performance production WordPress VPS.
 
-[Introductory Blog Post](https://collinmbarrett.com/wp-vps-build-guide/ "WordPress VPS: DIY Build Guide for Fast and Cheap Hosting")
+[Introductory Blog Post](https://collinmbarrett.com/wp-vps-build-guide/ "WordPress VPS: DIY Build Guide for Fast and Cheap Hosting - collinmbarrett.com")
 
 ## Intro
 This project aims to provide a straightforward, albeit lengthy and all-inclusive, build guide for a low-budget, high-performance WordPress hosting solution. For as little as $5/mo., one can develop a cutting edge hosting stack for his or her projects. The instructions are verbose so that developers with little server administration experience can track.
@@ -17,8 +17,7 @@ This project aims to provide a straightforward, albeit lengthy and all-inclusive
 | Object Cache Store | Redis | |
 | PHP Compiler | HHVM<br>w/php-fpm failover | |
 | Web Server | nginx | w/microcaching |
-| TLS Certificate | Let's Encrypt | |
-| Transport Protocol | HTTP/2 | |
+| Connection | Let's Encrypt TLS<br>HTTP/2<br>ipv4 / ipv6 | |
 
 ### Scope
 This stack is designed to host one or multiple WordPress sites with light to medium loads. It will scale well, but it is not designed for an ultra-heavy use case that requires load balancing across multiple servers, etc. Server configurations are not one-size-fits-all, for sure, but hopefully this guide serves as a "good-enough-for-most" solution. While configuration recommendations provided are a good starting point, it is no substitution for ongoing optimization. Both speed and security have been key values during the development of this guide. The instructions to follow are scoped to only cover a single self-contained VPS. No load-balancing or CDN configuration is described, while these are highly recommended.
