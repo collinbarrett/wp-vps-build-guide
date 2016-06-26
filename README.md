@@ -153,7 +153,7 @@ This build guide is constructed from a compilation of sources from all over the 
   - `sudo nano /etc/hhvm/server.ini`
     - Replace `hhvm.server.port = 9000` with `hhvm.server.file_socket=/var/run/hhvm/hhvm.sock`
   - `sudo service hhvm restart`
-  - *via [Codeable](https://codeable.io/community/speed-up-wp-admin-redis-hhvm/)*
+  - *via [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-hhvm-with-nginx-on-ubuntu-14-04)*
 17. Snapshot 3
 18. Create a database for WordPress.
   - `mysql -u root -p`
@@ -163,7 +163,7 @@ This build guide is constructed from a compilation of sources from all over the 
     - `FLUSH PRIVILEGES;`
     - `exit`
   - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, and {myWPDBPassword}.
-  - *via [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04)*
+  - *via [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-lemp-on-ubuntu-16-04)*
 19. Download and install WordPress.
   - `wget http://wordpress.org/latest.tar.gz`
   - `tar -xzvf latest.tar.gz`
@@ -183,7 +183,7 @@ This build guide is constructed from a compilation of sources from all over the 
   - `sudo chown -R www-data:www-data /var/www/{myWPSiteName}`
   - `rm -rf ~/wordpress/`
   - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, {myWPDBPassword}, {myWPSecurityKeys}, and {myRandomPrefix}.
-  - *via [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-nginx-on-ubuntu-14-04)*
+  - *via [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-lemp-on-ubuntu-16-04)*
 20. Snapshot 4
 21. Configure nginx.
   - `sudo ufw allow Nginx Full`
