@@ -159,9 +159,8 @@ This build guide is constructed from a compilation of sources from all over the 
 18. Create a database for WordPress.
   - `mysql -u root -p`
     - Provide {myMariaDBRootPassword}.
-    - `CREATE DATABASE {myWPDB};`
-    - `CREATE USER {myWPDBUser}@localhost IDENTIFIED BY '{myWPDBPassword}';`
-    - `GRANT ALL PRIVILEGES ON {myWPDB}.* TO {myWPDBUser}@localhost;`
+    - `CREATE DATABASE {myWPDB} DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;`
+    - `GRANT ALL ON {myWPDB}.* TO '{myWPDBUser}'@'localhost' IDENTIFIED BY '{myWPDBPassword}';`
     - `FLUSH PRIVILEGES;`
     - `exit`
   - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, and {myWPDBPassword}.
