@@ -17,7 +17,7 @@ This project aims to provide a straightforward, albeit lengthy and all-inclusive
 | Object Cache Store | Redis | |
 | PHP Compiler | HHVM | |
 | Web Server | NGINX | w/microcaching |
-| Connection | Let's Encrypt TLS<br>HTTP/2<br>ipv4 / ipv6 | |
+| Connection | TLS w/ HTTP/2<br>ipv4 / ipv6 | |
 
 ### Scope
 This stack is designed to host one or multiple WordPress sites with light to medium loads. It will scale well, but it is not designed for an ultra-heavy use case that requires load balancing across multiple servers, etc. Server configurations are not one-size-fits-all, for sure, but hopefully this guide serves as a "good-enough-for-most" solution. While configuration recommendations provided are a good starting point, it is no substitution for ongoing optimization. Both speed and security have been key values during the development of this guide. The instructions to follow are scoped to only cover a single self-contained VPS. No load-balancing or CDN configuration is described, while these are highly recommended.
@@ -203,38 +203,10 @@ This build guide is constructed from a compilation of sources from all over the 
   - *via [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-configure-single-and-multiple-wordpress-site-settings-with-nginx), [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration)*
 22. Configure TLS encryption.
   - `sudo mkdir /etc/nginx/cert`
-  - `sudo chmod 710 /etc/nginx/cert`
+  - `sudo chmod 700 /etc/nginx/cert`
   - `sudo openssl dhparam 2048 -out /etc/nginx/cert/dhparam.pem`
   - `sudo chmod 600 /etc/nginx/cert/dhparam.pem`
-  - `sudo apt-get install git`
-  - `sudo apt-get install python-pip`
-  - `sudo pip install pyopenssl ndg-httpsclient pyasn1`
-  - `sudo git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt`
-  - `cd /opt/letsencrypt`
-  - `sudo service nginx stop`
-  - `./letsencrypt-auto certonly --standalone --rsa-key-size 4096 --agree-tos --email {myEmailAddress} -d {myWPSiteUrl} -d www.{myWPSiteUrl}`
-    - This assumes DNS records have already been configured to point {myWPSiteUrl} to {myVpsIp}.
-    - If your domain is routing through a DNS service like CloudFlare, you will need to temporarily disable it until you have obtained the certificate.
-    - Repeat this command for each WordPress site to be installed.
-  - `sudo service nginx start`
-  - Verify NGINX and TLS is configured by visiting {myWPSiteUrl} in a browser.
-  - Complete the 1-page WordPress setup so that a random passerby might not botch your new site.
-  - `sudo cp /opt/letsencrypt/examples/cli.ini /usr/local/etc/le-renew-webroot-{myWPSiteName}.ini`
-  - `sudo nano /usr/local/etc/le-renew-webroot-{myWPSiteName}.ini`
-    - Uncomment and modify `email` and `domains` directives
-      - Note: The order of the domains should match the order of the initial certificate creation command above.
-    - Uncomment `webroot-path` directive
-  - `sudo curl -L -o /usr/local/sbin/le-renew-webroot-{myWPSiteName} https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/le-renew-webroot`
-  - `sudo chmod +x /usr/local/sbin/le-renew-webroot-{myWPSiteName}`
-  - `sudo nano /usr/local/sbin/le-renew-webroot-{myWPSiteName}`
-    - Modify `config_file="/usr/local/etc/le-renew-webroot-{myWPSiteName}.ini"`
-  - Verify script works by executing `sudo le-renew-webroot-{myWPSiteName}`
-  - `sudo crontab -e`
-    - Add `0 8 * * * /usr/local/sbin/le-renew-webroot-{myWPSiteName} >> /var/log/le-renewal.log`
-  - Repeat the previous 5 commands for each WordPress site to be installed.
-  - `sudo reboot now`
-    - Required to purge cache after completing WordPress setup.
-  - *via [oct.im](https://oct.im/install-lets-encrypt-ca-on-apache-and-nginx.html), [DigitalOcean](www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-14-04)*
+  - Install certificate(s) and key(s). Initially, I used Let's Encrypt, but deprecating Let's Encrypt in favor of CloudFlare's free certificate. Since there are gotchyas with Let's Encrypt and CloudFlare, and CloudFlare's certificate is much longer-laster (15 years vs. 90 days with Let's Encrypt).
 23. Snapshot 5
 24. Install and configure redis.
   - `sudo apt-get install redis-server`
@@ -265,4 +237,3 @@ This build guide is constructed from a compilation of sources from all over the 
 ## Ongoing Maintenance
 - If the VPS is ever resized, the swap file size should be re-evaluated.
 - MariaDB should be tuned on occasion for optimum performance.
-- Renew TLS certificate every 60 days via `./letsencrypt-auto certonly`.
