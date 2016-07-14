@@ -186,6 +186,7 @@ This build guide is constructed from a compilation of sources from all over the 
 20. Snapshot 4
 21. Configure nginx.
   - `sudo ufw allow 'Nginx Full'`
+  - `sudo wget https://raw.githubusercontent.com/h5bp/server-configs-nginx/master/mime.types -O /etc/nginx/mime.types`
   - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/nginx.conf -O /etc/nginx/nginx.conf`
   - `sudo mkdir /etc/nginx/global`
   - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/common.conf -O /etc/nginx/global/common.conf`
