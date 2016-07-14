@@ -17,7 +17,7 @@ This project aims to provide a straightforward, albeit lengthy and all-inclusive
 | Object Cache Store | Redis | |
 | PHP Compiler | HHVM | |
 | Web Server | NGINX | w/microcaching |
-| Connection | TLS w/ HTTP/2<br>ipv4 / ipv6 | |
+| Connection | Modern TLS Ciphers<br>HTTP/2<br>ipv4/ipv6 | |
 
 ### Scope
 This stack is designed to host one or multiple WordPress sites with light to medium loads. It will scale well, but it is not designed for an ultra-heavy use case that requires load balancing across multiple servers, etc. Server configurations are not one-size-fits-all, for sure, but hopefully this guide serves as a "good-enough-for-most" solution. While configuration recommendations provided are a good starting point, it is no substitution for ongoing optimization. Both speed and security have been key values during the development of this guide. The instructions to follow are scoped to only cover a single self-contained VPS. No load-balancing or CDN configuration is described, while these are highly recommended.
@@ -41,7 +41,7 @@ Feel free to use this guide to turbocharge projects! Please submit issues or pul
 Please provide feedback. This guide should continue to receive ongoing optimizations and updates. In its current state, it will lead to a server that is higher-performing than most, but it is not perfect and the technologies powering it are constantly changing. Issues and pull requests are welcome.
 
 ### Sources
-This build guide is constructed from a compilation of sources from all over the web. Inline "via"s give credit to some of these authors, but apologies go out to any blogs that were forgotten. A special shout goes out to [Mark Jaquith](http://wordpress.tv/2014/10/16/mark-jaquith-next-generation-wordpress-hosting-stack/) and [Carl Alexander](http://wordpress.tv/2016/05/03/carl-alexander-a-look-at-the-modern-wordpress-server-stack/) whose talks played a fundamental role in this architecture.
+This build guide is constructed from a compilation of sources from all over the web. Inline "via"s give credit to some of these authors, but apologies go out to any blogs that were forgotten. A special recognition goes out to [Mark Jaquith](http://wordpress.tv/2014/10/16/mark-jaquith-next-generation-wordpress-hosting-stack/) and [Carl Alexander](http://wordpress.tv/2016/05/03/carl-alexander-a-look-at-the-modern-wordpress-server-stack/) whose talks played fundamental roles in this architecture.
 
 ## Build Guide
 1. Create a new VPS running the latest Ubuntu LTS x64 in the DO control panel.
@@ -59,7 +59,7 @@ This build guide is constructed from a compilation of sources from all over the 
       IdentityFile {myPK}
     ```
 
-      - Press "ctrl + x" to save and exit.
+    - Press "ctrl + x" to save and exit.
 3. ssh into the new VPS.
   - `ssh {myVpsName}`
     - Type "yes" to continue connecting.
@@ -79,8 +79,7 @@ This build guide is constructed from a compilation of sources from all over the 
     - Modify `PermitRootLogin no`
     - Uncomment and modify `PasswordAuthentication no`
   - `service ssh restart`
-  - Don’t close the Terminal window, yet. In another local Terminal window:
-    - `sudo nano ~/.ssh/config`
+  - Do not close the Terminal window yet. In a new Terminal window, `sudo nano ~/.ssh/config`
 
       ```
       Host {myVpsName}
@@ -90,8 +89,8 @@ This build guide is constructed from a compilation of sources from all over the 
         IdentityFile {myPK}
       ```
 
-    - Test ssh into the VPS as {myUser} before closing the root Terminal window.
-      - `ssh {myVPSName}`
+  - Test ssh into the VPS as {myUser} before closing the root Terminal window.
+    - `ssh {myVPSName}`
   - Type `exit` in the root Terminal window and close it.
   - *via [DigitalOcean](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04)*
 6. Ensure all of the latest updates are installed.
@@ -124,7 +123,7 @@ This build guide is constructed from a compilation of sources from all over the 
   - `sudo mkswap /swapfile`
   - `sudo swapon /swapfile`
   - `sudo sh -c 'echo "/swapfile none swap sw 0 0" >> /etc/fstab'`
-  - *via [DigitalOcean](https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers), [Ubuntu](https://help.ubuntu.com/community/SwapFaq)*
+  - *via [DigitalOcean](https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers)*
 12. Configure automatic updates, upgrades, and cleanup.
   - `sudo nano /etc/apt/apt.conf.d/50unattended-upgrades`
     - Uncomment `"${distro_id}:${distro_codename}-updates";`
@@ -138,7 +137,7 @@ This build guide is constructed from a compilation of sources from all over the 
 15. Install MariaDB.
   - Follow the 5 commands [here](https://downloads.mariadb.org/mariadb/repositories/) based on the setup.
     - Use the DO node that the VPS is hosted on as the mirror in both the 4th box and the 3rd command.
-    - Provide {myMariaDBRootPassword}.
+    - Provide {myMariaDBRootPassword} twice when prompted.
   - `mysql_secure_installation`
     - Provide {myMariaDBRootPassword}.
     - Type `n` for do not change root password.
@@ -175,18 +174,18 @@ This build guide is constructed from a compilation of sources from all over the 
     - Modify `define('DB_USER', '{myWPDBUser}');`
     - Modify `define('DB_PASSWORD', '{myWPDBPassword}');`
     - Replace `{myWPSecurityKeys}` [Generate {myWPSecurityKeys}](https://api.wordpress.org/secret-key/1.1/salt/)
-    - Modify `$table_prefix  = '{myRandomPrefix}_';` ([Generate {myRandomPrefix}](https://www.wolframalpha.com/input/?i=password+generator&a=*MC.~-_*Formula.dflt-&a=FSelect_**PasswordSingleBasic-.dflt-&f3=16+characters&f=PasswordSingleBasic.pl_16+characters))
+    - Modify `$table_prefix  = '{myRandomPrefix}_';` ([Generate {myRandomPrefix}](https://www.random.org/strings/?num=1&len=8&loweralpha=on&unique=on&format=html&rnd=new))
     - Add `define( 'WP_AUTO_UPDATE_CORE', true );`
   - `mkdir wp-content/uploads`
   - `sudo mkdir -p /var/www/{myWPSiteName}`
   - `sudo rsync -avP ~/wordpress/ /var/www/{myWPSiteName}/`
-  - `sudo chown -R www-data:www-data /var/www/{myWPSiteName}`
+  - `sudo chown -R www-data:www-data /var/www/{myWPSiteName}/*`
   - `rm -rf ~/wordpress/`
   - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, {myWPDBPassword}, {myWPSecurityKeys}, and {myRandomPrefix}.
   - *via [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-lemp-on-ubuntu-16-04)*
 20. Snapshot 4
 21. Configure nginx.
-  - `sudo ufw allow Nginx Full`
+  - `sudo ufw allow 'Nginx Full'`
   - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/nginx.conf -O /etc/nginx/nginx.conf`
   - `sudo mkdir /etc/nginx/global`
   - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/common.conf -O /etc/nginx/global/common.conf`
@@ -194,19 +193,24 @@ This build guide is constructed from a compilation of sources from all over the 
   - `sudo rm /etc/nginx/sites-available/default`
   - `sudo rm /etc/nginx/sites-enabled/default`
   - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/sites-available/example.com -O /etc/nginx/sites-available/example.com`
-  - `sudo mv /etc/nginx/sites-available/example.com /etc/nginx/sites-available/{myWPSiteName}`
+  - `sudo mv /etc/nginx/sites-available/example.com /etc/nginx/sites-available/{myWPSiteUrl}`
   - `sudo nano /etc/nginx/sites-available/{myWPSiteName}`
     - Modify `root /var/www/{myWPSiteName};`
     - Replace `example.com` with `{myWPSiteUrl}`
   - `sudo ln -s /etc/nginx/sites-available/{myWPSiteName} /etc/nginx/sites-enabled/{myWPSiteName}`
-  - Repeat the last four bullets for each WordPress site to be installed with new values for {myWPSiteName} and {myWPSiteUrl}.
+  - Repeat the last four top-level bullets for each WordPress site to be installed with new values for {myWPSiteName} and {myWPSiteUrl}.
   - *via [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-configure-single-and-multiple-wordpress-site-settings-with-nginx), [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration)*
 22. Configure TLS encryption.
   - `sudo mkdir /etc/nginx/cert`
   - `sudo chmod 700 /etc/nginx/cert`
   - `sudo openssl dhparam 2048 -out /etc/nginx/cert/dhparam.pem`
   - `sudo chmod 600 /etc/nginx/cert/dhparam.pem`
-  - Install certificate(s) and key(s). Initially, I used Let's Encrypt, but deprecating Let's Encrypt in favor of CloudFlare's free certificate. Since there are gotchyas with Let's Encrypt and CloudFlare, and CloudFlare's certificate is much longer-laster (15 years vs. 90 days with Let's Encrypt).
+  - Install certificate(s) and key(s) to `/etc/nginx/cert/`.
+    - Outside the scope of this guide.
+    - Free Options:
+      - [Let's Encrypt](https://letsencrypt.org/)
+      - [CloudFlare Origin CA](https://blog.cloudflare.com/cloudflare-ca-encryption-origin/)
+      - [StartSSL](https://www.startssl.com/Support?v=1)
 23. Snapshot 5
 24. Install and configure redis.
   - `sudo apt-get install redis-server`
@@ -218,21 +222,12 @@ This build guide is constructed from a compilation of sources from all over the 
     ```
 
   - Login to your site at {myWPSiteUrl}/wp-login.php.
-  - Search the plugin repository for "wp-redis" and install it.
-    - The plugin does not ever need to be activated, though.
+  - Search the plugin repository for "wp-redis" and install it (activation not required).
   - `sudo ln -s /var/www/{myWPSiteName}/wp-content/plugins/wp-redis/object-cache.php /var/www/{myWPSiteName}/wp-content`
-  - Verify redis is working by `redis-cli monitor` and refresh the webpage.
+  - Verify redis is working by `redis-cli monitor` and watching Terminal as you refresh the webpage.
+  - Repeat all but the first bullet for each WordPress site to be installed.
   - *via [Codeable](https://codeable.io/community/speed-up-wp-admin-redis-hhvm/)*
-25. Configure FastCGI microcaching.
-  - Search the plugin repository for "nginx-helper" and install it.
-  - Activate "nginx-helper"
-  - In Settings->nginx-helper,
-    - Select "Enable Purge"
-    - Select "nginx Fastcgi cache"
-    - Select "Delete local server cache files"
-    - Customize when the FastCGI cache should be purged
-  - *via [EasyEngine](https://easyengine.io/wordpress-nginx/tutorials/single-site/fastcgi-cache-with-purging/)*
-26. Snapshot 6
+25. Snapshot 6
 
 ## Ongoing Maintenance
 - If the VPS is ever resized, the swap file size should be re-evaluated.
