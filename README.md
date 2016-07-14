@@ -194,7 +194,7 @@ This build guide is constructed from a compilation of sources from all over the 
   - `sudo rm /etc/nginx/sites-available/default`
   - `sudo rm /etc/nginx/sites-enabled/default`
   - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/sites-available/example -O /etc/nginx/sites-available/example`
-  - `sudo mv /etc/nginx/sites-available/example.com /etc/nginx/sites-available/{myWPSiteUrl}`
+  - `sudo mv /etc/nginx/sites-available/example /etc/nginx/sites-available/{myWPSiteName}`
   - `sudo nano /etc/nginx/sites-available/{myWPSiteName}`
     - Modify `root /var/www/{myWPSiteName};`
     - Replace `example.com` with `{myWPSiteUrl}`
