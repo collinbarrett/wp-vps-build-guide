@@ -213,9 +213,7 @@ This build guide is constructed from a compilation of sources from all over the 
       - [CloudFlare Origin CA](https://blog.cloudflare.com/cloudflare-ca-encryption-origin/)
       - [StartSSL](https://www.startssl.com/Support?v=1)
 23. Snapshot 5
-24. Configure NGINX microcaching.
-  - `sudo mkdir /var/run/nginx-cache`
-25. Install and configure redis.
+24. Install and configure redis.
   - `sudo apt-get install redis-server`
   - `sudo nano /var/www/{myWPSiteName}/wp-config.php`
 
@@ -230,7 +228,7 @@ This build guide is constructed from a compilation of sources from all over the 
   - Verify redis is working by `redis-cli monitor` and watching Terminal as you refresh the webpage.
   - Repeat all but the first bullet for each WordPress site to be installed.
   - *via [Codeable](https://codeable.io/community/speed-up-wp-admin-redis-hhvm/)*
-26. Snapshot 6
+25. Snapshot 6
 
 ## Ongoing Maintenance
 - If the VPS is ever resized, the swap file size should be re-evaluated.
