@@ -214,7 +214,7 @@ This build guide is constructed from a compilation of sources from all over the 
       - [StartSSL](https://www.startssl.com/Support?v=1)
 23. Snapshot 5
 24. Configure NGINX microcaching.
-  - `mkdir /var/run/nginx-cache`
+  - `sudo mkdir /var/run/nginx-cache`
 25. Install and configure redis.
   - `sudo apt-get install redis-server`
   - `sudo nano /var/www/{myWPSiteName}/wp-config.php`
