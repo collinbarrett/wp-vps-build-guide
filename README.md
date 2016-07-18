@@ -179,12 +179,22 @@ This build guide is constructed from a compilation of sources from all over the 
   - `mkdir wp-content/uploads`
   - `sudo mkdir -p /var/www/{myWPSiteName}`
   - `sudo rsync -avP ~/wordpress/ /var/www/{myWPSiteName}/`
-  - `sudo chown -R www-data:www-data /var/www/{myWPSiteName}/*`
   - `rm -rf ~/wordpress/`
   - Repeat this step for each WordPress site to be installed with new values for {myWPDB}, {myWPDBUser}, {myWPDBPassword}, {myWPSecurityKeys}, and {myRandomPrefix}.
   - *via [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-lemp-on-ubuntu-16-04)*
-20. Snapshot 4
-21. Configure nginx.
+20. Configure permissions and ownership. (WARNING: still under review, however these should be appropriate)
+  - `sudo chown root:root /var/www/{myWPSiteName}/`
+  - `sudo chown -R {myUser}:{myUser} /var/www/{myWPSiteName}/*`
+  - `sudo chown {myUser}:www-data /var/www/{myWPSiteName}/wp-config.php`
+  - `sudo find /var/www/{myWPSiteName}/ -type d -exec chmod 755 {} \;`
+  - `sudo find /var/www/{myWPSiteName}/ -type f -exec chmod 644 {} \;`
+  - `sudo chmod 400 /var/www/{myWPSiteName}/wp-config.php`
+  - High Security Variant (does not allow plugins to be installed via Dashboard, recommended for use in conjunction with wp-cli)
+    - `sudo chown -R www-data:www-data /var/www/{myWPSiteName}/wp-content/uploads/`
+  - Medium Security Variant
+    - `sudo chown -R www-data:www-data /var/www/{myWPSiteName}/wp-content/`
+21. Snapshot 4
+22. Configure nginx.
   - `sudo ufw allow 'Nginx Full'`
   - `sudo wget https://raw.githubusercontent.com/h5bp/server-configs-nginx/master/mime.types -O /etc/nginx/mime.types`
   - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/nginx.conf -O /etc/nginx/nginx.conf`
@@ -201,7 +211,7 @@ This build guide is constructed from a compilation of sources from all over the 
   - `sudo ln -s /etc/nginx/sites-available/{myWPSiteName} /etc/nginx/sites-enabled/{myWPSiteName}`
   - Repeat the last four top-level bullets for each WordPress site to be installed with new values for {myWPSiteName} and {myWPSiteUrl}.
   - *via [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-configure-single-and-multiple-wordpress-site-settings-with-nginx), [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration)*
-22. Configure TLS encryption.
+23. Configure TLS encryption.
   - `sudo mkdir /etc/nginx/cert`
   - `sudo chmod 700 /etc/nginx/cert`
   - `sudo openssl dhparam 2048 -out /etc/nginx/cert/dhparam.pem`
@@ -212,8 +222,8 @@ This build guide is constructed from a compilation of sources from all over the 
       - [Let's Encrypt](https://letsencrypt.org/)
       - [CloudFlare Origin CA](https://blog.cloudflare.com/cloudflare-ca-encryption-origin/)
       - [StartSSL](https://www.startssl.com/Support?v=1)
-23. Snapshot 5
-24. Install and configure redis.
+24. Snapshot 5
+25. Install and configure redis.
   - `sudo apt-get install redis-server`
   - `sudo nano /var/www/{myWPSiteName}/wp-config.php`
 
@@ -228,7 +238,7 @@ This build guide is constructed from a compilation of sources from all over the 
   - Verify redis is working by `redis-cli monitor` and watching Terminal as you refresh the webpage.
   - Repeat all but the first bullet for each WordPress site to be installed.
   - *via [Codeable](https://codeable.io/community/speed-up-wp-admin-redis-hhvm/)*
-25. Snapshot 6
+26. Snapshot 6
 
 ## Ongoing Maintenance
 - If the VPS is ever resized, the swap file size should be re-evaluated.
