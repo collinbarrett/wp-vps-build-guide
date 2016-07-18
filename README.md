@@ -13,6 +13,7 @@ This project aims to provide a straightforward, albeit lengthy and all-inclusive
 | Development Client | macOS | |
 | Production Host | DigitalOcean | |
 | Server | Ubuntu LTS x64 |  |
+| WordPress Management Tools | WP-CLI |  |
 | Database | MariaDB | |
 | Object Cache Store | Redis | |
 | PHP Compiler | HHVM | |
@@ -193,6 +194,7 @@ This build guide is constructed from a compilation of sources from all over the 
     - `sudo chown -R www-data:www-data /var/www/{myWPSiteName}/wp-content/uploads/`
   - Medium Security Variant
     - `sudo chown -R www-data:www-data /var/www/{myWPSiteName}/wp-content/`
+  - - *via [StackOverflow](https://stackoverflow.com/questions/18352682/correct-file-permissions-for-wordpress)*
 21. Snapshot 4
 22. Configure nginx.
   - `sudo ufw allow 'Nginx Full'`
@@ -238,7 +240,17 @@ This build guide is constructed from a compilation of sources from all over the 
   - Verify redis is working by `redis-cli monitor` and watching Terminal as you refresh the webpage.
   - Repeat all but the first bullet for each WordPress site to be installed.
   - *via [Codeable](https://codeable.io/community/speed-up-wp-admin-redis-hhvm/)*
-26. Snapshot 6
+26. Install and configure WP-CLI to auto-update WordPress.
+  - `cd ~/`
+  - `curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar`
+  - `chmod +x wp-cli.phar`
+  - `sudo mv wp-cli.phar /usr/local/bin/wp`
+  - `sudo crontab -e`
+    - Add `0 1 * * * /usr/local/bin/wp cli update --yes --allow-root`
+  - `crontab -e`
+    - Add `0 2 * * * cd /var/www/{myWPSiteName}/ && /usr/local/bin/wp core update --quiet && /usr/local/bin/wp core update-db --quiet && /usr/local/bin/wp plugin update --all --quiet && /usr/local/bin/wp db optimize`
+  - *via [WP-CLI](http://wp-cli.org/docs/installing/)*
+27. Snapshot 6
 
 ## Ongoing Maintenance
 - If the VPS is ever resized, the swap file size should be re-evaluated.
