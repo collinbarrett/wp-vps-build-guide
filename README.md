@@ -62,6 +62,7 @@ This build guide is constructed from a compilation of sources from all over the 
 - Dockerize
 - Clusterize
 - Automated _Realtime_ Backups
+- Automated Build Script
 
 ## Build Guide
 1. Create a new VPS running the latest Ubuntu LTS x64 in the DO control panel.
