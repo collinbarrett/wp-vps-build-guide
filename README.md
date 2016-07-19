@@ -44,6 +44,13 @@ Please provide feedback. This guide should continue to receive ongoing optimizat
 ### Sources
 This build guide is constructed from a compilation of sources from all over the web. Inline "via"s give credit to some of these authors, but apologies go out to any blogs that were forgotten. A special recognition goes out to [Mark Jaquith](http://wordpress.tv/2014/10/16/mark-jaquith-next-generation-wordpress-hosting-stack/) and [Carl Alexander](http://wordpress.tv/2016/05/03/carl-alexander-a-look-at-the-modern-wordpress-server-stack/) whose talks played fundamental roles in this architecture.
 
+## Roadmap / To-Do
+- Configure Redis persistence so server reboots do not dump redis store.
+- Describe method for tuning MariaDB.
+- Describe method for tuning NGINX FastCGI cache and possibly cache to tmpfs.
+- Describe 1 or more methods for installing SSL certificate.
+- Describe process of generating SSH key.
+
 ## Build Guide
 1. Create a new VPS running the latest Ubuntu LTS x64 in the DO control panel.
   - Enable backups.
