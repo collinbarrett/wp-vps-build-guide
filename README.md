@@ -49,20 +49,21 @@ This build guide is constructed from a compilation of sources from all over the 
 ### Near-Term
 
 - Redis Persistence
-- MariaDB Tuning
+- [NGINX Helper](https://wordpress.org/plugins/nginx-helper/) with NGINX FastCGI Cache
 - NGINX FastCGI Microcache Tuning and tmpfs
+- MariaDB Tuning
+- Verify Ubuntu Automatic Upgrades
+- Verify WordPress Ownership and Permissions
 - SSL Certificate Installation
 - SSH Key Installation
-- Verify WordPress Ownership and Permissions
-- Verify Ubuntu Automatic Upgrades
 - Automated _Scheduled_ Backups
 
 ### Moonshots / Long-Term
 
-- Dockerize
-- Clusterize
 - Automated _Realtime_ Backups
 - Automated Build Script
+- Dockerize
+- Clusterize
 
 ## Build Guide
 1. Create a new VPS running the latest Ubuntu LTS x64 in the DO control panel.
