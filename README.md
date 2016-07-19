@@ -50,6 +50,8 @@ This build guide is constructed from a compilation of sources from all over the 
 - Describe method for tuning NGINX FastCGI cache and possibly cache to tmpfs.
 - Describe method for installing SSL certificate.
 - Describe process of generating SSH key.
+- Verify WordPress ownership and permissions descriptions are secure and valid.
+- Verify Ubuntu automatic upgrades and reboots (when necessary) work correctly.
 
 ## Build Guide
 1. Create a new VPS running the latest Ubuntu LTS x64 in the DO control panel.
