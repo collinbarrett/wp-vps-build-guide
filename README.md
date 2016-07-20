@@ -154,8 +154,9 @@ This build guide is constructed from a compilation of sources from all over the 
     - Modify `APT::Periodic::AutocleanInterval "7";`
   - *via [Ubuntu](https://help.ubuntu.com/lts/serverguide/automatic-updates.html)*
 13. Snapshot 2
-14. Install NGINX.
+14. Install NGINX with ngx_cache_purge.
   - `sudo apt-get install nginx`
+  - `sudo apt-get install nginx-extras`
 15. Install MariaDB.
   - Follow the 5 commands [here](https://downloads.mariadb.org/mariadb/repositories/) based on the setup.
     - Use the DO node that the VPS is hosted on as the mirror in both the 4th box and the 3rd command.
