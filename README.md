@@ -17,7 +17,7 @@ This project aims to provide a straightforward, albeit lengthy and all-inclusive
 | Database | MariaDB | |
 | Object Cache Store | Redis | |
 | PHP Compiler | HHVM | |
-| Web Server | NGINX | w/microcaching |
+| Web Server | NGINX | w/FastCGI Caching |
 | Connection | Modern TLS Ciphers<br>HTTP/2<br>ipv4/ipv6 | |
 
 ### Scope
@@ -49,8 +49,7 @@ This build guide is constructed from a compilation of sources from all over the 
 ### Near-Term
 
 - Redis Persistence
-- [NGINX Helper](https://wordpress.org/plugins/nginx-helper/) with NGINX FastCGI Cache
-- NGINX FastCGI Microcache Tuning and tmpfs
+- NGINX FastCGI Cache Tuning
 - MariaDB Tuning
 - Verify Ubuntu Automatic Upgrades
 - Verify WordPress Ownership and Permissions
@@ -156,7 +155,6 @@ This build guide is constructed from a compilation of sources from all over the 
 13. Snapshot 2
 14. Install NGINX with ngx_cache_purge.
   - `sudo apt-get install nginx`
-  - `sudo apt-get install nginx-extras`
 15. Install MariaDB.
   - Follow the 5 commands [here](https://downloads.mariadb.org/mariadb/repositories/) based on the setup.
     - Use the DO node that the VPS is hosted on as the mirror in both the 4th box and the 3rd command.
@@ -249,23 +247,7 @@ This build guide is constructed from a compilation of sources from all over the 
       - [CloudFlare Origin CA](https://blog.cloudflare.com/cloudflare-ca-encryption-origin/)
       - [StartSSL](https://www.startssl.com/Support?v=1)
 24. Snapshot 5
-25. Install and configure redis.
-  - `sudo apt-get install redis-server`
-  - `sudo nano /var/www/{myWPSiteName}/wp-config.php`
-
-    ```
-    define( 'WP_CACHE_KEY_SALT', '{myWPSiteName}_' );
-    $redis_server = array( 'host' => '127.0.0.1', 'port' => 6379, );
-    ```
-
-  - Login to your site at {myWPSiteUrl}/wp-login.php.
-  - Search the plugin repository for "wp-redis" and install it (activation not required).
-  - `sudo ln -s /var/www/{myWPSiteName}/wp-content/plugins/wp-redis/object-cache.php /var/www/{myWPSiteName}/wp-content`
-  - Verify redis is working by `redis-cli monitor` and watching Terminal as you refresh the webpage.
-  - Repeat all but the first bullet for each WordPress site to be installed.
-  - *via [Codeable](https://codeable.io/community/speed-up-wp-admin-redis-hhvm/)*
-26. Install and configure WP-CLI to auto-update WordPress.
-  - `cd ~/`
+25. Install and configure WP-CLI to auto-update WordPress.
   - `curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar`
   - `chmod +x wp-cli.phar`
   - `sudo mv wp-cli.phar /usr/local/bin/wp`
@@ -274,7 +256,32 @@ This build guide is constructed from a compilation of sources from all over the 
   - `crontab -e`
     - Add `0 2 * * * cd /var/www/{myWPSiteName}/ && /usr/local/bin/wp core update --quiet && /usr/local/bin/wp core update-db --quiet && /usr/local/bin/wp plugin update --all --quiet && /usr/local/bin/wp db optimize`
   - *via [WP-CLI](http://wp-cli.org/docs/installing/)*
-27. Snapshot 6
+26. Install and configure Redis.
+  - `sudo apt-get install redis-server`
+  - `sudo nano /var/www/{myWPSiteName}/wp-config.php`
+
+    ```
+    define( 'WP_CACHE_KEY_SALT', '{myWPSiteName}_' );
+    $redis_server = array( 'host' => '127.0.0.1', 'port' => 6379, );
+    ```
+
+  - `cd /var/www/{myWPSiteName}/`
+  - `wp plugin install wp-redis`
+  - `sudo ln -s /var/www/{myWPSiteName}/wp-content/plugins/wp-redis/object-cache.php /var/www/{myWPSiteName}/wp-content`
+  - Verify Redis is working by `redis-cli monitor` and watching Terminal as you load {myWPSiteUrl} in a browser.
+  - Repeat all but the first bullet for each WordPress site to be installed.
+  - *via [Codeable](https://codeable.io/community/speed-up-wp-admin-redis-hhvm/)*
+27. Install and configure NGINX Helper.
+  - `cd /var/www/{myWPSiteName}/`
+  - `wp plugin install nginx-helper --activate`
+  - Log into WordPress and navigate to "Settings -> Nginx Helper".
+  - Configure settings as follows. Some settings do not appear until after you click "Save All Changes" the first time.
+    - Check `Enable Purge`
+    - Check `nginx Fastcgi cache`
+    - Check `Delete local server cache files`
+    - Check all `Purging Conditions`
+  - Repeat all for each WordPress site to be installed.
+28. Snapshot 6
 
 ## Ongoing Maintenance
 - If the VPS is ever resized, the swap file size should be re-evaluated.
