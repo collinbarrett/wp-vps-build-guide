@@ -50,7 +50,6 @@ This build guide is constructed from a compilation of sources from all over the 
 
 - Redis Persistence
 - NGINX FastCGI Cache Tuning
-- Move NGINX FastCGI Cache to tmpfs w/Persistence
 - MariaDB Tuning
 - Verify Ubuntu Automatic Upgrades
 - Verify WordPress Ownership and Permissions
