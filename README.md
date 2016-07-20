@@ -50,6 +50,7 @@ This build guide is constructed from a compilation of sources from all over the 
 
 - Redis Persistence
 - NGINX FastCGI Cache Tuning
+- Move NGINX FastCGI Cache to tmpfs w/Persistence
 - MariaDB Tuning
 - Verify Ubuntu Automatic Upgrades
 - Verify WordPress Ownership and Permissions
@@ -273,6 +274,8 @@ This build guide is constructed from a compilation of sources from all over the 
   - *via [Codeable](https://codeable.io/community/speed-up-wp-admin-redis-hhvm/)*
 27. Install and configure NGINX Helper.
   - `cd /var/www/{myWPSiteName}/`
+  - `sudo nano wp-config.php`
+    - Add `define('RT_WP_NGINX_HELPER_CACHE_PATH','/etc/nginx/nginx-cache');`
   - `wp plugin install nginx-helper --activate`
   - Log into WordPress and navigate to "Settings -> Nginx Helper".
   - Configure settings as follows. Some settings do not appear until after you click "Save All Changes" the first time.
