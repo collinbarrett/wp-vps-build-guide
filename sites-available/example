@@ -31,7 +31,7 @@ server {
         root /var/www/example;
         include global/common.conf;
         include global/wordpress.conf;
-        #add_header Content-Security-Policy "default-src 'self';";
+        #add_header Content-Security-Policy "default-src 'self';" always;
         ssl_certificate_key /etc/nginx/cert/example_key.pem;
         ssl_certificate /etc/nginx/cert/example_cert.pem;
         #ssl_trusted_certificate /etc/nginx/cert/example_fullchain.pem;
