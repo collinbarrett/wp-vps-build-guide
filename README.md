@@ -287,7 +287,7 @@ This build guide is constructed from a compilation of sources from all over the 
 28. Install and configure NGINX Helper.
   - `cd /var/www/{myWPSiteName}/`
   - `sudo nano wp-config.php`
-    - Add `define('RT_WP_NGINX_HELPER_CACHE_PATH','/etc/nginx/nginx-cache');`
+    - Add `define('RT_WP_NGINX_HELPER_CACHE_PATH','/mnt/ramdisk/nginx-cache');`
   - `wp plugin install nginx-helper --activate`
   - Log into WordPress and navigate to "Settings -> Nginx Helper".
   - Configure settings as follows. Some settings do not appear until after you click "Save All Changes" the first time.
