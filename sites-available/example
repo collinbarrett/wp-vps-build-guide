@@ -14,6 +14,8 @@ server {
         ssl_certificate_key /etc/nginx/cert/example_key.pem;
         ssl_certificate /etc/nginx/cert/example_cert.pem;
         #ssl_trusted_certificate /etc/nginx/cert/example_fullchain.pem;
+        #ssl_client_certificate /etc/nginx/cert/cloudflare.crt;
+        #ssl_verify_client on;
         return 301 https://example.com$request_uri;
 }
 
@@ -28,4 +30,6 @@ server {
         ssl_certificate_key /etc/nginx/cert/example_key.pem;
         ssl_certificate /etc/nginx/cert/example_cert.pem;
         #ssl_trusted_certificate /etc/nginx/cert/example_fullchain.pem;
+        #ssl_client_certificate /etc/nginx/cert/cloudflare.crt;
+        #ssl_verify_client on;
 }
