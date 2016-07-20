@@ -15,9 +15,9 @@ This project aims to provide a straightforward, albeit lengthy and all-inclusive
 | Server | Ubuntu LTS x64 |  |
 | WordPress Management Tools | WP-CLI |  |
 | Database | MariaDB | |
-| Object Cache Store | Redis | in-RAM |
+| Object Cache Store | Redis | in-RAM (persists) |
 | PHP Compiler | HHVM | |
-| Web Server | NGINX | w/FastCGI Caching<br>in-RAM (persists) |
+| Web Server | NGINX | w/FastCGI Caching in-RAM (persists) |
 | Connection | Modern TLS Ciphers<br>HTTP/2<br>ipv4/ipv6 | |
 
 ### Scope
@@ -48,8 +48,9 @@ This build guide is constructed from a compilation of sources from all over the 
 
 ### Near-Term
 
-- Redis Persistence
 - NGINX FastCGI Cache Tuning
+- HHVM Tuning
+- Redis Tuning
 - MariaDB Tuning
 - Verify Ubuntu Automatic Upgrades
 - Verify WordPress Ownership and Permissions
@@ -271,6 +272,9 @@ This build guide is constructed from a compilation of sources from all over the 
   - *via [WP-CLI](http://wp-cli.org/docs/installing/)*
 27. Install and configure Redis.
   - `sudo apt-get install redis-server`
+  - `sudo nano /etc/redis/redis.conf`
+    - Add `maxmemory 128mb`
+    - Add `maxmemory-policy allkeys-lru`
   - `sudo nano /var/www/{myWPSiteName}/wp-config.php`
 
     ```
