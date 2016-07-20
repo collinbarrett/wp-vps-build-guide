@@ -13,7 +13,7 @@ server {
         server_name www.example.com;
         ssl_certificate_key /etc/nginx/cert/example_key.pem;
         ssl_certificate /etc/nginx/cert/example_cert.pem;
-        ssl_trusted_certificate /etc/nginx/cert/example_fullchain.pem;
+        #ssl_trusted_certificate /etc/nginx/cert/example_fullchain.pem;
         return 301 https://example.com$request_uri;
 }
 
@@ -27,5 +27,5 @@ server {
         include global/wordpress.conf;
         ssl_certificate_key /etc/nginx/cert/example_key.pem;
         ssl_certificate /etc/nginx/cert/example_cert.pem;
-        ssl_trusted_certificate /etc/nginx/cert/example_fullchain.pem;
+        #ssl_trusted_certificate /etc/nginx/cert/example_fullchain.pem;
 }
