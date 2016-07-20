@@ -224,6 +224,7 @@ This build guide is constructed from a compilation of sources from all over the 
   - `sudo mkdir /etc/nginx/global`
   - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/common.conf -O /etc/nginx/global/common.conf`
   - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/wordpress.conf -O /etc/nginx/global/wordpress.conf`
+  - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/hackrepair.conf -O /etc/nginx/global/hackrepair.conf`
   - `sudo rm /etc/nginx/sites-available/default`
   - `sudo rm /etc/nginx/sites-enabled/default`
   - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/sites-available/example -O /etc/nginx/sites-available/example`
@@ -231,6 +232,7 @@ This build guide is constructed from a compilation of sources from all over the 
   - `sudo nano /etc/nginx/sites-available/{myWPSiteName}`
     - Modify `root /var/www/{myWPSiteName};`
     - Replace `example.com` with `{myWPSiteUrl}`
+    - If site should not be the default for the server, toggle listen directives so the ones without `default_server` are active.
   - `sudo ln -s /etc/nginx/sites-available/{myWPSiteName} /etc/nginx/sites-enabled/{myWPSiteName}`
   - Repeat the last four top-level bullets for each WordPress site to be installed with new values for {myWPSiteName} and {myWPSiteUrl}.
   - *via [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-configure-single-and-multiple-wordpress-site-settings-with-nginx), [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration)*
