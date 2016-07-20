@@ -17,7 +17,7 @@ This project aims to provide a straightforward, albeit lengthy and all-inclusive
 | Database | MariaDB | |
 | Object Cache Store | Redis | |
 | PHP Compiler | HHVM | |
-| Web Server | NGINX | w/FastCGI Caching |
+| Web Server | NGINX | w/FastCGI Caching<br>(Persistent In-Memory) |
 | Connection | Modern TLS Ciphers<br>HTTP/2<br>ipv4/ipv6 | |
 
 ### Scope
@@ -217,7 +217,20 @@ This build guide is constructed from a compilation of sources from all over the 
     - `sudo chown -R www-data:www-data /var/www/{myWPSiteName}/wp-content/`
   - - *via [StackOverflow](https://stackoverflow.com/questions/18352682/correct-file-permissions-for-wordpress)*
 21. Snapshot 4
-22. Configure nginx.
+22. Configure FastCGI Cache RAM disk.
+  - `sudo mkdir /mnt/ramdisk`
+  - `sudo nano /etc/fstab`
+    - Add `tmpfs /mnt/ramdisk tmpfs defaults,size=32M 0 0`
+  - `sudo mount /mnt/ramdisk`
+  - `sudo mkdir /var/ramdisk-backup`
+  - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/ramdisk -O /etc/init.d/ramdisk`
+  - `sudo chmod +x /etc/init.d/ramdisk`
+  - `sudo /etc/init.d/ramdisk sync`
+  - `sudo crontab -e`
+    - Add `@reboot /etc/init.d/ramdisk start >> /dev/null 2>&1`
+    - Add `2 * * * * /etc/init.d/ramdisk sync >> /dev/null 2>&1`
+  - *via [Observium](https://www.observium.org/docs/persistent_ramdisk/)*
+23. Configure nginx.
   - `sudo ufw allow 'Nginx Full'`
   - `sudo wget https://raw.githubusercontent.com/h5bp/server-configs-nginx/master/mime.types -O /etc/nginx/mime.types`
   - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/nginx.conf -O /etc/nginx/nginx.conf`
@@ -236,7 +249,7 @@ This build guide is constructed from a compilation of sources from all over the 
   - `sudo ln -s /etc/nginx/sites-available/{myWPSiteName} /etc/nginx/sites-enabled/{myWPSiteName}`
   - Repeat the last four top-level bullets for each WordPress site to be installed with new values for {myWPSiteName} and {myWPSiteUrl}.
   - *via [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-configure-single-and-multiple-wordpress-site-settings-with-nginx), [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration)*
-23. Configure TLS encryption.
+24. Configure TLS encryption.
   - `sudo mkdir /etc/nginx/cert`
   - `sudo chmod 700 /etc/nginx/cert`
   - `sudo openssl dhparam 2048 -out /etc/nginx/cert/dhparam.pem`
@@ -247,8 +260,8 @@ This build guide is constructed from a compilation of sources from all over the 
       - [Let's Encrypt](https://letsencrypt.org/)
       - [CloudFlare Origin CA](https://blog.cloudflare.com/cloudflare-ca-encryption-origin/)
       - [StartSSL](https://www.startssl.com/Support?v=1)
-24. Snapshot 5
-25. Install and configure WP-CLI to auto-update WordPress.
+25. Snapshot 5
+26. Install and configure WP-CLI to auto-update WordPress.
   - `curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar`
   - `chmod +x wp-cli.phar`
   - `sudo mv wp-cli.phar /usr/local/bin/wp`
@@ -257,7 +270,7 @@ This build guide is constructed from a compilation of sources from all over the 
   - `crontab -e`
     - Add `0 2 * * * cd /var/www/{myWPSiteName}/ && /usr/local/bin/wp core update --quiet && /usr/local/bin/wp core update-db --quiet && /usr/local/bin/wp plugin update --all --quiet && /usr/local/bin/wp db optimize`
   - *via [WP-CLI](http://wp-cli.org/docs/installing/)*
-26. Install and configure Redis.
+27. Install and configure Redis.
   - `sudo apt-get install redis-server`
   - `sudo nano /var/www/{myWPSiteName}/wp-config.php`
 
@@ -272,7 +285,7 @@ This build guide is constructed from a compilation of sources from all over the 
   - Verify Redis is working by `redis-cli monitor` and watching Terminal as you load {myWPSiteUrl} in a browser.
   - Repeat all but the first bullet for each WordPress site to be installed.
   - *via [Codeable](https://codeable.io/community/speed-up-wp-admin-redis-hhvm/)*
-27. Install and configure NGINX Helper.
+28. Install and configure NGINX Helper.
   - `cd /var/www/{myWPSiteName}/`
   - `sudo nano wp-config.php`
     - Add `define('RT_WP_NGINX_HELPER_CACHE_PATH','/etc/nginx/nginx-cache');`
@@ -284,8 +297,9 @@ This build guide is constructed from a compilation of sources from all over the 
     - Check `Delete local server cache files`
     - Check all `Purging Conditions`
   - Repeat all for each WordPress site to be installed.
-28. Snapshot 6
+29. Snapshot 6
 
 ## Ongoing Maintenance
 - If the VPS is ever resized, the swap file size should be re-evaluated.
-- MariaDB should be tuned on occasion for optimum performance.
+- The size of `/mnt/ramdisk` should be tuned on occasion.
+- MariaDB should be tuned on occasion.
