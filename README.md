@@ -15,9 +15,9 @@ This project aims to provide a straightforward, albeit lengthy and all-inclusive
 | Server | Ubuntu LTS x64 |  |
 | WordPress Management Tools | WP-CLI |  |
 | Database | MariaDB | |
-| Object Cache Store | Redis | |
+| Object Cache Store | Redis<br>(in-RAM) | |
 | PHP Compiler | HHVM | |
-| Web Server | NGINX | w/FastCGI Caching<br>(Persistent In-Memory) |
+| Web Server | NGINX | w/FastCGI Caching<br>(in-RAM, persists) |
 | Connection | Modern TLS Ciphers<br>HTTP/2<br>ipv4/ipv6 | |
 
 ### Scope
