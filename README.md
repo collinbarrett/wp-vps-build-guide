@@ -171,11 +171,11 @@ This build guide is constructed from a compilation of sources from all over the 
   - `sudo apt-get install hhvm`
   - `sudo update-rc.d hhvm defaults`
   - `sudo /usr/share/hhvm/install_fastcgi.sh`
-  - `sudo mkdir /var/cache/hhvm`
-  - `sudo chown www-data:www-data /var/cache/hhvm/`
+  - `sudo mkdir /var/cache/hhvm` (do only if RAM < 512mb)
+  - `sudo chown www-data:www-data /var/cache/hhvm/`  (do only if RAM < 512mb)
   - `sudo nano /etc/hhvm/server.ini`
     - Replace `hhvm.server.port = 9000` with `hhvm.server.file_socket=/var/run/hhvm/hhvm.sock`
-    - Modify `hhvm.repo.central.path = /var/cache/hhvm/hhvm.hhbc`
+    - Modify `hhvm.repo.central.path = /var/cache/hhvm/hhvm.hhbc` (do only if RAM < 512mb)
   - `sudo service hhvm restart`
   - *via [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-hhvm-with-nginx-on-ubuntu-14-04)*
 17. Snapshot 3
