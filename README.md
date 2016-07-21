@@ -273,7 +273,7 @@ This build guide is constructed from a compilation of sources from all over the 
 27. Install and configure Redis.
   - `sudo apt-get install redis-server`
   - `sudo nano /etc/redis/redis.conf`
-    - Add `maxmemory 128mb`
+    - Add `maxmemory 64mb`
     - Add `maxmemory-policy allkeys-lru`
   - `sudo nano /var/www/{myWPSiteName}/wp-config.php`
 
