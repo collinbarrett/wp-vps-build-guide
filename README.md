@@ -271,7 +271,7 @@ This build guide is constructed from a compilation of sources from all over the 
   - `sudo crontab -e`
     - Add `0 1 * * * /usr/local/bin/wp cli update --yes --allow-root`
   - `crontab -e`
-    - Add `0 2 * * * cd /var/www/{myWPSiteName}/ && /usr/local/bin/wp core update --quiet && /usr/local/bin/wp core update-db --quiet && /usr/local/bin/wp plugin update --all --quiet && /usr/local/bin/wp db optimize`
+    - Add `0 */6 * * * cd /var/www/{myWPSiteName}/ && /usr/local/bin/wp core update --quiet && /usr/local/bin/wp core update-db --quiet && /usr/local/bin/wp plugin update --all --quiet && /usr/local/bin/wp db optimize`
   - *via [WP-CLI](http://wp-cli.org/docs/installing/)*
 27. Install and configure Redis.
   - `sudo apt-get install redis-server`
