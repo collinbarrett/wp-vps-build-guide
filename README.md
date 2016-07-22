@@ -213,7 +213,7 @@ This build guide is constructed from a compilation of sources from all over the 
   - `sudo chown {myUser}:www-data /var/www/{myWPSiteName}/wp-config.php`
   - `sudo find /var/www/{myWPSiteName}/ -type d -exec chmod 755 {} \;`
   - `sudo find /var/www/{myWPSiteName}/ -type f -exec chmod 644 {} \;`
-  - `sudo chmod 400 /var/www/{myWPSiteName}/wp-config.php`
+  - `sudo chmod 440 /var/www/{myWPSiteName}/wp-config.php`
   - High Security Variant (does not allow plugins to be installed via Dashboard, recommended for use in conjunction with wp-cli)
     - `sudo chown -R www-data:www-data /var/www/{myWPSiteName}/wp-content/uploads/`
   - Medium Security Variant
