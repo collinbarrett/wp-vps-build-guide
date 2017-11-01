@@ -243,6 +243,7 @@ This build guide is constructed from a compilation of sources from all over the 
   - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/global/hackrepair.conf -O /etc/nginx/global/hackrepair.conf`
   - `sudo rm /etc/nginx/sites-available/default`
   - `sudo rm /etc/nginx/sites-enabled/default`
+  - Note: Before using the example conf in the next step, you may need to edit it if you are not installing SSL (see step 24 and [this issue](https://github.com/collinbarrett/wp-vps-build-guide/issues/10)).
   - `sudo wget https://raw.githubusercontent.com/collinbarrett/wp-vps-build-guide/master/sites-available/example -O /etc/nginx/sites-available/example`
   - `sudo mv /etc/nginx/sites-available/example /etc/nginx/sites-available/{myWPSiteName}`
   - `sudo nano /etc/nginx/sites-available/{myWPSiteName}`
